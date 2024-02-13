@@ -27,6 +27,12 @@ CREATE TABLE STUDENTE(
 	PRIMARY KEY (MAIL, NOME, COGNOME)
 )
 ENGINE=INNODB;
+
+
+
+
+
+
     
     
     
