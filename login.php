@@ -58,13 +58,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esegui Procedura</title>
+    <title>Operazioni disponibili</title>
 </head>
 <body>
 
     <h2>Operazioni disponibili</h2>
 
-    <form action="visualizzaTestDisponibili.php" method="post">
+    <form action="visualizza-test-disponibili.php" method="post">
         <button type="submit">Visualizza test disponibili</button>
     </form>
 
