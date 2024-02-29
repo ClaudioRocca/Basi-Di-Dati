@@ -6,11 +6,11 @@
 <p> 
 <?php
    $username=$_POST["username"];
-   $pazzword=$_POST["password"];
+   $password=$_POST["password"];
    
    // Connessione al DB
    try {
-      $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'root');
+      $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    }
    catch(PDOException $e) {
@@ -21,14 +21,11 @@
    
    try {
      // Query SQL per l'inserimento dati
-    //$sql='SELECT COUNT(*) AS counter FROM Credenziali  WHERE (Utente="'.$username.'") AND (Password="'.$password.'")';
+    $sql='SELECT COUNT(*) AS counter FROM Credenziali  WHERE (Utente="'.$username.'") AND (Pazzword="'.$password.'")';
         
-    
-    $sql='SELECT COUNT(*) AS counter FROM Credenziali  WHERE (Utente=:lab1) AND (Pazzword=:lab2)';
-    echo("Query ".$sql);
+    echo("Query:  ".$sql);
     $res=$pdo->prepare($sql);
-    $res->bindValue(":lab1",$username);
-    $res->bindValue(":lab2",$pazzword);
+
     $res->execute();
 
     $res=$pdo->query($sql);
@@ -46,7 +43,7 @@
        echo("<b>Accesso non autorizzato! </b>");  
    }
   
-  $linkback='<br><br><a href="formlogin.html"> Torna Indietro </a>';
+  $linkback='<br><br><a href="pagelogin.php"> Torna Indietro </a>';
   echo($linkback);
       
  ?>
@@ -56,14 +53,20 @@
 
 </html>
 
-<?php
-/*$sql='SELECT COUNT(*) AS counter FROM Login  WHERE (Utente=:lab1) AND (Password=:lab2)';
-     $res=$pdo->prepare($sql);
-     $res->bindValue(":lab1",$username);
-     $res->bindValue(":lab2",$password);
-     $res->execute();
-     
-     session_start();
-       $_SESSION_['user']=$username;
-     */
-?>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esegui Procedura</title>
+</head>
+<body>
+
+    <h2>Operazioni disponibili</h2>
+
+    <form action="visualizzaTestDisponibili.php" method="post">
+        <button type="submit">Visualizza test disponibili</button>
+    </form>
+
+</body>
+</html>
