@@ -38,8 +38,9 @@
  
    $row=$res->fetch();
    if ($row['counter']>0) {
-       echo("<b> Benvenuto nel sistema, ".$username."</b>"); 
-      } else {
+    header('Location: interfaccia_Docente.html');
+   
+    } else {
        echo("<b>Accesso non autorizzato! </b>");  
    }
   

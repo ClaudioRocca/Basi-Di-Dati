@@ -10,20 +10,14 @@ try {
     $sql = "CALL VISUALIZZAZIONE_TEST_DISPONIBILI()";
 
 
+   
+
+
     $res=$pdo->prepare($sql);
     $res->execute();
-    $row=$res->fetch();
-
-    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-        // Modifica di questa parte a seconda delle colonne restituite dalla procedura
-        echo "Titolo test: " . $row['TITOLO'] . " - Data creazione: " . $row['DATA_CREAZIONE'] .  " - Risposte visualizzabili: " . $row['VISUALIZZA_RISPOSTE'] . "<br>";
-        echo ("Procedura eseguita con successo");
+    $result = $res->fetch(PDO::FETCH_ASSOC);
     
-    }
-
-
-    //echo ("Procedura eseguita con successo");
-
+    print_r($result);
     
  }
  catch(PDOException $e) {
