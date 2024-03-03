@@ -10,9 +10,6 @@ try {
     $sql = "CALL VISUALIZZAZIONE_TEST_DISPONIBILI()";
 
 
-   
-
-
     $res=$pdo->prepare($sql);
     $res->execute();
     $result = $res->fetch(PDO::FETCH_ASSOC);
