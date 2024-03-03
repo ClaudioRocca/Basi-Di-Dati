@@ -22,11 +22,11 @@
    try {
      // Query SQL per l'inserimento dati
     $sql='SELECT COUNT(*) AS counter FROM Credenziali  WHERE (Utente="'.$username.'") AND (Pazzword="'.$password.'")';
-        
-    echo("Query:  ".$sql);
+    
     $res=$pdo->prepare($sql);
 
     $res->execute();
+    
 
     $res=$pdo->query($sql);
    }
@@ -37,7 +37,7 @@
   
  
    $row=$res->fetch();
-   if ($row['counter']>0) {
+   if ($row['counter']>0 ) {
     header('Location: interfaccia_Docente.html');
    
     } else {
