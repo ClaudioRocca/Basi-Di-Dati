@@ -32,7 +32,7 @@
 
     $attributi_splittati = explode(',', $attributi);
 
-    $sqlInsertAttributi = 'INSERT INTO ATTRIBUTO(NOME, TIPO, TABELLA_NOME) VALUES (?, ?, ?)';
+    $sqlInsertAttributi = 'INSERT INTO ATTRIBUTO(NOME, TIPO, NOME_TABELLA) VALUES (?, ?, ?)';
     foreach ($attributi_splittati as $attributo) {
         $nome_tipo = explode(':', $attributo);
 
@@ -47,10 +47,11 @@
       }
 
 
-    echo 'Query: ' . $sql;
+    /*echo 'Query: ' . $sql;
     echo 'Nome tabella: ' .$nomeTabella;
     echo 'Data: ' .$date;
-    echo 'Numero righe: ' .$numeroRighe;
+    echo 'Numero righe: ' .$numeroRighe;*/
+    echo 'Tabella creata con successo';
 
 } catch (PDOException $e) {
     echo "[ERRORE] Query SQL (Insert) non riuscita. Errore: " . $e->getMessage();
