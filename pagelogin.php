@@ -44,27 +44,29 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
+   <title>Login</title>
 <head>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<form action='login.php' method="post"
- 
-<br>
- <br>
-  <hr> LOGIN UTENTI </hr>
-<table>
-<tr>
- <td> <b> </b> Username:  </b></td>
- <td><input type='text' name="username" id="username" required = true><td>
-</tr>
-<tr>
- <td> <b> </b> Password:  </b></td>
- <td><input type='text' name="password" id="password" required = true><td>
-</tr>
+   <form action='login.php' method="post"
+   
+      <br>
+      <br>
+      <hr> LOGIN UTENTI </hr>
+      <table>
+         <tr>
+         <td> <b> </b> Username:  </b></td>
+         <td><input type='text' name="username" id="username" required = true><td>
+         </tr>
+         <tr>
+         <td> <b> </b> Password:  </b></td>
+         <td><input type='text' name="password" id="password" required = true><td>
+         </tr>
 
-</table>
-<div> <input type='submit' value='Login' href="login.php"></div>
+   </table>
+   <div> <input type='submit' value='Login' href="login.php" class="btn btn-primary"></div>
 
-</form>
+   </form>
 </body>
 </html>
