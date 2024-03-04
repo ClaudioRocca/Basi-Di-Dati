@@ -32,8 +32,18 @@
 
     $attributi_splittati = explode(',', $attributi);
 
+    $sqlInsertAttributi = 'INSERT INTO ATTRIBUTO(NOME, TIPO, TABELLA_NOME) VALUES (?, ?, ?)';
     foreach ($attributi_splittati as $attributo) {
-        echo "$attributo <br>";
+        $nome_tipo = explode(':', $attributo);
+
+        $stmt = $pdo->prepare($sqlInsertAttributi);
+
+        $stmt->bindParam(1, $nome_tipo[0], PDO::PARAM_STR);
+        $stmt->bindParam(2, $nome_tipo[1], PDO::PARAM_STR);
+        $stmt->bindParam(3, $nomeTabella, PDO::PARAM_STR);
+
+        $stmt->execute();
+        
       }
 
 
@@ -46,12 +56,8 @@
     echo "[ERRORE] Query SQL (Insert) non riuscita. Errore: " . $e->getMessage();
     exit();
 }
-catch(Exception $e){
-    echo 'Errore durante l\'inserimento dei dati';
-    exit();
-}
   
-  $linkback='<br><br><a href="pagelogin.php"> Torna Indietro </a>';
+  $linkback='<br><br><a href="crea-tabelle.html"> Torna Indietro </a>';
   echo($linkback);
       
  ?>
