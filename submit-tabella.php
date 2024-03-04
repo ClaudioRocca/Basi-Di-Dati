@@ -16,42 +16,65 @@
    
    
    try {
-    $date = date('Y/m/d', time());
-
-    // Query SQL per l'inserimento dati
-    $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,?, 'Mario.rossi@uni.it')";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
-    $stmt->bindParam(2, $date, PDO::PARAM_STR);
-    $stmt->bindParam(3, $numeroRighe, PDO::PARAM_STR);
+      $date = date('Y/m/d', time());
 
 
-    $stmt->execute();
+      /*$sqlCreateTable = "CREATE TABLE ? (ID INT, PRIMARY KEY(ID))";
 
-    $attributi_splittati = explode(',', $attributi);
+      $stmt = $pdo->prepare($sqlCreateTable);
 
-    $sqlInsertAttributi = 'INSERT INTO ATTRIBUTO(NOME, TIPO, NOME_TABELLA) VALUES (?, ?, ?)';
-    foreach ($attributi_splittati as $attributo) {
-        $nome_tipo = explode(':', $attributo);
+      $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
 
-        $stmt = $pdo->prepare($sqlInsertAttributi);
+      $stmt->execute();
 
-        $stmt->bindParam(1, $nome_tipo[0], PDO::PARAM_STR);
-        $stmt->bindParam(2, $nome_tipo[1], PDO::PARAM_STR);
-        $stmt->bindParam(3, $nomeTabella, PDO::PARAM_STR);
+      echo 'Tabella creata';
 
-        $stmt->execute();
+
+      $sqlInsertOnTable = "INSERT INTO  ? (ID) VALUES (?)";
+
+      $stmt = $pdo->prepare($sqlInsertOnTable);
+
+      $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
+      $stmt->bindParam(2, 1, PDO::PARAM_STR);
+
+      $stmt->execute();
+      echo 'Dato inserito';*/
+
+
+      // Query SQL per l'inserimento dati
+      $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,?, 'Mario.rossi@uni.it')";
+
+      $stmt = $pdo->prepare($sql);
+
+      $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
+      $stmt->bindParam(2, $date, PDO::PARAM_STR);
+      $stmt->bindParam(3, $numeroRighe, PDO::PARAM_STR);
+
+
+      $stmt->execute();
+
+      $attributi_splittati = explode(',', $attributi);
+
+      $sqlInsertAttributi = 'INSERT INTO ATTRIBUTO(NOME, TIPO, NOME_TABELLA) VALUES (?, ?, ?)';
+      foreach ($attributi_splittati as $attributo) {
+         $nome_tipo = explode(':', $attributo);
+
+         $stmt = $pdo->prepare($sqlInsertAttributi);
+
+         $stmt->bindParam(1, $nome_tipo[0], PDO::PARAM_STR);
+         $stmt->bindParam(2, $nome_tipo[1], PDO::PARAM_STR);
+         $stmt->bindParam(3, $nomeTabella, PDO::PARAM_STR);
+
+         $stmt->execute();
         
       }
 
 
-    /*echo 'Query: ' . $sql;
-    echo 'Nome tabella: ' .$nomeTabella;
-    echo 'Data: ' .$date;
-    echo 'Numero righe: ' .$numeroRighe;*/
-    echo 'Tabella creata con successo';
+   /*echo 'Query: ' . $sql;
+   echo 'Nome tabella: ' .$nomeTabella;
+   echo 'Data: ' .$date;
+   echo 'Numero righe: ' .$numeroRighe;*/
+   echo 'Tabella creata con successo';
 
 } catch (PDOException $e) {
     echo "[ERRORE] Query SQL (Insert) non riuscita. Errore: " . $e->getMessage();
