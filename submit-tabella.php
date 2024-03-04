@@ -30,6 +30,12 @@
 
     $stmt->execute();
 
+    $attributi_splittati = explode(',', $attributi);
+
+    foreach ($attributi_splittati as $attributo) {
+        echo "$attributo <br>";
+      }
+
 
     echo 'Query: ' . $sql;
     echo 'Nome tabella: ' .$nomeTabella;
