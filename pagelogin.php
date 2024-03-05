@@ -56,7 +56,7 @@
       <hr> LOGIN UTENTI </hr>
       <table>
          <tr>
-         <td> <b> </b> Username:  </b></td>
+         <td> <b> </b> Username (mail):  </b></td>
          <td><input type='text' name="username" id="username" required = true><td>
          </tr>
          <tr>
