@@ -24,13 +24,10 @@
        exit();
     }
 
-    $sql = 'INSERT INTO TEST(TITOLO, DATA_CREAZIONE, FOTO, MAIL_DOCENTE, VISUALIZZA_RISPOSTE)
-            VALUES(?,?,?,?,?)';
+//    $sql = 'INSERT INTO TEST(TITOLO, DATA_CREAZIONE, FOTO, MAIL_DOCENTE, VISUALIZZA_RISPOSTE)
+//            VALUES(?,?,?,?,?)';
 
-    $date = date('Y/m/d', time());
-    $foto = "Foto di prova";
 
-    $stmt = $pdo->prepare($sql);
 
     //cambio il valore "on" che restituisce la checkbox in "1", per poterlo inserire in mysql
     if($risposteVisualizzabili == "on"){
@@ -39,11 +36,19 @@
     else
         $risposteVisualizzabili = 0;
 
+    $sql = 'CALL PROCEDURE INSERIMENTO_NUOVO_TEST(?, ?, ?, ?, ?)';
+
+    $date = date('Y/m/d', time());
+    $foto = "Foto di prova";
+
+    $stmt = $pdo->prepare($sql);
+
+
     $stmt->bindParam(1, $nomeTest, PDO::PARAM_STR);
     $stmt->bindParam(2, $date, PDO::PARAM_STR);
     $stmt->bindParam(3, $foto, PDO::PARAM_STR);
     $stmt->bindParam(4, $_SESSION["username"], PDO::PARAM_STR);
-    $stmt->bindParam(5, $risposteVisualizzabili, PDO::PARAM_STR);
+    $stmt->bindParam(5, $risposteVisualizzabili, PDO::PARAM_BOOL);
 
     $stmt->execute();
 

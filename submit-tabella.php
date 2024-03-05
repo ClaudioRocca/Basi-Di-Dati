@@ -26,9 +26,9 @@
    
    
    try {
-      $date = date('Y/m/d', time());
+      $data = date('Y/m/d', time());
 
-
+      //da finire la creazione della tabella con i relativi attributi
       $sqlCreateTable = "CREATE TABLE $nomeTabella (ID INT, PRIMARY KEY(ID))";
 
       $stmt = $pdo->prepare($sqlCreateTable);
@@ -41,10 +41,9 @@
       $stmt = $pdo->prepare($sql);
 
       $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
-      $stmt->bindParam(2, $date, PDO::PARAM_STR);
+      $stmt->bindParam(2, $data, PDO::PARAM_STR);
       $stmt->bindParam(3, $numeroRighe, PDO::PARAM_STR);
       $stmt->bindParam(4, $username, PDO::PARAM_STR);
-
 
       $stmt->execute();
 
