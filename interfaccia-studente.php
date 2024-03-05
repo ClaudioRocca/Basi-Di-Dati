@@ -1,3 +1,13 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
+
+        header('Location: login.php');
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,15 +20,15 @@
 
 <body>
     <div class="container mt-5">
-        <h1>Dashboard Docente</h1>
+        <h1>Dashboard Studente</h1>
+
         <div class="list-group">
-            <a href="crea-tabelle.html" class="list-group-item list-group-item-action">Crea Tabella di Esercizio</a>
             <a href="visualizza-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
-            <a href="creazione-test.php" class="list-group-item list-group-item-action">Crea nuovo Test</a>
-            <a href="creazione-quesito.php" class="list-group-item list-group-item-action">Crea nuovo quesito</a>
+            <a href="inserisci-risposta.php" class="list-group-item list-group-item-action">Inserisci risposte</a>
+            <a href="visualizza-esiti.php" class="list-group-item list-group-item-action">Visualizza esito delle
+                risposte</a>
             <a href="invia-messaggio.php" class="list-group-item list-group-item-action">Invia messaggio</a>
             <a href="statistiche.php" class="list-group-item list-group-item-action">Visualizzazione Statistiche</a>
-            <a href="log-eventi.php" class="list-group-item list-group-item-action">Amministrazione Log Eventi</a>
         </div>
     </div>
     <!--
