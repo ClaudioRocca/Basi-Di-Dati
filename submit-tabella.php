@@ -29,27 +29,11 @@
       $date = date('Y/m/d', time());
 
 
-      /*$sqlCreateTable = "CREATE TABLE ? (ID INT, PRIMARY KEY(ID))";
+      $sqlCreateTable = "CREATE TABLE $nomeTabella (ID INT, PRIMARY KEY(ID))";
 
       $stmt = $pdo->prepare($sqlCreateTable);
 
-      $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
-
       $stmt->execute();
-
-      echo 'Tabella creata';
-
-
-      $sqlInsertOnTable = "INSERT INTO  ? (ID) VALUES (?)";
-
-      $stmt = $pdo->prepare($sqlInsertOnTable);
-
-      $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
-      $stmt->bindParam(2, 1, PDO::PARAM_STR);
-
-      $stmt->execute();
-      echo 'Dato inserito';*/
-
 
       // Query SQL per l'inserimento dati
       $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,?, 'Mario.rossi@uni.it')";
