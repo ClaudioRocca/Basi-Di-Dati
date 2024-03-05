@@ -44,7 +44,7 @@ session_start();
         echo 'Accesso non autorizzato';
     }
   
-  $linkback='<br><br><a href="pagelogin.php"> Torna Indietro </a>';
+  $linkback='<br><br><a href="pagelogin.php"> Torna alla pagina di login </a>';
   echo($linkback);
       
  ?>

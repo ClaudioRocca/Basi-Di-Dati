@@ -1,4 +1,14 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
+
+        header('Location: login.php');
+    }
+
+?>
+
+<?php
     try {
         $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

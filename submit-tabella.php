@@ -1,4 +1,14 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
+
+        header('Location: login.php');
+    }
+
+?>
+
+<?php
    $nomeTabella=$_POST["nomeTabella"];
    $numeroRighe=$_POST["numeroRighe"];
    $attributi=$_POST["attributi"];

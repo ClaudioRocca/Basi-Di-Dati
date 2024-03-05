@@ -24,7 +24,7 @@
     <div class="container mt-5">
         <h1>Dashboard Docente</h1>
         <div class="list-group">
-            <a href="crea-tabelle.html" class="list-group-item list-group-item-action">Crea Tabella di Esercizio</a>
+            <a href="crea-tabelle.php" class="list-group-item list-group-item-action">Crea Tabella di Esercizio</a>
             <a href="visualizza-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
             <a href="creazione-test.php" class="list-group-item list-group-item-action">Crea nuovo Test</a>
             <a href="creazione-quesito.php" class="list-group-item list-group-item-action">Crea nuovo quesito</a>
