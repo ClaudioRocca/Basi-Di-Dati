@@ -61,7 +61,7 @@
          </tr>
          <tr>
          <td> <b> </b> Password:  </b></td>
-         <td><input type='text' name="password" id="password" required = true><td>
+         <td><input type="password" name="password" id="password" required = true><td>
          </tr>
 
    </table>

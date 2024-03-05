@@ -21,26 +21,6 @@
 <body>
     <div class="container mt-5">
         <h1>Crea Nuovo Quesito</h1>
-        <!--<form action="submit-quesito.php" method="post">
-            <div class="form-group">
-                <label for="nomeQuesito">Nome Tabella</label>
-                <input type="text" class="form-control" id="nomeQuesito" name="nomeQuesito" required>
-                <small class="form-text text-muted">Inserisci i nomi delle tabelle separate da virgole
-                     (es. tabella1,
-                    tabella2, ...)</small>
-            </div>
-            <div class="form-group">
-                <label for="numeroRisposte">Numero di Risposte</label>
-                <input type="number" class="form-control" id="numeroRisposte" name="numeroRisposte" required>
-            </div>
-             <div class="form-group">
-                <label for="attributi">Attributi</label>
-                <textarea class="form-control" id="attributi" name="attributi" rows="3" required></textarea>
-                <small class="form-text text-muted">Inserisci gli attributi separati da virgola (es. id:int,
-                    nome:varchar(255), ...)</small>
-            </div>
-            <button type="submit" class="btn btn-primary">Crea Quesito</button>
-        </form>-->
 
         <form>
             <p>Che tipo di quesito vuoi creare?</p>

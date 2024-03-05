@@ -23,11 +23,11 @@
         <h1>Dashboard Studente</h1>
 
         <div class="list-group">
-            <a href="visualizza-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
-            <a href="inserisci-risposta.php" class="list-group-item list-group-item-action">Inserisci risposte</a>
-            <a href="visualizza-esiti.php" class="list-group-item list-group-item-action">Visualizza esito delle
+            <a href="visualizzazione-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
+            <a href="inserimento-risposte.php" class="list-group-item list-group-item-action">Inserisci risposte</a>
+            <a href="visualizzazione-esiti-risposte.php" class="list-group-item list-group-item-action">Visualizza esito delle
                 risposte</a>
-            <a href="invia-messaggio.php" class="list-group-item list-group-item-action">Invia messaggio</a>
+            <a href="invio-messaggi.php" class="list-group-item list-group-item-action">Invia messaggio</a>
             <a href="statistiche.php" class="list-group-item list-group-item-action">Visualizzazione Statistiche</a>
         </div>
     </div>
