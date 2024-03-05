@@ -22,10 +22,18 @@
 <body>
     <div class="container mt-5">
         <h2>Crea Nuovo test</h2>
-        <form action="creazione-quesito.php" method="post">
+        <form action="submit-test.php" method="post">
             <div class="form-group">
                 <label for="nomeTest">Nome Test</label>
                 <input type="text" class="form-control" id="nomeTest" name="nomeTest" required>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" checked data-toggle="toggle"
+                    id="risposteVisualizzabili" name="risposteVisualizzabili">
+                    Vuoi rendere visualizzabili le risposte?
+                </label>
             </div>
             <button type="submit" class="btn btn-primary">Crea Test</button>
         </form>

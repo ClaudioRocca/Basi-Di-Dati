@@ -36,13 +36,14 @@
       $stmt->execute();
 
       // Query SQL per l'inserimento dati
-      $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,?, 'Mario.rossi@uni.it')";
+      $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,?,?)";
 
       $stmt = $pdo->prepare($sql);
 
       $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
       $stmt->bindParam(2, $date, PDO::PARAM_STR);
       $stmt->bindParam(3, $numeroRighe, PDO::PARAM_STR);
+      $stmt->bindParam(4, $username, PDO::PARAM_STR);
 
 
       $stmt->execute();
