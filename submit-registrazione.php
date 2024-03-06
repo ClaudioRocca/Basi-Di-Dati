@@ -27,18 +27,16 @@ if(isset($_POST['username'], $_POST['password'], $_POST['confirm_password'], $_P
         exit();
     }
 
-    // Hash della password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Inserimento dei dati nella tabella appropriata in base al ruolo
     try {
         if($ruolo === 'docente') {
             $stmt = $pdo->prepare("INSERT INTO Docente (mail, pazzword, nome, cognome, recapito) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$username, $hashed_password, $nome, $cognome, $recapito]);
+            $stmt->execute([$username, $password, $nome, $cognome, $recapito]);
         } elseif($ruolo === 'studente') {
             $stmt = $pdo->prepare("INSERT INTO Studente (mail, pazzword, nome, cognome, recapito,anno_Immatricolazione,
                       codice) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$username, $hashed_password, $nome, $cognome, $recapito,$anno_Immatricolazione,$codice]);
+            $stmt->execute([$username, $password, $nome, $cognome, $recapito,$anno_Immatricolazione,$codice]);
         } else {
             echo "Ruolo non valido.";
             exit();
