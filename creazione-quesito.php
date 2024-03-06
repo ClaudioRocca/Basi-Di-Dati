@@ -26,7 +26,7 @@
             <p>Che tipo di quesito vuoi creare?</p>
 
             <a href = "creazione-quesito-risposta-chiusa.php" class ="btn btn-primary"> Crea quesito risposta chiusa</a>
-            <a href = "creazione-quesito-codice" class ="btn btn-primary"> Crea quesito con codice</a>
+            <a href = "creazione-quesito-codice.php" class ="btn btn-primary"> Crea quesito con codice</a>
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

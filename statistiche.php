@@ -27,61 +27,85 @@ try {
     die("Errore nell'esecuzione delle query: " . $e->getMessage());
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Statistiche Studenti</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            font-size: 16px;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        h2 {
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
-<h1>Statistiche Studenti</h1>
+<div class="container">
+    <h1>Statistiche Studenti</h1>
 
-<!-- Stampa delle statistiche Test Completati -->
-<h2>Classifica Studenti per Test Completati</h2>
-<table>
-    <tr>
-        <th>Codice Studente</th>
-        <th>Test Completati</th>
-    </tr>
-    <?php foreach ($statisticheTestCompletati as $statistica): ?>
-        <tr>
-            <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
-            <td><?= htmlspecialchars($statistica['NUMERO_TEST_COMPLETATI']) ?></td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+    <!-- Stampa delle statistiche Test Completati -->
+    <h2>Classifica Studenti per Test Completati</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Codice Studente</th>
+                <th>Test Completati</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($statisticheTestCompletati as $statistica): ?>
+                <tr>
+                    <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
+                    <td><?= htmlspecialchars($statistica['NUMERO_TEST_COMPLETATI']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
-<!-- Stampa delle statistiche Quesiti Corretti -->
-<h2>Classifica Studenti per Quesiti Corretti</h2>
-<table>
-    <tr>
-        <th>Codice Studente</th>
-        <th>Quesiti Corretti</th>
-    </tr>
-    <?php foreach ($statisticheQuesitiCorretti as $statistica): ?>
-        <tr>
-            <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
-            <td><?= htmlspecialchars($statistica['NUMERO_QUESITI_CORRETTI']) ?></td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+    <!-- Stampa delle statistiche Quesiti Corretti -->
+    <h2>Classifica Studenti per Quesiti Corretti</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Codice Studente</th>
+                <th>Quesiti Corretti</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($statisticheQuesitiCorretti as $statistica): ?>
+                <tr>
+                    <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
+                    <td><?= htmlspecialchars($statistica['NUMERO_QUESITI_CORRETTI']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
-<!-- Stampa delle statistiche Quesiti Popolari -->
-<h2>Classifica Quesiti con Più Risposte</h2>
-<table>
-    <tr>
-        <th>ID Quesito</th>
-        <th>Numero Risposte</th>
-    </tr>
-    <?php foreach ($statisticheQuesitiPopolari as $statistica): ?>
-        <tr>
-            <td><?= htmlspecialchars($statistica['ID']) ?></td>
-            <td><?= htmlspecialchars($statistica['NUMERO_RISPOSTE']) ?></td>
-        </tr>
-    <?php endforeach; ?>
-</table>
-
-
+    <!-- Stampa delle statistiche Quesiti Popolari -->
+    <h2>Classifica Quesiti con Più Risposte</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Quesito</th>
+                <th>Numero Risposte</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($statisticheQuesitiPopolari as $statistica): ?>
+                <tr>
+                    <td><?= htmlspecialchars($statistica['ID']) ?></td>
+                    <td><?= htmlspecialchars($statistica['NUMERO_RISPOSTE']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

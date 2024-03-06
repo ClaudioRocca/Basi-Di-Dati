@@ -9,6 +9,9 @@
 ?>
 
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
     $nomeTest=$_POST["nomeTest"];
     $risposteVisualizzabili=$_POST["risposteVisualizzabili"];
 
@@ -24,8 +27,8 @@
        exit();
     }
 
-//    $sql = 'INSERT INTO TEST(TITOLO, DATA_CREAZIONE, FOTO, MAIL_DOCENTE, VISUALIZZA_RISPOSTE)
-//            VALUES(?,?,?,?,?)';
+   //$sql = 'INSERT INTO TEST(TITOLO, DATA_CREAZIONE, FOTO, MAIL_DOCENTE, VISUALIZZA_RISPOSTE)
+   //       VALUES(?,?,?,?,?)';
 
 
 
@@ -36,7 +39,7 @@
     else
         $risposteVisualizzabili = 0;
 
-    $sql = 'CALL PROCEDURE INSERIMENTO_NUOVO_TEST(?, ?, ?, ?, ?)';
+    $sql = 'CALL INSERIMENTO_NUOVO_TEST(?, ?, ?, ?, ?)';
 
     $date = date('Y/m/d', time());
     $foto = "Foto di prova";
