@@ -27,10 +27,6 @@ error_reporting(E_ALL);
        exit();
     }
 
-   //$sql = 'INSERT INTO TEST(TITOLO, DATA_CREAZIONE, FOTO, MAIL_DOCENTE, VISUALIZZA_RISPOSTE)
-   //       VALUES(?,?,?,?,?)';
-
-
 
     //cambio il valore "on" che restituisce la checkbox in "1", per poterlo inserire in mysql
     if($risposteVisualizzabili == "on"){

@@ -34,9 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute([$mail, $nome, $cognome, $pazzword, $recapito, $dipartimento, $corso]);
         }
 
-        // Se l'inserimento è avvenuto con successo, reindirizza alla pagina di registrazione completata
-        /*header("Location: final-registration.php");
-        exit();*/
     } catch (PDOException $e) {
         echo "Errore durante l'inserimento dei dati nel database: " . $e->getMessage();
         exit();
@@ -58,16 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Registrazione Utente</h2>
     <p>Grazie per esserti registrato!</p>
     <?php
-    session_start();
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Recupera i dati dalla sessione
-        $ruolo = $_SESSION["ruolo"];
-        $mail = $_SESSION["mail"];
-        $nome = $_SESSION["nome"];
-        $cognome = $_SESSION["cognome"];
-        $pazzword = $_SESSION["pazzword"];
-        $recapito = $_SESSION["recapito"];
 
         // Stampa le informazioni di registrazione
         echo "<p><b>Ruolo:</b> $ruolo</p>";
@@ -81,19 +69,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Aggiungi ulteriori informazioni in base al ruolo
         if ($ruolo === "studente") {
-            $codice = $_POST["codice"];
-            $annoImmatricolazione = $_POST["anno_Immatricolazione"];
+//            $codice = $_POST["codice"];
+//            $annoImmatricolazione = $_POST["anno_Immatricolazione"];
             echo "<p><b>Codice:</b> $codice</p>";
             echo "<p><b>Anno di Immatricolazione:</b> $annoImmatricolazione</p>";
         } elseif ($ruolo === "docente") {
-            $dipartimento = $_POST["dipartimento"];
-            $corso = $_POST["corso"];
+//            $dipartimento = $_POST["dipartimento"];
+//            $corso = $_POST["corso"];
             echo "<p><b>Dipartimento:</b> $dipartimento</p>";
             echo "<p><b>Corso:</b> $corso</p>";
+        } else {
+            echo "<p>Metodo di richiesta non valido.</p>";
         }
-    } else {
-        echo "<p>Metodo di richiesta non valido.</p>";
-    }
     ?>
 </div>
 </body>
