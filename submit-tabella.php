@@ -62,12 +62,6 @@
          $stmt->execute();
         
       }
-
-
-   /*echo 'Query: ' . $sql;
-   echo 'Nome tabella: ' .$nomeTabella;
-   echo 'Data: ' .$date;
-   echo 'Numero righe: ' .$numeroRighe;*/
    echo 'Tabella creata con successo';
 
 } catch (PDOException $e) {
@@ -75,7 +69,7 @@
     exit();
 }
   
-  $linkback='<br><br><a href="crea-tabelle.html"> Torna Indietro </a>';
+  $linkback='<br><br><a href="interfaccia-docente.php"> Torna Indietro </a>';
   echo($linkback);
       
  ?>

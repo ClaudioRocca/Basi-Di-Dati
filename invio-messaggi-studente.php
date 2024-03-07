@@ -6,17 +6,19 @@
         header('Location: login.php');
     }
 
-?>
-<?php
+    // Creazione della connessione
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=esqldb', 'root', 'ProgettiGiga');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }catch (PDOException $e){
+        echo("[ERRORE] Connessione al DB non riuscita. Errore: ".$e->getMessage());
+        exit();
+    }
 
-
-// Creazione della connessione
-try {
-    $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    echo '<h1>Invia messaggio agli studenti</h1>';
-    echo '<form action="submit-messaggio-docente.php" method="post"<td>
+echo '<h1>Invia messaggio ad un docente</h1>';
+echo '<form action="submit-messaggio-studente.php" method="post"<td>
+    <label for="destinatario">Docente destinatario</label>
+            <input type=\'text\' name="destinatario" id="destinatario" required = true><td>
             <label for="titoloMessaggio">Titolo messaggio</label>
             <input type=\'text\' name="titoloMessaggio" id="titoloMessaggio" required = true><td>
             <label for="testoMessaggio">Testo messaggio</label>
@@ -26,10 +28,4 @@ try {
             
             <div> <input type=\'submit\' class="btn btn-primary"></div>
           </form>';
-    
- }
- catch(PDOException $e) {
-    echo("[ERRORE] Connessione al DB non riuscita. Errore: ".$e->getMessage());
-    exit();
- }
 ?>
