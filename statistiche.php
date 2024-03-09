@@ -1,92 +1,111 @@
 <?php
-    session_start();
+session_start();
+if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
+    header('Location: login.php');
+    exit();
+}
 
-    if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
+// Connessione al database
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=esqldb', 'root', 'ProgettiGiga');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connessione al DB non riuscita: " . $e->getMessage());
+}
 
-        header('Location: login.php');
-    }
+// Query per statistiche studenti
+$sqlTestCompletati = 'SELECT * FROM CLASSIFICA_STUDENTI_TEST_COMPLETATI';
+$sqlQuesitiCorretti = 'SELECT * FROM CLASSIFICA_STUDENTI_QUESITI_CORRETTI';
+$sqlQuesitiPopolari = 'SELECT * FROM QUESITI_COMPLETATI_MAGGIORMENTE';
 
+// Esecuzione delle query e recupero dei dati
+try {
+    $statisticheTestCompletati = $pdo->query($sqlTestCompletati)->fetchAll(PDO::FETCH_ASSOC);
+    $statisticheQuesitiCorretti = $pdo->query($sqlQuesitiCorretti)->fetchAll(PDO::FETCH_ASSOC);
+    $statisticheQuesitiPopolari = $pdo->query($sqlQuesitiPopolari)->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Errore nell'esecuzione delle query: " . $e->getMessage());
+}
 ?>
-
-<?php
-
-    echo 'STATISTICHE <br>';
-
-    try {
-        $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     }
-     catch(PDOException $e) {
-        echo("[ERRORE] Connessione al DB non riuscita. Errore: ".$e->getMessage());
-        exit();
-     }
-
-     try {
-        // Query SQL per l'inserimento dati
-       $sql='SELECT * FROM CLASSIFICA_STUDENTI_TEST_COMPLETATI';
-       
-        $res=$pdo->prepare($sql);
-        $res->execute();
-        $result = $res->fetchAll(PDO::FETCH_ASSOC);
-
-        echo "CLASSIFICA STUDENTI PER TEST COMPLETATI <br>";
-        echo "<br>";
-        
-        foreach ($result as $row) {
-            echo "<tr>
-                    <td>{$row['CODICE']}</td>
-                    <td>{$row['NUMERO_TEST_COMPLETATI']}</td>
-                  </tr>";
-            echo "<br>";
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistiche Studenti</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            font-size: 16px;
         }
-
-
-        $sql ='SELECT * FROM CLASSIFICA_STUDENTI_QUESITI_CORRETTI';
-        
-
-        $res=$pdo->prepare($sql);
-        $res->execute();
-        $result = $res->fetchAll(PDO::FETCH_ASSOC);
-
-
-        echo "<br>";
-        echo "CLASSIFICA STUDENTI PER QUESITI CORRETTI";
-        echo "<br>";
-        foreach ($result as $row) {
-            echo "<tr>
-                    <td>{$row['CODICE']}</td>
-                    <td>{$row['NUMERO_QUESITI_CORRETTI']}</td>
-                  </tr>";
-            echo "<br>";
+        .table {
+            margin-top: 20px;
         }
-
-        
-        $sql ='SELECT * FROM QUESITI_COMPLETATI_MAGGIORMENTE';
-        
-
-        $res=$pdo->prepare($sql);
-        $res->execute();
-        $result = $res->fetchAll(PDO::FETCH_ASSOC);
-
-
-        echo "<br>";
-        echo "CLASSIFICA QUESITI CON PIU' RISPOSTE";
-        echo "<br>";
-        foreach ($result as $row) {
-            echo "<tr>
-                    <td>{$row['ID']}</td>
-                    <td>{$row['NUMERO_RISPOSTE']}</td>
-                  </tr>";
-            echo "<br>";
+        h2 {
+            margin-top: 40px;
         }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Statistiche Studenti</h1>
 
-      }
-     catch(PDOException $e) {
-       echo("[ERRORE] Query SQL (Insert) non riuscita. Errore: ".$e->getMessage());
-       exit();
-     }
+    <!-- Stampa delle statistiche Test Completati -->
+    <h2>Classifica Studenti per Test Completati</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Codice Studente</th>
+                <th>Test Completati</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($statisticheTestCompletati as $statistica): ?>
+                <tr>
+                    <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
+                    <td><?= htmlspecialchars($statistica['NUMERO_TEST_COMPLETATI']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
-     $row=$res->fetch();
+    <!-- Stampa delle statistiche Quesiti Corretti -->
+    <h2>Classifica Studenti per Quesiti Corretti</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Codice Studente</th>
+                <th>Quesiti Corretti</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($statisticheQuesitiCorretti as $statistica): ?>
+                <tr>
+                    <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
+                    <td><?= htmlspecialchars($statistica['NUMERO_QUESITI_CORRETTI']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
-
-?>
+    <!-- Stampa delle statistiche Quesiti Popolari -->
+    <h2>Classifica Quesiti con Più Risposte</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Quesito</th>
+                <th>Numero Risposte</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($statisticheQuesitiPopolari as $statistica): ?>
+                <tr>
+                    <td><?= htmlspecialchars($statistica['ID']) ?></td>
+                    <td><?= htmlspecialchars($statistica['NUMERO_RISPOSTE']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
