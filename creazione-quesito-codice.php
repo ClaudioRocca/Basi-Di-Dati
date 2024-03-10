@@ -51,11 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <option value="MEDIO">Medio</option>
         <option value="ALTO">Alto</option>
     </select><br>
-    <!-- riempire dinamicamente il campo titolotest e maildocente! -->
+    <!-- riempire dinamicamente il campo titolotest -->
     <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
     <input type="number" name="numRisposte" placeholder="Numero di Risposte" required><br>
     <input type="text" name="titoloTest" placeholder="Titolo del Test" required><br>
-    <!--        <input type="email" name="mailDocente" placeholder="Mail del Docente" required><br>-->
+
     <button type="submit">Invia</button>
 </form>
 </body>
