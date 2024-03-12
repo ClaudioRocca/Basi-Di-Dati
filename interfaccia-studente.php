@@ -24,7 +24,7 @@
 
         <div class="list-group">
             <a href="visualizzazione-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
-            <a href="inserimento-risposte.php" class="list-group-item list-group-item-action">Inserisci risposte</a>
+            <a href="scelta-test.php" class="list-group-item list-group-item-action">Completa un test</a>
             <a href="visualizzazione-esiti-risposte.php" class="list-group-item list-group-item-action">Visualizza esito delle
                 risposte</a>
             <a href="invio-messaggi-studente.php" class="list-group-item list-group-item-action">Invia messaggio</a>

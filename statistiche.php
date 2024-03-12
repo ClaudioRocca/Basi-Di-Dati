@@ -100,7 +100,7 @@ try {
         <tbody>
             <?php foreach ($statisticheQuesitiPopolari as $statistica): ?>
                 <tr>
-                    <td><?= htmlspecialchars($statistica['ID']) ?></td>
+                    <td><?= htmlspecialchars($statistica['ID_QUESITO']) ?></td>
                     <td><?= htmlspecialchars($statistica['NUMERO_RISPOSTE']) ?></td>
                 </tr>
             <?php endforeach; ?>
