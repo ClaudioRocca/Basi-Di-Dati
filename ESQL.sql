@@ -186,7 +186,7 @@ CREATE TABLE APPARTENENZA(
     
 )
 ENGINE = INNODB;
-
+-- ------ VISTE ------------------------------
 DELIMITER $
 CREATE VIEW CLASSIFICA_STUDENTI_TEST_COMPLETATI AS
 SELECT STUDENTE.CODICE, COUNT(STATO) AS NUMERO_TEST_COMPLETATI
@@ -224,7 +224,7 @@ WHERE ID = ID_QUESITO
 GROUP BY ID
 ORDER BY NUMERO_RISPOSTE DESC;
 $
-
+-- ------ PROCEDURE ------------------------------
 DELIMITER $
 CREATE PROCEDURE VISUALIZZAZIONE_TEST_DISPONIBILI()
 	SELECT * FROM TEST;
@@ -275,6 +275,76 @@ PAZZWORD VARCHAR(60) )
 	INSERT INTO STUDENTE(MAIL, NOME, COGNOME, RECAPITO, ANNO_IMMATRICOLAZIONE, CODICE, PAZZWORD) VALUES(MAIL, NOME, COGNOME, RECAPITO, ANNO_IMMATRICOLAZIONE, CODICE, PAZZWORD)
 $ -- NON USATA PER ORA !*!*!*!*!*!***!!*
 
+-- ------ TRIGGER ------------------------------
+DELIMITER //
+
+CREATE TRIGGER CAMBIO_STATO_COMPLETAMENTO
+AFTER INSERT ON RISPOSTA
+FOR EACH ROW
+BEGIN
+    DECLARE num_risposte INT;
+    DECLARE stato_test VARCHAR(20);
+    
+    -- Controlla il numero di risposte per il test inserito
+    SELECT COUNT(*) INTO num_risposte FROM RISPOSTA WHERE ID_QUESITO = NEW.ID_QUESITO;
+    
+    -- Se è la prima risposta, aggiorna lo stato del test
+    IF num_risposte = 1 THEN
+        UPDATE COMPLETAMENTO SET STATO = 'IN_COMPLETAMENTO'
+        WHERE MAIL_STUDENTE = NEW.MAIL_STUDENTE AND TITOLO_TEST = (SELECT TITOLO_TEST FROM QUESITO_RISPOSTA_CHIUSA WHERE ID = NEW.ID_QUESITO);
+    END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER CAMBIO_STATO_CONCLUSO
+AFTER INSERT ON RISPOSTA
+FOR EACH ROW
+BEGIN
+    DECLARE num_risposte_totali INT;
+    DECLARE num_risposte_corrette INT;
+    DECLARE num_risposte_quesiti INT;
+    DECLARE stato_test VARCHAR(20);
+    
+    -- Conta il numero di risposte totali per il test
+    SELECT COUNT(*) INTO num_risposte_totali FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = (SELECT TITOLO_TEST FROM QUESITO_RISPOSTA_CHIUSA WHERE ID = NEW.ID_QUESITO);
+    
+    -- Conta il numero di risposte corrette per il test
+    SELECT COUNT(*) INTO num_risposte_corrette FROM RISPOSTA WHERE MAIL_STUDENTE = NEW.MAIL_STUDENTE AND ESITO = TRUE;
+    
+    -- Conta il numero di quesiti per il test
+    SELECT COUNT(*) INTO num_risposte_quesiti FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = (SELECT TITOLO_TEST FROM QUESITO_RISPOSTA_CHIUSA WHERE ID = NEW.ID_QUESITO);
+    
+    -- Se tutte le risposte sono state inserite e sono corrette, aggiorna lo stato del test
+    IF num_risposte_totali = num_risposte_quesiti AND num_risposte_corrette = num_risposte_totali THEN
+        UPDATE COMPLETAMENTO SET STATO = 'CONCLUSO'
+        WHERE MAIL_STUDENTE = NEW.MAIL_STUDENTE AND TITOLO_TEST = (SELECT TITOLO_TEST FROM QUESITO_RISPOSTA_CHIUSA WHERE ID = NEW.ID_QUESITO);
+    END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER CAMBIO_STATO_TUTTICONCLUSO
+AFTER UPDATE ON TEST
+FOR EACH ROW
+BEGIN
+    DECLARE stato_test VARCHAR(20);
+    
+    -- Se il campo VisualizzaRisposte viene impostato a True, cambia lo stato del test per tutti gli studenti
+    IF OLD.VISUALIZZA_RISPOSTE = FALSE AND NEW.VISUALIZZA_RISPOSTE = TRUE THEN
+        UPDATE COMPLETAMENTO SET STATO = 'CONCLUSO' WHERE TITOLO_TEST = NEW.TITOLO;
+    END IF;
+END //
+
+DELIMITER ;
+
+
+
+-- ------ INSERT ------------------------------
 INSERT INTO DOCENTE(MAIL, NOME, COGNOME, RECAPITO, DIPARTIMENTO, CORSO, PAZZWORD) VALUES ('Mario.rossi@uni.it','Mario', 'Rossi', '12345', 'Scienze', 'Database', 'ZioPera');
 
 INSERT INTO STUDENTE(MAIL, NOME, COGNOME, RECAPITO, ANNO_IMMATRICOLAZIONE, CODICE, PAZZWORD) VALUES ('Luca.neri@uni.it', 'Luca', 'Neri', '23456', '2024', '1234123412341234', 'Password');
