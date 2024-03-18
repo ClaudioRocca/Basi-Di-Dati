@@ -33,8 +33,12 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         print_r($result);
     }
-    $codice = 'SELECT ID, DESCRIZ, LIVELLO FROM QUESITO_CODICE';
-$stmt = $pdo->prepare($rispostaChiusa);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $codice = 'SELECT DESCRIZ FROM QUESITO_CODICE';
+    $stmt = $pdo->prepare($codice);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach($result as $row){
+        echo ($row['DESCRIZ']);
+        echo '<br><input type="text" id="risposta" name="risposta" placeholder = "Inserisci la tua risposta">';
+    }
 ?>
