@@ -28,7 +28,7 @@
             <a href="visualizzazione-esiti-risposte.php" class="list-group-item list-group-item-action">Visualizza esito delle
                 risposte</a>
             <a href="invio-messaggi-studente.php" class="list-group-item list-group-item-action">Invia messaggio</a>
-            <a href="statistiche.php" class="list-group-item list-group-item-action">Visualizzazione Statistiche</a>
+            <a href="../statistiche.php" class="list-group-item list-group-item-action">Visualizzazione Statistiche</a>
             <a href = "visualizzazione-messaggi-studente.php" class="list-group-item list-group-item-action">Messaggi ricevuti</a>
         </div>
 

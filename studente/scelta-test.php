@@ -22,7 +22,7 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
 </style>
     <div class="container mt-5">
         <h2>Scegli un test da svolgere</h2>
-            <form action="svolgimento-test.php" method="get" class = "container mt-3">
+            <form action="../svolgimento-test.php" method="get" class = "container mt-3">
                 <div class="form-group">
                     <?php
                         try {
