@@ -17,7 +17,7 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
 <body>
 <div class="container">
     <h2>Informazioni Aggiuntive Docente</h2>
-    <form action="submit-registrazione.php" method="post">
+    <form action="../submit-registrazione.php" method="post">
         <!-- Campi per le informazioni aggiuntive del docente -->
         <div class="form-group">
             <label for="dipartimento">Dipartimento:</label>
