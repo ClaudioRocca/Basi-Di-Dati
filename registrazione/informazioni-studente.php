@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
-
-    header('Location: login.php');
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +12,7 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
 <body>
 <div class="container">
     <h2>Informazioni Aggiuntive Studente</h2>
-    <form action="../submit-registrazione.php" method="post">
+    <form action="submit-registrazione.php" method="post">
         <!-- Campi per le informazioni aggiuntive dello studente -->
         <div class="form-group">
             <label for="codice">Codice:</label>

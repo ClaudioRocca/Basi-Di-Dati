@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_SESSION["nome"];
     $cognome = $_SESSION["cognome"];
     $pazzword = $_SESSION["pazzword"];
-    $confirm_password = $_SESSION["confirm_pazzword"];
+//    $confirm_password = $_SESSION["confirm_pazzword"];
     $recapito = $_SESSION["recapito"];
 
     // Inserimento dei dati nel database
@@ -49,30 +49,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
-    <h2>Registrazione Utente</h2>
-    <p>Grazie per esserti registrato!</p>
-    <?php
+    <div class="container">
+        <h2>Registrazione Utente</h2>
+        <p>Grazie per esserti registrato!</p>
+        <?php
 
-    // Stampa le informazioni di registrazione
-    echo "<p><b>Ruolo:</b> $ruolo</p>";
-    echo "<p><b>Username:</b> $mail</p>";
-    echo "<p><b>Nome:</b> $nome</p>";
-    echo "<p><b>Cognome:</b> $cognome</p>";
-    echo "<p><b>Password:</b> $pazzword</p>";
-    if ($recapito) {
-        echo "<p><b>Recapito:</b> $recapito</p>";
-    }
+        // Stampa le informazioni di registrazione
+        echo "<p><b>Ruolo:</b> $ruolo</p>";
+        echo "<p><b>Username:</b> $mail</p>";
+        echo "<p><b>Nome:</b> $nome</p>";
+        echo "<p><b>Cognome:</b> $cognome</p>";
+        echo "<p><b>Password:</b> $pazzword</p>";
+        if ($recapito) {
+            echo "<p><b>Recapito:</b> $recapito</p>";
+        }
 
-    // Stampa info aggiuntive
-    if ($ruolo === "studente") {
-        echo "<p><b>Codice:</b> $codice</p>";
-        echo "<p><b>Anno di Immatricolazione:</b> $annoImmatricolazione</p>";
-    } elseif ($ruolo === "docente") {
-        echo "<p><b>Dipartimento:</b> $dipartimento</p>";
-        echo "<p><b>Corso:</b> $corso</p>";
-    }
-    ?>
-</div>
+        // Stampa info aggiuntive
+        if ($ruolo === "studente") {
+            echo "<p><b>Codice:</b> $codice</p>";
+            echo "<p><b>Anno di Immatricolazione:</b> $annoImmatricolazione</p>";
+            echo "<a href= '../studente/interfaccia-studente.php' class='btn btn-primary'>Vai alla dashboard></a>";
+        } elseif ($ruolo === "docente") {
+            echo "<p><b>Dipartimento:</b> $dipartimento</p>";
+            echo "<p><b>Corso:</b> $corso</p>";
+            echo "<a href= ' ../docente/interfaccia-docente.php' class='btn btn-primary'>Vai alla dashboard></a>";
+        }
+        ?>
+    </div>
+
 </body>
 </html>

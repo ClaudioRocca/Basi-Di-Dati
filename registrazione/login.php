@@ -29,7 +29,7 @@ session_start();
     $row=$res->fetch();
 
     if ($row['counter']>0) { // se > 0 allora va a pag Docente else check se sei studente else "Accesso non autoriz"
-      header('Location: interfaccia-docente.php');
+      header('Location: ../docente/interfaccia-docente.php');
     } 
 
     $sql='SELECT COUNT(*) AS counter FROM Studente WHERE (Mail="'.$username.'") AND (Pazzword="'.$password.'")';
@@ -41,7 +41,7 @@ session_start();
     $row=$res->fetch();
 
     if ($row['counter']>0) {
-      header('Location: interfaccia-studente.php');
+      header('Location: ../studente/interfaccia-studente.php');
     }
     else{
       echo 'Accesso non autorizzato';
@@ -54,7 +54,7 @@ session_start();
   }
     
   
-  $linkback='<br><br><a href="pagelogin.php"> Torna alla pagina di login </a>'; // pop per tornare a menu
+  $linkback= '<br><br><a href="pagelogin.php"> Torna alla pagina di login </a>'; // pop per tornare a menu
   echo($linkback);
       
  ?>
