@@ -27,7 +27,7 @@ try {
 <body>
     <div class="container mt-5">
         <h1>Invia Messaggio agli Studenti</h1>
-        <form action="../submit-messaggio-docente.php" method="post">
+        <form action="submit-messaggio-docente.php" method="post">
             <div class="form-group">
                 <label for="titoloMessaggio">Titolo messaggio</label>
                 <input type="text" class="form-control" name="titoloMessaggio" id="titoloMessaggio" required>
