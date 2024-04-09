@@ -16,9 +16,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Docente</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles.css"> <!-- Aggiungi il tuo file CSS -->
 </head>
 
 <body>
+
+    <header>
+        <?php include '../fragments/header.html'; ?>
+    </header>
+
     <div class="container mt-5">
         <h1>Dashboard Docente</h1>
         <div class="list-group">
@@ -32,6 +38,9 @@
             <a href="../registrazione/pagelogin.php" class="list-group-item list-group-item-action">Logout</a>
         </div>
     </div>
+    <footer>
+        <?php include '../fragments/footer.html'; ?>
+    </footer>
 
 </body>
 
