@@ -26,12 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descrizione = filter_input(INPUT_POST, 'descrizione', FILTER_SANITIZE_STRING);
     $numRisposte = filter_input(INPUT_POST, 'numRisposte', FILTER_SANITIZE_NUMBER_INT);
     $titoloTest = filter_input(INPUT_POST, 'titoloTest', FILTER_SANITIZE_STRING);
-    $mailDocente = filter_input(INPUT_POST, 'mailDocente', FILTER_SANITIZE_EMAIL);
 
     // Inserisci il quesito nel database
-    $sqlQuesito = "INSERT INTO QUESITO_RISPOSTA_CHIUSA (LIVELLO, DESCRIZ, NUM_RISP, TITOLO_TEST, MAIL_DOCENTE) VALUES (?, ?, ?, ?, ?)";
+    $sqlQuesito = "INSERT INTO QUESITO_RISPOSTA_CHIUSA(LIVELLO, DESCRIZ, TITOLO_TEST, NUM_RISPOSTE) VALUES (?,?,?,?)";
     $stmtQuesito = $pdo->prepare($sqlQuesito);
-    $stmtQuesito->execute([$livelloDifficoltà, $descrizione, $numRisposte, $titoloTest, $mailDocente]);
+    $stmtQuesito->execute([$livelloDifficoltà, $descrizione, $titoloTest, $numRisposte]);
+
 
     echo "Quesito inserito con successo.";
 }
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Crea Quesito a Risposta Chiusa</title>
+    <title>Creazione quesito a risposta chiusa</title>
 </head>
 <body>
     <h2>Crea Nuovo Quesito a Risposta Chiusa</h2>
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
         <input type="number" name="numRisposte" placeholder="Numero di Risposte" required><br>
         <input type="text" name="titoloTest" placeholder="Titolo del Test" required><br>
-        <input type="email" name="mailDocente" placeholder="Mail del Docente" required><br>
+<!--        <input type="email" name="mailDocente" placeholder="Mail del Docente" required><br>-->
         <button type="submit">Invia</button>
     </form>
 </body>

@@ -69,7 +69,7 @@
     exit();
 }
   
-  $linkback='<br><br><a href="interfaccia-docente.php"> Torna Indietro </a>';
+  $linkback= '<br><br><a href="interfaccia-docente.php"> Torna Indietro </a>';
   echo($linkback);
       
  ?>

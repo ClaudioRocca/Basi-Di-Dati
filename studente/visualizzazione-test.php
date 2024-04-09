@@ -33,7 +33,7 @@
                         $pdo = new PDO('mysql:host=localhost;dbname=esqldb', 'root', 'ProgettiGiga');
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                        $sql = 'SELECT TITOLO, DATA_CREAZIONE, VISUALIZZA_RISPOSTE FROM TEST';
+                        $sql = 'CALL VISUALIZZAZIONE_TEST_DISPONIBILI';
                         $res = $pdo->prepare($sql);
                         $res->execute();
                         $result = $res->fetchAll(PDO::FETCH_ASSOC);
