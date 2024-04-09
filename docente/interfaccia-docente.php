@@ -26,24 +26,13 @@
             <a href="../studente/visualizzazione-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
             <a href="creazione-test.php" class="list-group-item list-group-item-action">Crea nuovo Test</a>
             <a href="invio-messaggi-docente.php" class="list-group-item list-group-item-action">Invia messaggio</a>
-            <a href="../registrazione/statistiche.php" class="list-group-item list-group-item-action">Visualizzazione Statistiche</a>
+            <a href="../statistiche.php" class="list-group-item list-group-item-action">Visualizzazione Statistiche</a>
             <a href="../log-eventi.php" class="list-group-item list-group-item-action">Amministrazione Log Eventi</a>
             <a href = "visualizzazione-messaggi-docente.php" class="list-group-item list-group-item-action">Messaggi ricevuti</a>
             <a href="../registrazione/pagelogin.php" class="list-group-item list-group-item-action">Logout</a>
         </div>
     </div>
-    <!--
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    -->
+
 </body>
 
 </html>
-<!--
-h da 1 a 6 x dimens testo
-a -> link ipertest
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    -->
