@@ -1,6 +1,8 @@
 # Basi-Di-Dati
 PASSWORD DATABASE ESQL: ProgettiGiga
 
+
+Link specifiche progetto: https://virtuale.unibo.it/pluginfile.php/1792928/mod_resource/content/3/progettobd2024.pdf
 <<<<<<< HEAD
 
 
