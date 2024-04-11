@@ -13,6 +13,7 @@
    $numeroRighe=$_POST["numeroRighe"];
    $attributi=$_POST["attributi"];
    $vincoli=$_POST["vincoli"];
+   $username = $_SESSION["username"];
 
    // Connessione al DB
    try {
@@ -28,8 +29,12 @@
    try {
       $data = date('Y/m/d', time());
 
-      //da finire la creazione della tabella con i relativi attributi
-      $sqlCreateTable = "CREATE TABLE $nomeTabella (ID INT, PRIMARY KEY(ID))";
+       $attributi_splittati = explode(',', $attributi);
+
+
+
+      //TODO creare la tabella con gli attributi inseriti dal docente
+      $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi)";
 
       $stmt = $pdo->prepare($sqlCreateTable);
 
@@ -47,24 +52,22 @@
 
       $stmt->execute();
 
-      $attributi_splittati = explode(',', $attributi);
+       $sqlInsertAttributi = 'INSERT INTO ATTRIBUTO(NOME, TIPO, NOME_TABELLA) VALUES (?, ?, ?)';
+       foreach ($attributi_splittati as $attributo) {
+           $nome_tipo = explode(' ', $attributo);
 
-      $sqlInsertAttributi = 'INSERT INTO ATTRIBUTO(NOME, TIPO, NOME_TABELLA) VALUES (?, ?, ?)';
-      foreach ($attributi_splittati as $attributo) {
-         $nome_tipo = explode(':', $attributo);
+           $stmt = $pdo->prepare($sqlInsertAttributi);
 
-         $stmt = $pdo->prepare($sqlInsertAttributi);
+           $stmt->bindParam(1, $nome_tipo[0], PDO::PARAM_STR);
+           $stmt->bindParam(2, $nome_tipo[1], PDO::PARAM_STR);
+           $stmt->bindParam(3, $nomeTabella, PDO::PARAM_STR);
 
-         $stmt->bindParam(1, $nome_tipo[0], PDO::PARAM_STR);
-         $stmt->bindParam(2, $nome_tipo[1], PDO::PARAM_STR);
-         $stmt->bindParam(3, $nomeTabella, PDO::PARAM_STR);
+           $stmt->execute();
+       }
 
-         $stmt->execute();
-        
-      }
-   echo 'Tabella creata con successo';
+      echo 'Tabella creata con successo';
 
-} catch (PDOException $e) {
+    } catch (PDOException $e) {
     echo "[ERRORE] Query SQL (Insert) non riuscita. Errore: " . $e->getMessage();
     exit();
 }

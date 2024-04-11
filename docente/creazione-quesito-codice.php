@@ -28,10 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titoloTest = filter_input(INPUT_POST, 'titoloTest', FILTER_SANITIZE_STRING);
 
 
-    // Inserisci il quesito nel database
-    $sqlQuesito = "INSERT INTO QUESITO_CODICE(LIVELLO, DESCRIZ, NUM_RISPOSTE, TITOLO_TEST) VALUES (?, ?, ?, ?)";
+    //TODO utilizzare la procedura per inserire i dati
+    $sqlQuesito = "CALL INSERIMENTO_QUESITO_CODICE(?, ?, ?, ?)";
     $stmtQuesito = $pdo->prepare($sqlQuesito);
-    $stmtQuesito->execute([$livelloDifficoltà, $descrizione, $numRisposte, $titoloTest]);
+    $stmtQuesito->execute([ $titoloTest, $livelloDifficoltà, $descrizione, $numRisposte]);
 
     echo "Quesito inserito con successo.";
 }
