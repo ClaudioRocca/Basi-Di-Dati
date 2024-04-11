@@ -33,8 +33,7 @@
             <div class="form-group">
                 <label for="attributi">Attributi</label>
                 <textarea class="form-control" id="attributi" name="attributi" rows="3" required></textarea>
-                <small class="form-text text-muted">Inserisci gli attributi separati da virgola (es. id:int,
-                    nome:varchar(255), ...)</small>
+                <small class="form-text text-muted">Inserisci gli attributi separati da virgola (es. id int,nome varchar(255), ...)</small>
             </div>
             <div class="form-group">
                 <label for="vincoli">Vincoli di Integrità</label>
