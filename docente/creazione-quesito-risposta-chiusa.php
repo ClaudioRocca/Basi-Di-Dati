@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titoloTest = filter_input(INPUT_POST, 'titoloTest', FILTER_SANITIZE_STRING);
 
     //TODO utilizzare la procedura per inserire i dati
-    $sqlQuesito = "INSERT INTO QUESITO_RISPOSTA_CHIUSA(LIVELLO, DESCRIZ, TITOLO_TEST, NUM_RISPOSTE) VALUES (?,?,?,?)";
+    $sqlQuesito = "CALL INSERIMENTO_QUESITO_RISPOSTA_CHIUSA(?, ?, ?, ?)";
     $stmtQuesito = $pdo->prepare($sqlQuesito);
     $stmtQuesito->execute([$livelloDifficoltà, $descrizione, $titoloTest, $numRisposte]);
 

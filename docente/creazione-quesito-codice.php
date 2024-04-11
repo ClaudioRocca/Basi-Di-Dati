@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     //TODO utilizzare la procedura per inserire i dati
-    $sqlQuesito = "INSERT INTO QUESITO_CODICE(LIVELLO, DESCRIZ, NUM_RISPOSTE, TITOLO_TEST) VALUES (?, ?, ?, ?)";
+    $sqlQuesito = "CALL INSERIMENTO_QUESITO_CODICE(?, ?, ?, ?)";
     $stmtQuesito = $pdo->prepare($sqlQuesito);
     $stmtQuesito->execute([$livelloDifficoltà, $descrizione, $numRisposte, $titoloTest]);
 
