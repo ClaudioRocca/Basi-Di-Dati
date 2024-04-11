@@ -8,8 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = $_SESSION["mail"];
     $nome = $_SESSION["nome"];
     $cognome = $_SESSION["cognome"];
-    $pazzword = $_SESSION["pazzword"];
-//    $confirm_password = $_SESSION["confirm_pazzword"];
+    $password = $_SESSION["password"];
     $recapito = $_SESSION["recapito"];
 
     // Inserimento dei dati nel database
@@ -23,13 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $annoImmatricolazione = $_POST["anno_Immatricolazione"];
             $stmt = $pdo->prepare("INSERT INTO Studente (Mail, Nome, Cognome, Pazzword, Recapito, Codice, 
                       Anno_Immatricolazione) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$mail, $nome, $cognome, $pazzword, $recapito, $codice, $annoImmatricolazione]);
+            $stmt->execute([$mail, $nome, $cognome, $password, $recapito, $codice, $annoImmatricolazione]);
         } elseif ($ruolo === "docente") {
             $dipartimento = $_POST["dipartimento"];
             $corso = $_POST["corso"];
             $stmt = $pdo->prepare("INSERT INTO Docente (Mail, Nome, Cognome, Pazzword, Recapito, Dipartimento, 
                      Corso) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$mail, $nome, $cognome, $pazzword, $recapito, $dipartimento, $corso]);
+            $stmt->execute([$mail, $nome, $cognome, $password, $recapito, $dipartimento, $corso]);
         }
 
     } catch (PDOException $e) {
@@ -59,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p><b>Username:</b> $mail</p>";
         echo "<p><b>Nome:</b> $nome</p>";
         echo "<p><b>Cognome:</b> $cognome</p>";
-        echo "<p><b>Password:</b> $pazzword</p>";
+        echo "<p><b>Password:</b> $password</p>";
         if ($recapito) {
             echo "<p><b>Recapito:</b> $recapito</p>";
         }
