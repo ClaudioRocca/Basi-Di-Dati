@@ -1,88 +1,51 @@
 <?php ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100px; /* Regola l'altezza a tuo piacimento */
-        }
-
-        .logo {
-            font-size: 48px;
-            font-weight: bold;
-            color: #ffffff; /* Testo bianco */
-            text-transform: uppercase;
-            background-color: #0a0dbf; /* Blu chiaro */
-            padding: 10px; /* Spazio intorno al testo */
-            border-radius: 5px; /* Bordi arrotondati */
-        }
-
-        .logo span {
-            color: #ffffff; /* Cambia il colore a tuo piacimento */
-        }
-
-        .form-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .form-text {
-            font-size: 18px;
-        }
-
-        .register-link {
-            font-size: 16px;
-            margin-top: 10px;
-            color: #0a0dbf; /* Blu chiaro */
-            text-decoration: none;
-        }
-
-        .register-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles.css">
 </head>
+
 <body>
-<div class="logo-container">
-    <div class="logo">
-        G<span>_</span>ESQL
+    <div class="header">
+        <!-- Includi l'header dalla pagina header.html -->
+        <?php include '../fragments/header.html'; ?>
     </div>
-</div>
 
-<div class="form-container">
-    <form action='login.php' method="post">
-        <hr>
-        <div class="form-text">LOGIN UTENTI</div>
-        <br>
-        <table align="center">
-            <tr>
-                <td><b>Username (mail):</b></td>
-                <td><input type='text' name="username" id="username" required=true></td>
-            </tr>
-            <tr>
-                <td><b>Password:</b></td>
-                <td><input type="password" name="password" id="password" required=true></td>
-            </tr>
-        </table>
-        <br>
-        <div><input type='submit' value='Login' class="btn btn-primary"></div>
-    </form>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">LOGIN UTENTI</h5>
+                        <form action="login.php" method="post">
+                            <div class="form-group">
+                                <label for="username">Username (mail):</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </form>
+                        <p class="mt-3 mb-0 text-center">
+                            Non hai un profilo? <a href="registrazione.php" class="register-link">Registrati</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="register-text">Non hai un profilo? <a href="registrazione.php" class="register-link">Registrati</a></div>
-</div>
+    <footer>
+        <?php include '../fragments/footer.html'; ?>
+    </footer>
+
+
 </body>
 </html>
-

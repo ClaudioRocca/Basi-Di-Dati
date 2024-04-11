@@ -6,12 +6,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = $_POST["mail"];
     $nome = $_POST["nome"];
     $cognome = $_POST["cognome"];
-    $pazzword = $_POST["pazzword"];
-    $confirm_password = $_POST["confirm_pazzword"];
+    $password = $_POST["password"];
+    $confirm_password = $_POST["confirm_password"];
     $recapito = isset($_POST["recapito"]) ? $_POST["recapito"] : null;
 
     // Verifica se le password coincidono
-    if ($pazzword !== $confirm_password) {
+    if ($password !== $confirm_password) {
         echo "Le password non corrispondono.";
         exit();
     }
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["mail"] = $mail;
     $_SESSION["nome"] = $nome;
     $_SESSION["cognome"] = $cognome;
-    $_SESSION["pazzword"] = $pazzword;
+    $_SESSION["password"] = $password;
     $_SESSION["recapito"] = $recapito;
 
     // Reindirizza a una pagina per completare le informazioni aggiuntive in base al ruolo
