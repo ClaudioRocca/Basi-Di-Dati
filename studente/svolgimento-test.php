@@ -19,8 +19,10 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
         exit();
     }
 
-    $rispostaChiusa = 'SELECT ID, DESCRIZ, LIVELLO FROM QUESITO_RISPOSTA_CHIUSA ';
-    $stmt = $pdo->prepare($rispostaChiusa);
+    $sql = 'SELECT ID, DESCRIZ, LIVELLO FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ? ';
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(1, $titolo, PDO::PARAM_STR);
+
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

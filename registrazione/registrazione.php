@@ -61,8 +61,8 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="mail">Username (mail):</label>
-                                        <input type='text' name="mail" id="mail" class="form-control" required>
+                                        <label for="username">Username (mail):</label>
+                                        <input type='text' name="username" id="username" class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nome">Nome:</label>

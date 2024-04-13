@@ -74,5 +74,7 @@ if (isset($_SESSION['livelloDifficoltà']) && isset($_SESSION['descrizione']) &&
 <!--        <input type="email" name="mailDocente" placeholder="Mail del Docente" required><br>-->
         <button type="submit">Invia</button>
     </form>
+
+    <a href="interfaccia-docente.php" class="btn btn-primary">Torna alla dashboard</a>
 </body>
 </html>

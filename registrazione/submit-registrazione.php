@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Recupera i dati dalla sessione
     $ruolo = $_SESSION["ruolo"];
-    $mail = $_SESSION["mail"];
+    $username = $_SESSION["username"];
     $nome = $_SESSION["nome"];
     $cognome = $_SESSION["cognome"];
     $password = $_SESSION["password"];
@@ -22,13 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $annoImmatricolazione = $_POST["anno_Immatricolazione"];
             $stmt = $pdo->prepare("INSERT INTO Studente (Mail, Nome, Cognome, Pazzword, Recapito, Codice, 
                       Anno_Immatricolazione) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$mail, $nome, $cognome, $password, $recapito, $codice, $annoImmatricolazione]);
+            $stmt->execute([$username, $nome, $cognome, $password, $recapito, $codice, $annoImmatricolazione]);
         } elseif ($ruolo === "docente") {
             $dipartimento = $_POST["dipartimento"];
             $corso = $_POST["corso"];
             $stmt = $pdo->prepare("INSERT INTO Docente (Mail, Nome, Cognome, Pazzword, Recapito, Dipartimento, 
                      Corso) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$mail, $nome, $cognome, $password, $recapito, $dipartimento, $corso]);
+            $stmt->execute([$username, $nome, $cognome, $password, $recapito, $dipartimento, $corso]);
         }
 
     } catch (PDOException $e) {
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Stampa le informazioni di registrazione
         echo "<p><b>Ruolo:</b> $ruolo</p>";
-        echo "<p><b>Username:</b> $mail</p>";
+        echo "<p><b>Username:</b> $username</p>";
         echo "<p><b>Nome:</b> $nome</p>";
         echo "<p><b>Cognome:</b> $cognome</p>";
         echo "<p><b>Password:</b> $password</p>";
@@ -67,11 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($ruolo === "studente") {
             echo "<p><b>Codice:</b> $codice</p>";
             echo "<p><b>Anno di Immatricolazione:</b> $annoImmatricolazione</p>";
-            echo "<a href= '../studente/interfaccia-studente.php' class='btn btn-primary'>Vai alla dashboard></a>";
+            echo "<a href= '../studente/interfaccia-studente.php' class='btn btn-primary'>Vai alla dashboard</a>";
         } elseif ($ruolo === "docente") {
             echo "<p><b>Dipartimento:</b> $dipartimento</p>";
             echo "<p><b>Corso:</b> $corso</p>";
-            echo "<a href= ' ../docente/interfaccia-docente.php' class='btn btn-primary'>Vai alla dashboard></a>";
+            echo "<a href= ' ../docente/interfaccia-docente.php' class='btn btn-primary'>Vai alla dashboard</a>";
         }
         ?>
     </div>

@@ -37,8 +37,8 @@ try {
                 <textarea class="form-control" name="testoMessaggio" id="testoMessaggio" rows="3" required></textarea>
             </div>
             <div class="form-group">
-                <label for="testRelativo">Test relativo al messaggio (opzionale)</label>
-                <input type="text" class="form-control" name="testRelativo" id="testRelativo">
+                <label for="testRelativo">Test relativo al messaggio</label>
+                <input type="text" class="form-control" name="testRelativo" id="testRelativo" required>
             </div>
             <button type="submit" class="btn btn-primary">Invia Messaggio</button>
         </form>

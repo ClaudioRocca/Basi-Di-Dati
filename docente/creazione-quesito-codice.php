@@ -44,19 +44,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Creazione quesito codice</title>
 </head>
 <body>
-<h2>Crea nuovo quesito con codice</h2>
-<form action="creazione-quesito-codice.php" method="post">
-    <select name="livelloDifficoltà" required>
-        <option value="BASSO">Basso</option>
-        <option value="MEDIO">Medio</option>
-        <option value="ALTO">Alto</option>
-    </select><br>
-    <!-- riempire dinamicamente il campo titolotest -->
-    <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
-    <input type="number" name="numRisposte" placeholder="Numero di Risposte" required><br>
-    <input type="text" name="titoloTest" placeholder="Titolo del Test" required><br>
+    <h2>Crea nuovo quesito con codice</h2>
+    <form action="creazione-quesito-codice.php" method="post">
+        <select name="livelloDifficoltà" required>
+            <option value="BASSO">Basso</option>
+            <option value="MEDIO">Medio</option>
+            <option value="ALTO">Alto</option>
+        </select><br>
+        <!-- riempire dinamicamente il campo titolotest -->
+        <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
+        <input type="number" name="numRisposte" placeholder="Numero di Risposte" required><br>
+        <input type="text" name="titoloTest" placeholder="Titolo del Test" required><br>
 
-    <button type="submit">Invia</button>
-</form>
+        <button type="submit">Invia</button>
+    </form>
+    <a href="interfaccia-docente.php" class="btn btn-primary">Torna alla dashboard</a>
 </body>
 </html>
