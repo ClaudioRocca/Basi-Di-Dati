@@ -27,10 +27,6 @@
                 <input type="text" class="form-control" id="nomeTabella" name="nomeTabella" required>
             </div>
             <div class="form-group">
-                <label for="numeroRighe">Numero di Righe</label>
-                <input type="number" class="form-control" id="numeroRighe" name="numeroRighe" required>
-            </div>
-            <div class="form-group">
                 <label for="attributi">Attributi</label>
                 <textarea class="form-control" id="attributi" name="attributi" rows="3" required></textarea>
                 <small class="form-text text-muted">Inserisci gli attributi separati da virgola (es. id int,nome varchar(255), ...)</small>

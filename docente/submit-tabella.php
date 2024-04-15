@@ -10,7 +10,7 @@
 
 <?php
    $nomeTabella=$_POST["nomeTabella"];
-   $numeroRighe=$_POST["numeroRighe"];
+
    $attributi=$_POST["attributi"];
    $vincoli=$_POST["vincoli"];
    $username = $_SESSION["username"];
@@ -34,21 +34,20 @@
 
 
       //TODO creare la tabella con gli attributi inseriti dal docente
-      $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi)";
+      $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi, $vincoli)";
 
       $stmt = $pdo->prepare($sqlCreateTable);
 
       $stmt->execute();
 
       // Query SQL per l'inserimento dati
-      $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,?,?)";
+      $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,0,?)";
 
       $stmt = $pdo->prepare($sql);
 
       $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
       $stmt->bindParam(2, $data, PDO::PARAM_STR);
-      $stmt->bindParam(3, $numeroRighe, PDO::PARAM_STR);
-      $stmt->bindParam(4, $username, PDO::PARAM_STR);
+      $stmt->bindParam(3, $username, PDO::PARAM_STR);
 
       $stmt->execute();
 
