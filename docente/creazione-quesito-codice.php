@@ -26,12 +26,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descrizione = filter_input(INPUT_POST, 'descrizione', FILTER_SANITIZE_STRING);
     $numRisposte = filter_input(INPUT_POST, 'numRisposte', FILTER_SANITIZE_NUMBER_INT);
     $titoloTest = filter_input(INPUT_POST, 'titoloTest', FILTER_SANITIZE_STRING);
+    $nomiTabelle = filter_input(INPUT_POST, 'nomiTabelle', FILTER_SANITIZE_STRING);
 
-
-    //TODO utilizzare la procedura per inserire i dati
     $sqlQuesito = "CALL INSERIMENTO_QUESITO_CODICE(?, ?, ?, ?)";
     $stmtQuesito = $pdo->prepare($sqlQuesito);
     $stmtQuesito->execute([ $titoloTest, $livelloDifficoltà, $descrizione, $numRisposte]);
+
+    $sqlMaxIdQuesito = 'SELECT MAX(ID) AS ID FROM QUESITO_CODICE';
+
+    $res=$pdo->query($sqlMaxIdQuesito);
+    $row=$res->fetch();
+
+    $nomiTabelleSplittati = explode(", ", $nomiTabelle);
+    $sqlAppartenenza = 'INSERT INTO APPARTENENZA_QUESITO_CODICE(NOME_TABELLA, TITOLO_TEST, ID_QUESITO) VALUES(?, ?, ?)';
+    $stmt = $pdo->prepare($sqlAppartenenza);
+    foreach ($nomiTabelleSplittati as $nomeTabella){
+        $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
+        $stmt->bindParam(2, $titoloTest, PDO::PARAM_STR);
+        $stmt->bindParam(3, $row['ID'], PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
 
     echo "Quesito inserito con successo.";
 }
@@ -54,7 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- riempire dinamicamente il campo titolotest -->
         <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
         <input type="number" name="numRisposte" placeholder="Numero di Risposte" required><br>
-        <input type="text" name="titoloTest" placeholder="Titolo del Test" required><br>
+        <input type="text" name="titoloTest" placeholder="Test relativo" required><br>
+        <input type="text" name="nomiTabelle" placeholder="Tabelle relative" required><br>
 
         <button type="submit">Invia</button>
     </form>

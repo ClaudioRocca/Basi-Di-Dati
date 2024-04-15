@@ -34,7 +34,7 @@
 
 
       //TODO creare la tabella con gli attributi inseriti dal docente
-      $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi, $vincoli)";
+      $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi)";
 
       $stmt = $pdo->prepare($sqlCreateTable);
 
