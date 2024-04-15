@@ -29,20 +29,18 @@
    try {
       $data = date('Y/m/d', time());
 
-       $attributi_splittati = explode(',', $attributi);
+      $attributi_splittati = explode(', ', $attributi);
 
+      //TODO aggiungere i vincoli d'integrità nella relativa tabella
+      $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi, $vincoli)";
 
-
-      //TODO creare la tabella con gli attributi inseriti dal docente
-      $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi)";
-
+       echo("query: " .$sqlCreateTable);
       $stmt = $pdo->prepare($sqlCreateTable);
 
       $stmt->execute();
 
       // Query SQL per l'inserimento dati
       $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,0,?)";
-
       $stmt = $pdo->prepare($sql);
 
       $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
@@ -63,8 +61,7 @@
 
            $stmt->execute();
        }
-
-      echo 'Tabella creata con successo';
+       echo 'Tabella creata con successo';
 
     } catch (PDOException $e) {
     echo "[ERRORE] Query SQL (Insert) non riuscita. Errore: " . $e->getMessage();
