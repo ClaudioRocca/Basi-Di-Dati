@@ -7,7 +7,6 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
 ?>
 
 <?php
-
     $titolo=$_GET["Titolo"];
 
     try {
@@ -33,14 +32,21 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
         $stmt = $pdo->prepare($opzioni);
         $stmt->execute([$idQuesito]);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        print_r($result);
+        foreach($result as $option){
+            echo'<br>';
+            echo($option['TESTO']);
+        }
+        echo('<br>------------------------------<br>');
     }
-    $codice = 'SELECT DESCRIZ FROM QUESITO_CODICE';
+    $codice = 'SELECT DESCRIZ FROM QUESITO_CODICE WHERE TITOLO_TEST = ?';
     $stmt = $pdo->prepare($codice);
+    $stmt->bindParam(1, $titolo, PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach($result as $row){
         echo ($row['DESCRIZ']);
         echo '<br><input type="text" id="risposta" name="risposta" placeholder = "Inserisci la tua risposta">';
+
+        echo('<br>------------------------------<br>');
     }
 ?>

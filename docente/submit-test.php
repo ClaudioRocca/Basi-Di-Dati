@@ -28,7 +28,6 @@ error_reporting(E_ALL);
        exit();
     }
 
-
     //cambio il valore "on" che restituisce la checkbox in "1", per poterlo inserire in mysql
     if($risposteVisualizzabili == "on"){
         $risposteVisualizzabili = 1;
