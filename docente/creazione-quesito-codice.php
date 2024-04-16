@@ -57,23 +57,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Creazione quesito codice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <h2>Crea nuovo quesito con codice</h2>
-    <form action="creazione-quesito-codice.php" method="post">
-        <select name="livelloDifficoltà" required>
-            <option value="BASSO">Basso</option>
-            <option value="MEDIO">Medio</option>
-            <option value="ALTO">Alto</option>
-        </select><br>
-        <!-- riempire dinamicamente il campo titolotest -->
-        <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
-        <input type="number" name="numRisposte" placeholder="Numero di Risposte" required><br>
-        <input type="text" name="titoloTest" placeholder="Test relativo" required><br>
-        <input type="text" name="nomiTabelle" placeholder="Tabelle relative" required><br>
+    <header>
+        <?php include '../fragments/header.html'; ?>
+    </header>
 
-        <button type="submit">Invia</button>
-    </form>
-    <a href="interfaccia-docente.php" class="btn btn-primary">Torna alla dashboard</a>
+    <div class="container mt-5">
+        <h2>Crea nuovo quesito con codice</h2>
+        <form action="creazione-quesito-codice.php" method="post">
+            <div class="form-group">
+                <label for="livelloDifficoltà">Livello di Difficoltà:</label>
+                <select id="livelloDifficoltà" name="livelloDifficoltà" class="form-control" required>
+                    <option value="BASSO">Basso</option>
+                    <option value="MEDIO">Medio</option>
+                    <option value="ALTO">Alto</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="descrizione">Descrizione:</label>
+                <textarea id="descrizione" name="descrizione" class="form-control" placeholder="Descrizione" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="numRisposte">Numero di Risposte:</label>
+                <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required>
+            </div>
+            <div class="form-group">
+                <label for="titoloTest">Test relativo:</label>
+                <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
+            </div>
+            <div class="form-group">
+                <label for="nomiTabelle">Tabelle relative:</label>
+                <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Invia</button>
+        </form>
+        <a href="interfaccia-docente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
+    </div>
+
+    <footer>
+        <?php include '../fragments/footer.html'; ?>
+    </footer>
+
 </body>
 </html>
