@@ -12,7 +12,6 @@
 
 <body>
     <div class="header">
-        <!-- Includi l'header dalla pagina header.html -->
         <?php include '../fragments/header.html'; ?>
     </div>
 
