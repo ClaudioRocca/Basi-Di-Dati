@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "studente")){
+if (!(isset($_SESSION['username']) && isset($_SESSION['password']))){
         header('Location: ../registrazione/login.php');
         exit();
     }

@@ -33,7 +33,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <header>
-        <?php include 'fragments/header.html'; ?>
+        <?php include '../fragments/header.html'; ?>
     </header>
 
     <div class="container mt-5">
@@ -51,7 +51,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <footer>
-        <?php include 'fragments/footer.html'; ?>
+        <?php include '../fragments/footer.html'; ?>
     </footer>
 
 </body>
