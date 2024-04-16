@@ -24,24 +24,25 @@ session_start();
     $res=$pdo->query($sql);
     $row=$res->fetch();
 
-    if ($row['counter']>0) { // se > 0 allora va a pag Docente else check se sei studente else "Accesso non autoriz"
-      header('Location: ../docente/interfaccia-docente.php');
+    if ($row['counter']>0) {
+        $_SESSION["username"] = $username; // Session cosi forziamo il passaggio da Login
+        $_SESSION["password"] = $password;
+        $_SESSION["ruolo"]= "docente";
+        header('Location: ../docente/interfaccia-docente.php');
     } 
 
     $sql='SELECT COUNT(*) AS counter FROM Studente WHERE (Mail="'.$username.'") AND (Pazzword="'.$password.'")';
     
-    $res=$pdo->prepare($sql); // conversione stringa in vera query
+    $res=$pdo->prepare($sql);
     $res->execute();
     
     $res=$pdo->query($sql);
     $row=$res->fetch();
 
-
-
-
     if ($row['counter']>0) {
         $_SESSION["username"] = $username; // Session cosi forziamo il passaggio da Login
         $_SESSION["password"] = $password;
+        $_SESSION["ruolo"]= "studente";
         header('Location: ../studente/interfaccia-studente.php');
     }
     else{
@@ -51,8 +52,6 @@ session_start();
     echo("[ERRORE] Query SQL (Insert) non riuscita. Errore: ".$e->getMessage());
     exit();
   }
-    
-  
   $linkback= '<br><br><a href="pagelogin.php"> Torna alla pagina di login </a>'; // pop per tornare a menu
   echo($linkback);
       

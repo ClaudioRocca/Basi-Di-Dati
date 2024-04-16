@@ -1,10 +1,17 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
+if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "studente")){
 
         header('Location: ../registrazione/login.php');
     }
+
+    echo 'User: ';
+    echo($_SESSION['username']);
+    echo 'password: ';
+    echo($_SESSION['password']);
+    echo 'Ruolo: ';
+    echo($_SESSION['ruolo']);
 
 ?>
 
