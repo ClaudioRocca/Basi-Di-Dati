@@ -33,12 +33,10 @@ try {
     <meta charset="UTF-8">
     <title>Statistiche Studenti</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../styles.css"> <!-- Aggiungi il tuo file CSS -->
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-
     <header>
-        <!-- Includi l'header dalla pagina header.html -->
         <?php include 'fragments/header.html'; ?>
     </header>
 
@@ -104,7 +102,6 @@ try {
     </div>
 
     <footer>
-        <!-- Includi il footer dalla pagina footer.html -->
         <?php include 'fragments/footer.html'; ?>
     </footer>
 </body>

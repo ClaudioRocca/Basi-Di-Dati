@@ -16,9 +16,14 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crea Tabelle di Esercizio</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 
 <body>
+    <header>
+        <?php include '../fragments/header.html'; ?>
+    </header>
+
     <div class="container mt-5">
         <h2>Crea Nuova Tabella di Esercizio</h2>
         <form action="submit-tabella.php" method="post">
@@ -39,9 +44,10 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
             <button type="submit" class="btn btn-primary">Crea Tabella</button>
         </form>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
 
+    <footer>
+        <?php include '../fragments/footer.html'; ?>
+    </footer>
+
+</body>
 </html>
