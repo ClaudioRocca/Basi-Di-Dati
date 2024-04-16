@@ -3,7 +3,7 @@
 
     if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
 
-        header('Location: login.php');
+        header('Location: ../registrazione/login.php');
     }
 
 ?>
@@ -27,7 +27,6 @@ error_reporting(E_ALL);
        echo("[ERRORE] Connessione al DB non riuscita. Errore: ".$e->getMessage());
        exit();
     }
-
 
     //cambio il valore "on" che restituisce la checkbox in "1", per poterlo inserire in mysql
     if($risposteVisualizzabili == "on"){

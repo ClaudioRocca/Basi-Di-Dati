@@ -1,12 +1,8 @@
 <?php
 session_start();
 
-    $username=$_POST["username"]; // aggiorna la variab  con l'istanza nuova
-    $password=$_POST["password"];
-
-    $_SESSION["username"] = $username; // Session cosi forziamo il passaggio da Login
-    $_SESSION["password"] = $password;
-    
+   $username=$_POST["username"]; // aggiorna la variab  con l'istanza nuova
+   $password=$_POST["password"];
    // Connessione al DB
    try {
       $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
@@ -40,14 +36,17 @@ session_start();
     $res=$pdo->query($sql);
     $row=$res->fetch();
 
+
+
+
     if ($row['counter']>0) {
-      header('Location: ../studente/interfaccia-studente.php');
+        $_SESSION["username"] = $username; // Session cosi forziamo il passaggio da Login
+        $_SESSION["password"] = $password;
+        header('Location: ../studente/interfaccia-studente.php');
     }
     else{
-      echo 'Accesso non autorizzato';
-  }
-
-   }
+      echo 'Accesso non autorizzato';}
+    }
   catch(PDOException $e) {
     echo("[ERRORE] Query SQL (Insert) non riuscita. Errore: ".$e->getMessage());
     exit();
