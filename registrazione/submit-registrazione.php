@@ -46,13 +46,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Final Registration</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Registrazione Utente</h2>
-        <p>Grazie per esserti registrato!</p>
-        <?php
 
+    <div class="header">
+        <!-- Includi l'header dalla pagina header.html -->
+        <?php include '../fragments/header.html'; ?>
+    </div>
+
+    <div class="container">
+        <h2 class="text-center">Registrazione Utente</h2>
+        <p>Grazie per esserti registrato!</p>
+
+        <?php
         // Stampa le informazioni di registrazione
         echo "<p><b>Ruolo:</b> $ruolo</p>";
         echo "<p><b>Username:</b> $username</p>";
@@ -67,14 +74,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($ruolo === "studente") {
             echo "<p><b>Codice:</b> $codice</p>";
             echo "<p><b>Anno di Immatricolazione:</b> $annoImmatricolazione</p>";
-            echo "<a href= '../studente/interfaccia-studente.php' class='btn btn-primary'>Vai alla dashboard</a>";
+            echo "<a href='../studente/interfaccia-studente.php' class='btn btn-primary'>Vai alla dashboard</a>";
         } elseif ($ruolo === "docente") {
             echo "<p><b>Dipartimento:</b> $dipartimento</p>";
             echo "<p><b>Corso:</b> $corso</p>";
-            echo "<a href= ' ../docente/interfaccia-docente.php' class='btn btn-primary'>Vai alla dashboard</a>";
+            echo "<a href='../docente/interfaccia-docente.php' class='btn btn-primary'>Vai alla dashboard</a>";
         }
         ?>
     </div>
+
+    <footer>
+        <?php include '../fragments/footer.html'; ?>
+    </footer>
 
 </body>
 </html>
