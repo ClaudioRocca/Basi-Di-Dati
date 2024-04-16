@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-    $username=$_POST["username"]; // aggiorna la variab  con l'istanza nuova
-    $password=$_POST["password"];
-
-    $_SESSION["username"] = $username; // Session cosi forziamo il passaggio da Login
-    $_SESSION["password"] = $password;
     
    // Connessione al DB
    try {
@@ -39,6 +34,13 @@ session_start();
     
     $res=$pdo->query($sql);
     $row=$res->fetch();
+
+
+       $username=$_POST["username"]; // aggiorna la variab  con l'istanza nuova
+       $password=$_POST["password"];
+
+       $_SESSION["username"] = $username; // Session cosi forziamo il passaggio da Login
+       $_SESSION["password"] = $password;
 
     if ($row['counter']>0) {
       header('Location: ../studente/interfaccia-studente.php');

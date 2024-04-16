@@ -4,7 +4,12 @@
     if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
         header('Location: login.php');
     }
+    echo 'User: ';
+    echo($_SESSION['username']);
+    echo 'password: ';
+    echo($_SESSION['password']);
 ?>
+
 
 
 
