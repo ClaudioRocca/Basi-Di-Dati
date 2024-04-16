@@ -45,6 +45,5 @@
         <?php include '../fragments/footer.html'; ?>
     </footer>
 
-
 </body>
 </html>

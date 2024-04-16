@@ -10,9 +10,6 @@
     echo($_SESSION['password']);
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="it">
 

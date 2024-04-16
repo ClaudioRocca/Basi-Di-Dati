@@ -23,10 +23,16 @@ try {
     <title>Invia Messaggio agli Studenti</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles.css"> <!-- Aggiungi il tuo file CSS -->
 </head>
 <body>
+
+    <header>
+        <?php include '../fragments/header.html'; ?>
+    </header>
+
     <div class="container mt-5">
-        <h1>Invia Messaggio agli Studenti</h1>
+        <h1 class="text-center">Invia Messaggio agli Studenti</h1>
         <form action="submit-messaggio-docente.php" method="post">
             <div class="form-group">
                 <label for="titoloMessaggio">Titolo messaggio</label>
@@ -40,8 +46,13 @@ try {
                 <label for="testRelativo">Test relativo al messaggio</label>
                 <input type="text" class="form-control" name="testRelativo" id="testRelativo" required>
             </div>
-            <button type="submit" class="btn btn-primary">Invia Messaggio</button>
+            <button type="submit" class="btn btn-primary btn-block">Invia Messaggio</button>
         </form>
     </div>
 
+    <footer>
+        <?php include '../fragments/footer.html'; ?>
+    </footer>
+
+</body>
 </html>
