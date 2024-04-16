@@ -12,9 +12,6 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     echo($_SESSION['ruolo']);
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="it">
 

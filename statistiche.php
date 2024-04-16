@@ -33,79 +33,79 @@ try {
     <meta charset="UTF-8">
     <title>Statistiche Studenti</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            padding: 20px;
-            font-size: 16px;
-        }
-        .table {
-            margin-top: 20px;
-        }
-        h2 {
-            margin-top: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles.css"> <!-- Aggiungi il tuo file CSS -->
 </head>
 <body>
-<div class="container">
-    <h1>Statistiche Studenti</h1>
 
-    <!-- Stampa delle statistiche Test Completati -->
-    <h2>Classifica Studenti per Test Completati</h2>
-    <table class="table table-striped">
-        <thead class="thead-dark">
+    <header>
+        <!-- Includi l'header dalla pagina header.html -->
+        <?php include 'fragments/header.html'; ?>
+    </header>
+
+    <div class="container mt-5">
+        <h2>Statistiche Studenti</h2>
+
+        <!-- Stampa delle statistiche Test Completati -->
+        <h3 class="mt-5">Classifica Studenti per Test Completati</h3>
+        <table class="table table-striped">
+            <thead class="thead-dark">
             <tr>
                 <th>Codice Studente</th>
                 <th>Test Completati</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <?php foreach ($statisticheTestCompletati as $statistica): ?>
                 <tr>
                     <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
                     <td><?= htmlspecialchars($statistica['NUMERO_TEST_COMPLETATI']) ?></td>
                 </tr>
             <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <!-- Stampa delle statistiche Quesiti Corretti -->
-    <h2>Classifica Studenti per Quesiti Corretti</h2>
-    <table class="table table-striped">
-        <thead class="thead-dark">
+        <!-- Stampa delle statistiche Quesiti Corretti -->
+        <h3>Classifica Studenti per Quesiti Corretti</h3>
+        <table class="table table-striped">
+            <thead class="thead-dark">
             <tr>
                 <th>Codice Studente</th>
                 <th>Quesiti Corretti</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <?php foreach ($statisticheQuesitiCorretti as $statistica): ?>
                 <tr>
                     <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
                     <td><?= htmlspecialchars($statistica['NUMERO_QUESITI_CORRETTI']) ?></td>
                 </tr>
             <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <!-- Stampa delle statistiche Quesiti Popolari -->
-    <h2>Classifica Quesiti con Più Risposte</h2>
-    <table class="table table-striped">
-        <thead class="thead-dark">
+        <!-- Stampa delle statistiche Quesiti Popolari -->
+        <h3>Classifica Quesiti con Più Risposte</h3>
+        <table class="table table-striped">
+            <thead class="thead-dark">
             <tr>
                 <th>ID Quesito</th>
                 <th>Numero Risposte</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <?php foreach ($statisticheQuesitiPopolari as $statistica): ?>
                 <tr>
                     <td><?= htmlspecialchars($statistica['ID_QUESITO']) ?></td>
                     <td><?= htmlspecialchars($statistica['NUMERO_RISPOSTE']) ?></td>
                 </tr>
             <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <!-- Includi il footer dalla pagina footer.html -->
+        <?php include 'fragments/footer.html'; ?>
+    </footer>
 </body>
 </html>
