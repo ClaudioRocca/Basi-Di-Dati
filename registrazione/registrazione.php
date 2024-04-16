@@ -12,31 +12,6 @@
         <?php include '../fragments/header.html'; ?>
     </div>
 
-    <!--<div class="form-container">
-        <form action='process-registration.php' method="post">
-            <div class="form-text">Registrazione Utenti</div>
-            <br>
-            <div class="form-option">
-                <input type="radio" id="studente" name="ruolo" value="studente" required=true>
-                <label for="studente">Studente</label>
-                <input type="radio" id="docente" name="ruolo" value="docente" required=true>
-                <label for="docente">Docente</label>
-            </div>
-            <label for="mail"><b>Username (mail):</b></label><br>
-            <input type='text' name="mail" id="mail" class="form-input" required=true><br>
-            <label for="nome"><b>Nome:</b></label><br>
-            <input type="text" name="nome" id="nome" class="form-input" required=true><br>
-            <label for="cognome"><b>Cognome:</b></label><br>
-            <input type="text" name="cognome" id="cognome" class="form-input" required=true><br>
-            <label for="pazzword"><b>Password:</b></label><br>
-            <input type="password" name="pazzword" id="pazzword" class="form-input" required=true><br>
-            <label for="confirm_pazzword"><b>Conferma Password:</b></label><br>
-            <input type="password" name="confirm_pazzword" id="confirm_pazzword" class="form-input" required=true><br>
-            <label for="recapito"><b>Recapito:</b></label><br>
-            <input type="text" name="recapito" id="recapito" class="form-input"><br>
-            <div class="form-submit"><input type='submit' value='Continua' class="btn btn-primary"></div>
-        </form>
-    </div>-->
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">

@@ -34,34 +34,9 @@ header p {
     transform: translate(-50%, -50%); /* Sposta di -50% della propria larghezza e altezza */
 }
 
-/*.back-button {
-    position: fixed;
-    top: 20px; !* Posizione dal bordo superiore *!
-    left: 20px; !* Posizione dal bordo sinistro *!
-    z-index: 1000; !* Assicura che il pulsante sia sopra gli altri elementi *!
-}*/
-/*.back-button {
-    position: absolute;
-    top: 50%; !* Posizione al centro verticale *!
-    left: 0; !* Posizione dal bordo sinistro *!
-    transform: translateY(-50%); !* Centra verticalmente il pulsante *!
-    background-color: transparent; !* Sfondo trasparente *!
-    border: none; !* Nessun bordo *!
-    color: white; !* Colore del testo *!
-    font-size: 18px; !* Dimensione del testo *!
-    cursor: pointer; !* Cambia il cursore al passaggio del mouse *!
-    z-index: 2; !* Assicura che il pulsante sia sopra il contenuto dell'header *!
-}*/
 .back-button {
-    position: relative;
-    top: -10px; /* Sposta il bottone 10px più in alto rispetto alla sua posizione originale */
-    left: 0;
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    z-index: 3;
+    top: 20px; /* Posizione dal bordo superiore */
+    left: 20px; /* Posizione dal bordo sinistro */
 }
 
 .footer {

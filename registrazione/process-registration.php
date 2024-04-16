@@ -3,7 +3,7 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ruolo = $_POST["ruolo"];
-    $mail = $_POST["mail"];
+    $username = $_POST["username"];
     $nome = $_POST["nome"];
     $cognome = $_POST["cognome"];
     $password = $_POST["password"];
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Salva i dati nella sessione
     $_SESSION["ruolo"] = $ruolo;
-    $_SESSION["mail"] = $mail;
+    $_SESSION["username"] = $username;
     $_SESSION["nome"] = $nome;
     $_SESSION["cognome"] = $cognome;
     $_SESSION["password"] = $password;
