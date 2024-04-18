@@ -70,7 +70,6 @@ if (isset($_SESSION['livelloDifficoltà']) && isset($_SESSION['descrizione']) &&
 }*/
 
 ?>
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -85,7 +84,7 @@ if (isset($_SESSION['livelloDifficoltà']) && isset($_SESSION['descrizione']) &&
     </header>
 
     <div class="container mt-5">
-        <h2>Crea Nuovo Quesito a Risposta Chiusa</h2>
+        <h2>Crea Nuovo Quesito a Risposta Chiusaaa</h2>
         <form action="creazione-quesito-risposta-chiusa.php" method="post">
             <div class="form-group">
                 <label for="livelloDifficoltà">Livello di Difficoltà:</label>
@@ -101,7 +100,7 @@ if (isset($_SESSION['livelloDifficoltà']) && isset($_SESSION['descrizione']) &&
             </div>
             <div class="form-group">
                 <label for="numRisposte">Numero di Risposte:</label>
-                <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required>
+                <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required oninput="aggiungiOpzioni()">
             </div>
             <div class="form-group">
                 <label for="titoloTest">Test relativo:</label>
@@ -111,7 +110,9 @@ if (isset($_SESSION['livelloDifficoltà']) && isset($_SESSION['descrizione']) &&
                 <label for="nomiTabelle">Tabelle relative:</label>
                 <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
             </div>
-            <!-- <input type="email" name="mailDocente" placeholder="Mail del Docente" required><br>-->
+            <div id="opzioniContainer">
+                <!--  campi delle opzioni aggiunti dinamicamnte -->
+            </div>
             <button type="submit" class="btn btn-primary">Invia</button>
         </form>
         <a href="interfaccia-docente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
@@ -120,5 +121,39 @@ if (isset($_SESSION['livelloDifficoltà']) && isset($_SESSION['descrizione']) &&
     <footer>
         <?php include '../fragments/footer.html'; ?>
     </footer>
+
+    <script>
+            function aggiungiOpzioni() {
+                const numRisposte = document.getElementById('numRisposte').value;
+                const containerOpzioni = document.getElementById('opzioniContainer');
+
+                for (let i = 0; i < numRisposte; i++) {
+                    const label = document.createElement('label');
+                    label.innerText = 'Opzione ' + (i + 1) + ':';
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.name = 'opzione' + (i + 1);
+                    input.required = true;
+                    input.className = 'form-control';
+                    input.placeholder = 'Testo dell opzione';
+
+                    const checkboxLabel = document.createElement('label');
+                    checkboxLabel.innerText = ' Corretta';
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'radio';
+                    checkbox.name = 'opzioneCorretta';
+                    checkbox.value = i + 1;
+                    // La prima opzione è quella corretta
+                    if (i === 0) checkbox.checked = true;
+
+                    containerOpzioni.appendChild(label);
+                    containerOpzioni.appendChild(input);
+                    containerOpzioni.appendChild(checkboxLabel);
+                    containerOpzioni.appendChild(checkbox);
+                    containerOpzioni.appendChild(document.createElement('br'));
+                }
+            }
+        </script>
 </body>
 </html>
+
