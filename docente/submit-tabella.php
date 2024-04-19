@@ -10,7 +10,6 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
 
 <?php
    $nomeTabella=$_POST["nomeTabella"];
-
    $attributi=$_POST["attributi"];
    $vincoli=$_POST["vincoli"];
    $username = $_SESSION["username"];
@@ -26,34 +25,61 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
    }
    
    
-   try {
+   try{
       $data = date('Y/m/d', time());
 
       $attributi_splittati = explode(', ', $attributi);
 
-      //TODO aggiungere i vincoli d'integrità nella relativa tabella
        if($vincoli == null || empty($vincoli)){
            $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi)";
+           $stmt = $pdo->prepare($sqlCreateTable);
+           $stmt->execute();
+           }
+       else{
+           $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi, $vincoli)";
+
+           $stmt = $pdo->prepare($sqlCreateTable);
+           $stmt->execute();
+           $vincoliSplittati = explode(", ", $vincoli);
+
+           $pattern = "#foreign key \((\w+)\) references (\w+)\((\w+)\)#";
+
+           $sqlVincoli = "INSERT INTO VINCOLO_INTEGRITA(TABELLA_REFERENTE, ATTRIBUTO_REFERENTE, TABELLA_RIFERITA, ATTRIBUTO_RIFERITO) VALUES (?, ?, ?, ?)";
+
+           $vincoliSplittati = explode(", ", $vincoli);
+
+           foreach($vincoliSplittati as $vincolo){
+            if (preg_match($pattern, $vincolo, $matches)) {
+
+                $stmt = $pdo->prepare($sqlVincoli);
+
+                $attributoReferente = $matches[1];
+                $tabellaRiferita = $matches[2];
+                $attributoRiferito = $matches[3];
+                $stmt->bindParam(1, $nomeTabella);
+                $stmt->bindParam(2, $attributoReferente);
+                $stmt->bindParam(3, $tabellaRiferita);
+                $stmt->bindParam(4, $attributoRiferito);
+
+                $stmt->execute();
+                }
+            }
        }
-       else
-          $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi, $vincoli)";
 
-       echo("query: " .$sqlCreateTable);
-      $stmt = $pdo->prepare($sqlCreateTable);
 
-      $stmt->execute();
+       // Query SQL per l'inserimento dati
+       $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,0,?)";
+       $stmt = $pdo->prepare($sql);
 
-      // Query SQL per l'inserimento dati
-      $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,0,?)";
-      $stmt = $pdo->prepare($sql);
+       $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
+       $stmt->bindParam(2, $data, PDO::PARAM_STR);
+       $stmt->bindParam(3, $username, PDO::PARAM_STR);
 
-      $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
-      $stmt->bindParam(2, $data, PDO::PARAM_STR);
-      $stmt->bindParam(3, $username, PDO::PARAM_STR);
+       $stmt->execute();
 
-      $stmt->execute();
 
        $sqlInsertAttributi = 'INSERT INTO ATTRIBUTO(NOME, TIPO, NOME_TABELLA) VALUES (?, ?, ?)';
+
        foreach ($attributi_splittati as $attributo) {
            $nome_tipo = explode(' ', $attributo);
 
