@@ -14,7 +14,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizzazione Test</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!--<div class="container mt-5">
@@ -54,7 +54,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))){
         </table>
     </div>-->
     <header>
-        <?php include '../fragments/header.html'; ?>
+        <?php include 'fragments/header.html'; ?>
     </header>
 
     <div class="container mt-5">
@@ -86,6 +86,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))){
                                     <td>{$row['TITOLO']}</td>
                                     <td>{$row['DATA_CREAZIONE']}</td>
                                     <td>$visualizzaRisposte</td>
+                                    <td><a href='visualizzazione-quesiti.php' class='btn btn-primary'>Visualizza quesiti</a></td>
                                   </tr>";
                 }
 
@@ -98,7 +99,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))){
     </div>
 
     <footer>
-        <?php include '../fragments/footer.html'; ?>
+        <?php include 'fragments/footer.html'; ?>
     </footer>
 
 </body>

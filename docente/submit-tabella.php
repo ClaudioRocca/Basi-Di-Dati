@@ -36,22 +36,22 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
            $stmt->execute();
            }
        else{
-
            $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi, $vincoli)";
+
            $stmt = $pdo->prepare($sqlCreateTable);
            $stmt->execute();
+           $vincoliSplittati = explode(", ", $vincoli);
 
-           $pattern = "/foreign key \((\w+)\) references (\w+)\((\w+)\)/";
+           $pattern = "#foreign key \((\w+)\) references (\w+)\((\w+)\)#";
+
            $sqlVincoli = "INSERT INTO VINCOLO_INTEGRITA(TABELLA_REFERENTE, ATTRIBUTO_REFERENTE, TABELLA_RIFERITA, ATTRIBUTO_RIFERITO) VALUES (?, ?, ?, ?)";
 
-           $vincoliSplittati = explode($vincoli, ", ");
+           $vincoliSplittati = explode(", ", $vincoli);
 
            foreach($vincoliSplittati as $vincolo){
-               echo "EnTRA";
-            if (preg_match($vincolo, $pattern, $matches)) {
-                echo "EnTRA";
+            if (preg_match($pattern, $vincolo, $matches)) {
+
                 $stmt = $pdo->prepare($sqlVincoli);
-                // $matches conterrà i risultati della corrispondenza
 
                 $attributoReferente = $matches[1];
                 $tabellaRiferita = $matches[2];
