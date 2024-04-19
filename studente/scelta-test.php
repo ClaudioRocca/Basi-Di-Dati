@@ -15,14 +15,13 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
 </head>
 
 <style>
-    /* Stile per allineare verticalmente le scelte dei radio button */
     input[type="radio"] {
         display: block;
     }
 </style>
     <div class="container mt-5">
         <h2>Scegli un test da svolgere</h2>
-            <form action="svolgimento-test.php" method="get" class = "container mt-3">
+            <form action="svolgimento-test.php" method="post" class = "container mt-3">
                 <div class="form-group">
                     <?php
                         try {
