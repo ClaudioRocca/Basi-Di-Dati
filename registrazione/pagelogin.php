@@ -1,4 +1,10 @@
-<?php ?>
+<?php
+session_start();
+echo 'User: ';
+echo($_SESSION["username"]);
+echo 'password: ';
+echo($_SESSION["password"]);
+?>
 
 <!DOCTYPE html>
 <html lang="en">

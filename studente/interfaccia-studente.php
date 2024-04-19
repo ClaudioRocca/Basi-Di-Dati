@@ -6,12 +6,12 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
         header('Location: ../registrazione/login.php');
     }
 
-    echo 'User: ';
-    echo($_SESSION['username']);
-    echo 'password: ';
-    echo($_SESSION['password']);
-    echo 'Ruolo: ';
-    echo($_SESSION['ruolo']);
+//    echo 'User: ';
+//    echo($_SESSION['username']);
+//    echo 'password: ';
+//    echo($_SESSION['password']);
+//    echo 'Ruolo: ';
+//    echo($_SESSION['ruolo']);
 
 ?>
 
@@ -35,7 +35,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
         <h1 class="text-center">Dashboard Studente</h1>
 
         <div class="list-group">
-            <a href="visualizzazione-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
+            <a href="../visualizzazione-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
             <a href="scelta-test.php" class="list-group-item list-group-item-action">Completa un test</a>
             <a href="visualizzazione-esiti-risposte.php" class="list-group-item list-group-item-action">Visualizza esito delle risposte</a>
             <a href="invio-messaggi-studente.php" class="list-group-item list-group-item-action">Invia messaggio</a>
