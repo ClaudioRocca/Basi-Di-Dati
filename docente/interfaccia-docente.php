@@ -4,12 +4,12 @@
 if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "docente")){
         header('Location: ../registrazione/login.php');
     }
-    echo 'User: ';
-    echo($_SESSION['username']);
-    echo 'password: ';
-    echo($_SESSION['password']);
-    echo 'Ruolo: ';
-    echo($_SESSION['ruolo']);
+//    echo 'User: ';
+//    echo($_SESSION['username']);
+//    echo 'password: ';
+//    echo($_SESSION['password']);
+//    echo 'Ruolo: ';
+//    echo($_SESSION['ruolo']);
 ?>
 
 <!DOCTYPE html>

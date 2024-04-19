@@ -32,7 +32,11 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
       $attributi_splittati = explode(', ', $attributi);
 
       //TODO aggiungere i vincoli d'integrità nella relativa tabella
-      $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi, $vincoli)";
+       if($vincoli == null || empty($vincoli)){
+           $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi)";
+       }
+       else
+          $sqlCreateTable = "CREATE TABLE $nomeTabella ($attributi, $vincoli)";
 
        echo("query: " .$sqlCreateTable);
       $stmt = $pdo->prepare($sqlCreateTable);
