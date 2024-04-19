@@ -50,6 +50,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
     }
 
+    $opzioni = [];
+    $sqlOpzioni = 'CALL INSERIMENTO_OPZIONE(?,?,?,?)';
+    for ($i = 1; $i <= $numRisposte; $i++) {
+        $valore_opzione = $_POST['opzione' . $i];
+
+        if($_POST['opzioneCorretta'] == $i)
+            $corretta = true;
+        else $corretta = false;
+
+
+        $stmt = $pdo->prepare($sqlOpzioni);
+        $stmt->bindParam(1, $titoloTest, PDO::PARAM_STR);
+        $stmt->bindParam(2, $row['ID'], PDO::PARAM_STR);
+        $stmt->bindParam(3, $valore_opzione, PDO::PARAM_STR);
+        $stmt->bindParam(4, $corretta, PDO::PARAM_BOOL);
+
+        $stmt->execute();
+
+    }
 
     echo "Quesito inserito con successo.";
 }
