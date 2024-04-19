@@ -31,8 +31,13 @@ $attributi = $stmt->fetchAll(PDO::FETCH_COLUMN);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inserisci Attributi</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+<header>
+    <?php include '../fragments/header.html'; ?>
+</header>
+
 <div class="container mt-5">
     <h1>Inserisci Attributi da inserire in tabella</h1>
     <form action="submit-riga.php" method="post">
@@ -46,5 +51,10 @@ $attributi = $stmt->fetchAll(PDO::FETCH_COLUMN);
         <button type="submit" class="btn btn-primary">Inserisci Riga</button>
     </form>
 </div>
+
+<footer>
+    <?php include '../fragments/footer.html'; ?>
+</footer>
+
 </body>
 </html>
