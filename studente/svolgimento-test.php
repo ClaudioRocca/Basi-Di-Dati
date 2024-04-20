@@ -40,7 +40,7 @@ $stmt1->execute();
         <?php include '../fragments/header.html'; ?>
     </header>
     <div class="container mt-5">
-        <h2>Quesiti del Test: <?= htmlspecialchars($titoloTest) ?></h2>
+        <h2>Quesiti del Test: <?=  ($titoloTest) ?></h2>
 
             <?php
             if ($titoloTest) {
