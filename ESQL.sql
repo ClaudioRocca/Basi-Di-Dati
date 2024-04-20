@@ -429,6 +429,38 @@ END $
 DELIMITER ;
 
 
+DELIMITER $$
+
+CREATE PROCEDURE inserisci_risposta_quesito_chiuso(
+    IN mail_studente VARCHAR(20),
+    IN id_quesito INT,
+    IN titolo_test VARCHAR(20),
+    IN scelta INT,
+    IN esito BOOLEAN
+)
+BEGIN
+    INSERT INTO RISPOSTA_QUESITO_CHIUSO (MAIL_STUDENTE, ID_QUESITO, TITOLO_TEST, SCELTA, ESITO)
+    VALUES (mail_studente, id_quesito, titolo_test, scelta, esito);
+END$$
+
+DELIMITER $$
+
+CREATE PROCEDURE inserisci_risposta_quesito_codice(
+    IN mail_studente VARCHAR(20),
+    IN id_quesito INT,
+    IN titolo_test VARCHAR(20),
+    IN testo_risposta VARCHAR(255),
+    IN esito BOOLEAN
+)
+BEGIN
+    INSERT INTO RISPOSTA_QUESITO_CODICE (MAIL_STUDENTE, ID_QUESITO, TITOLO_TEST, TESTO, ESITO)
+    VALUES (mail_studente, id_quesito, titolo_test, testo_risposta, esito);
+END$$
+
+DELIMITER ;
+
+
+
 -- ------ TRIGGER ------------------------------
 DELIMITER //
 CREATE TRIGGER CAMBIO_STATO_COMPLETAMENTO_QUESITO_CODICE
