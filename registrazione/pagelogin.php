@@ -1,9 +1,9 @@
 <?php
 session_start();
-echo 'User: ';
-echo($_SESSION["username"]);
-echo 'password: ';
-echo($_SESSION["password"]);
+
+unset($_SESSION['username']);
+unset($_SESSION['password']);
+unset($_SESSION['ruolo']);
 ?>
 
 <!DOCTYPE html>

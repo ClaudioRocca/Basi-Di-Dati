@@ -41,7 +41,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
             <a href="invio-messaggi-studente.php" class="list-group-item list-group-item-action">Invia messaggio</a>
             <a href="../statistiche.php" class="list-group-item list-group-item-action">Visualizzazione Statistiche</a>
             <a href="visualizzazione-messaggi-studente.php" class="list-group-item list-group-item-action">Messaggi ricevuti</a>
-            <a href="../registrazione/pagelogin.php" onclick="logout()" class="list-group-item list-group-item-action">Logout</a>
+            <a href="../registrazione/pagelogin.php" class="list-group-item list-group-item-action">Logout</a>
         </div>
     </div>
 
@@ -49,14 +49,6 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
         <?php include '../fragments/footer.html'; ?>
     </footer>
 
-    <script>
-        function logout() {
-            // Cancella le informazioni di sessione
-            sessionStorage.clear();
-            // Reindirizza l'utente alla pagina di login
-            //window.location.href = 'login.php';
-        }
-    </script>
 
 </body>
 </html>

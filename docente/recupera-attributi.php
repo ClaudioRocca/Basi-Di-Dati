@@ -42,7 +42,7 @@ $attributi = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     <div class="container mt-5">
         <h1>Inserisci Attributi da inserire in tabella</h1>
-        <form action="submit-riga.php?nomeTabella=<?php echo urlencode($nomeTabella); ?>" method="post">
+        <form action="submit-riga.php" method="post">
             <?php foreach ($attributi as $attributo): ?>
                 <div class="form-group">
                     <label for="<?php echo $attributo; ?>"><?php echo $attributo; ?>:</label>

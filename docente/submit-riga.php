@@ -17,30 +17,24 @@
 
     // Dati ricevuti dal form
     $nomeTabella = $_SESSION['nomeTabella'];
-    echo("NOME: " . $nomeTabella);
 
-    if (isset($_GET['nomeTabella'])) {
-        $nomeTabella = $_GET['nomeTabella'];
+    // Prepara l'elenco dei campi e dei valori per l'inserimento
+    $campi = implode(',', array_keys($_POST));
+    $valori = "'" . implode("','", $_POST) . "'";
 
-        // Prepara l'elenco dei campi e dei valori per l'inserimento
-        $campi = implode(',', array_keys($_POST));
-        $valori = "'" . implode("','", $_POST) . "'";
+    try {
+        // Query per inserire la riga nella tabella selezionata
+        $sql = "INSERT INTO $nomeTabella ($campi) VALUES ($valori)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
 
-        try {
-            // Query per inserire la riga nella tabella selezionata
-            $sql = "INSERT INTO $nomeTabella ($campi) VALUES ($valori)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-
-            echo 'Riga inserita correttamente nella tabella.';
-            unset($_SESSION['nomeTabella']);
-        } catch (PDOException $e) {
-            echo("[ERRORE] Query SQL (Insert) non riuscita. Errore: " . $e->getMessage());
-            exit();
-        }
-        $linkback = '<br><br><a href="interfaccia-docente.php"> Torna Indietro </a>';
-        echo($linkback);
+        echo 'Riga inserita correttamente nella tabella.';
+        unset($_SESSION['nomeTabella']);
+    } catch (PDOException $e) {
+        echo("[ERRORE] Query SQL (Insert) non riuscita. Errore: " . $e->getMessage());
+        exit();
     }
-    else
-        echo "Nome della tabella non presente";
+    $linkback = '<br><br><a href="interfaccia-docente.php"> Torna Indietro </a>';
+    echo($linkback);
+
 ?>

@@ -47,7 +47,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
                     <a href="../statistiche.php" class="list-group-item list-group-item-action">Visualizzazione Statistiche</a>
                     <a href="../log-eventi.php" class="list-group-item list-group-item-action">Amministrazione Log Eventi</a>
                     <a href="visualizzazione-messaggi-docente.php" class="list-group-item list-group-item-action">Messaggi ricevuti</a>
-                    <a href="../registrazione/pagelogin.php" onclick="logout()" class="list-group-item list-group-item-action">Logout</a>
+                    <a href="../registrazione/pagelogin.php" class="list-group-item list-group-item-action">Logout </a>
                 </div>
             </div>
         </div>
