@@ -11,14 +11,20 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
 <html lang="it">
 <head>
     <Title>Scelta test</Title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles.css">
+
 
 <style>
     input[type="radio"] {
         display: block;
     }
 </style>
+</head>
+    <body>
+    <header>
+        <?php include '../fragments/header.html'; ?>
+    </header>
     <div class="container mt-5">
         <h2>Scegli un test da svolgere</h2>
             <form action="svolgimento-test.php" method="post" class = "container mt-3">
@@ -51,5 +57,8 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
                 </div>
             </form>
         </div>
+        <footer>
+            <?php include '../fragments/footer.html'; ?>
+        </footer>
     </body>
 </html>
