@@ -6,14 +6,27 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     header('Location: ../registrazione/login.php');
 }
 
-$idQuesito = $_POST['idQuesito'];
-$opzione = $_POST['opzione'];
 
-echo("ID: " . $idQuesito);
-echo("OPZIONE: " . $opzione);
+    $idQuesito = $_POST['idQuesito'];
+    $titoloTest = $_SESSION['titoloTest'];
+    $tipoQuesito = $_POST['tipoQuesito'];
 
+    // In base al tipo di quesito, elabora i dati
+    if ($tipoQuesito === 'chiuso') {
 
+            $opzione = $_POST['opzione'];
 
+            echo "Quesito chiuso - ID Quesito: $idQuesito, Titolo Test: $titoloTest, Tipo Quesito: $tipoQuesito, ID Opzione: $opzione";
+
+    } elseif ($tipoQuesito === 'codice') {
+        $risposta = $_POST['risposta'];
+
+            echo "Quesito codice - ID Quesito: $idQuesito, Titolo Test: $titoloTest, Tipo Quesito: $tipoQuesito, Risposta: $risposta";
+        }
+     else {
+
+    echo "Errore: dati mancanti";
+}
 
 
 $linkback = '<br><br><a href="interfaccia-studente.php"> Torna alla dashboard </a>';
