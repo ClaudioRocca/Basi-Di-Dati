@@ -17,19 +17,17 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Prendi il titolo del test dalla query string se viene da un redirect GET
 $titoloTest = isset($_GET['Titolo']) ? $_GET['Titolo'] : null;
-$quesiti = [];
+$quesitiChiusi = [];
 
 $sql = "CALL CAMBIO_STATO_TEST(?, ?)";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(1, $_SESSION['username']);
-$stmt->bindParam(2, $titoloTest);
-$stmt->execute();
+$stmt1 = $pdo->prepare($sql);
+$stmt1->bindParam(1, $_SESSION['username']);
+$stmt1->bindParam(2, $titoloTest);
+$stmt1->execute();
 
-if ($titoloTest) {
-    $stmt = $pdo->prepare("SELECT ID, DESCRIZ FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = :idTest");
-    $stmt->execute(['idTest' => $titoloTest]);
-    $quesiti = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+echo("TEST: " . $titoloTest);
+
+
 
 ?>
 <!DOCTYPE html>
@@ -47,10 +45,27 @@ if ($titoloTest) {
     <div class="container mt-5">
         <h2>Quesiti del Test: <?= htmlspecialchars($titoloTest) ?></h2>
         <form action="inserimento-risposte.php" method="post">
-            <?php foreach ($quesiti as $quesito): ?>
+            <?php
+            if ($titoloTest) {
+                $stmt1 = $pdo->prepare("SELECT ID, DESCRIZ, LIVELLO FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?");
+                $stmt1->bindParam(1, $titoloTest, PDO::PARAM_STR);
+                $stmt1->execute();
+                $quesitiChiusi = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+
+                $stmt2 = $pdo ->prepare("SELECT ID, LIVELLO, DESCRIZ FROM QUESITO_CODICE WHERE TITOLO_TEST = ?");
+                $stmt2->bindParam(1, $titoloTest);
+                $stmt2->execute();
+                $quesitiCodice = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            foreach ($quesitiChiusi as $quesito):?>
                 <div class="form-group">
                     <fieldset>
+
+                        <legend><?= htmlspecialchars($quesito['ID']) ?></legend>
                         <legend><?= htmlspecialchars($quesito['DESCRIZ']) ?></legend>
+                        <legend><?= htmlspecialchars("Livello: " .$quesito['LIVELLO']) ?></legend>
+<!--                        <legend>--><?php //= htmlspecialchars("Livello: " .$quesito['LIVELLO']) ?><!--</legend>-->
                         <?php
                         // Query per recuperare le opzioni relative al quesito
                         $stmtOpzioni = $pdo->prepare("SELECT ID_OPZIONE, TESTO FROM OPZIONE WHERE ID_QUESITO = :idQuesito");
@@ -71,6 +86,24 @@ if ($titoloTest) {
                     </fieldset>
                 </div>
             <?php endforeach; ?>
+
+            <?php foreach ($quesitiCodice as $quesitoCodice): ?>
+                <div class ="formgroup">
+                    <fieldset>
+                        <legend><?= htmlspecialchars("Descrizione: " .$quesitoCodice['DESCRIZ']) ?></legend>
+                        <legend><?= htmlspecialchars("Livello: " .$quesitoCodice['LIVELLO']) ?></legend>
+
+                        <input type="text" name="risposta" + <?php $quesitoCodice['ID']?> placeholder="Inserisci la tua risposta">
+
+                    </fieldset>
+                </div>
+
+            <?php endforeach; ?>
+
+
+
+
+
             <button type="submit" class="btn btn-primary">Invia Risposte</button>
         </form>
         <a href="interfaccia-studente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
