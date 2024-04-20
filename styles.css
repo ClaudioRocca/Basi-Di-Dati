@@ -48,3 +48,14 @@ header p {
     padding-top: 20px; /* Spazio interno */
     text-align: center;
 }
+
+.form-quesito{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.opzioni{
+    display: flex;
+    flex-direction: column;
+}

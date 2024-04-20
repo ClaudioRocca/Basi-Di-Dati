@@ -25,10 +25,6 @@ $stmt1->bindParam(1, $_SESSION['username']);
 $stmt1->bindParam(2, $titoloTest);
 $stmt1->execute();
 
-echo("TEST: " . $titoloTest);
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -44,7 +40,7 @@ echo("TEST: " . $titoloTest);
     </header>
     <div class="container mt-5">
         <h2>Quesiti del Test: <?= htmlspecialchars($titoloTest) ?></h2>
-        <form action="inserimento-risposte.php" method="post">
+        <form action="submit-risposte.php" method="post">
             <?php
             if ($titoloTest) {
                 $stmt1 = $pdo->prepare("SELECT ID, DESCRIZ, LIVELLO FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?");
@@ -60,49 +56,80 @@ echo("TEST: " . $titoloTest);
 
             foreach ($quesitiChiusi as $quesito):?>
                 <div class="form-group">
-                    <fieldset>
 
-                        <legend><?= htmlspecialchars($quesito['ID']) ?></legend>
-                        <legend><?= htmlspecialchars($quesito['DESCRIZ']) ?></legend>
-                        <legend><?= htmlspecialchars("Livello: " .$quesito['LIVELLO']) ?></legend>
-<!--                        <legend>--><?php //= htmlspecialchars("Livello: " .$quesito['LIVELLO']) ?><!--</legend>-->
+                    <label>ID:</label>
+                    <span><?php echo htmlspecialchars($quesito['ID']); ?></span><br>
+                    <label>Descrizione:</label>
+                    <span><?php echo htmlspecialchars($quesito['DESCRIZ']); ?></span><br>
+                    <label>Livello:</label>
+                    <span><?php echo htmlspecialchars($quesito['LIVELLO']); ?></span><br>
+
+                    <form class="form-quesito" action="submit-risposte.php" method="post">
+
+
                         <?php
                         // Query per recuperare le opzioni relative al quesito
-                        $stmtOpzioni = $pdo->prepare("SELECT ID_OPZIONE, TESTO FROM OPZIONE WHERE ID_QUESITO = :idQuesito");
-                        $stmtOpzioni->execute(['idQuesito' => $quesito['ID']]);
+                        $idQuesito = $quesito['ID'];
+                        $stmtOpzioni = $pdo->prepare("SELECT ID_OPZIONE, TESTO FROM OPZIONE WHERE ID_QUESITO = ?");
+                        $stmtOpzioni->bindParam(1, $idQuesito);
+                        $stmtOpzioni->execute();
                         $opzioni = $stmtOpzioni->fetchAll(PDO::FETCH_ASSOC);
 
                         if (!$opzioni) {
                             echo "<p>Nessuna opzione disponibile per questo quesito.</p>";
                         } else {
+                            echo '<div class="opzioni">';
                             foreach ($opzioni as $opzione):
                                 echo '<div class="form-check">';
-                                echo '<input class="form-check-input" type="radio" name="risposta[' . $quesito['ID'] . ']" id="opzione' . $opzione['ID_OPZIONE'] . '" value="' . $opzione['ID_OPZIONE'] . '">';
+                                echo '<input type="hidden" name="idQuesito" value = '. $idQuesito . '>';
+                                echo '<input class="form-check-input" type="radio" name="opzione' . '" value="' .$opzione['ID_OPZIONE'].'">';
                                 echo '<label class="form-check-label" for="opzione' . $opzione['ID_OPZIONE'] . '">' . htmlspecialchars($opzione['TESTO']) . '</label>';
                                 echo '</div>';
                             endforeach;
+                            echo "</div>";
                         }
                         ?>
-                    </fieldset>
+
+                        <button class ="btn btn-primary" type ="submit">Inserisci risposta</button>
+                    </form>
+<!--                    <fieldset>-->
+<!---->
+<!--                        <legend>--><?php //= htmlspecialchars($quesito['ID']) ?><!--</legend>-->
+<!--                        <legend>--><?php //= htmlspecialchars($quesito['DESCRIZ']) ?><!--</legend>-->
+<!--                        <legend>--><?php //= htmlspecialchars("Livello: " .$quesito['LIVELLO']) ?><!--</legend>-->
+<!--                        --><?php
+//                        // Query per recuperare le opzioni relative al quesito
+//                        $stmtOpzioni = $pdo->prepare("SELECT ID_OPZIONE, TESTO FROM OPZIONE WHERE ID_QUESITO = :idQuesito");
+//                        $stmtOpzioni->execute(['idQuesito' => $quesito['ID']]);
+//                        $opzioni = $stmtOpzioni->fetchAll(PDO::FETCH_ASSOC);
+//
+//                        if (!$opzioni) {
+//                            echo "<p>Nessuna opzione disponibile per questo quesito.</p>";
+//                        } else {
+//                            foreach ($opzioni as $opzione):
+//                                echo '<div class="form-check">';
+//                                echo '<input class="form-check-input" type="radio" name="risposta[' . $quesito['ID'] . ']" id="opzione' . $opzione['ID_OPZIONE'] . '" value="' . $opzione['ID_OPZIONE'] . '">';
+//                                echo '<label class="form-check-label" for="opzione' . $opzione['ID_OPZIONE'] . '">' . htmlspecialchars($opzione['TESTO']) . '</label>';
+//                                echo '</div>';
+//                            endforeach;
+//                        }
+//                        ?>
+<!--                    </fieldset>-->
                 </div>
             <?php endforeach; ?>
 
-            <?php foreach ($quesitiCodice as $quesitoCodice): ?>
-                <div class ="formgroup">
-                    <fieldset>
-                        <legend><?= htmlspecialchars("Descrizione: " .$quesitoCodice['DESCRIZ']) ?></legend>
-                        <legend><?= htmlspecialchars("Livello: " .$quesitoCodice['LIVELLO']) ?></legend>
-
-                        <input type="text" name="risposta" + <?php $quesitoCodice['ID']?> placeholder="Inserisci la tua risposta">
-
-                    </fieldset>
-                </div>
-
-            <?php endforeach; ?>
-
-
-
-
+<!--            --><?php //foreach ($quesitiCodice as $quesitoCodice): ?>
+<!--                <div class ="formgroup">-->
+<!--                    <fieldset>-->
+<!--                        <legend>--><?php //= htmlspecialchars("Descrizione: " .$quesitoCodice['DESCRIZ']) ?><!--</legend>-->
+<!--                        <legend>--><?php //= htmlspecialchars("Livello: " .$quesitoCodice['LIVELLO']) ?><!--</legend>-->
+<!---->
+<!--                        <input type="text" name="risposta" + --><?php //$quesitoCodice['ID'] ?><!-- placeholder="Inserisci la tua risposta">-->
+<!---->
+<!--                    </fieldset>-->
+<!--                </div>-->
+<!---->
+<!--            --><?php //endforeach; ?>
 
             <button type="submit" class="btn btn-primary">Invia Risposte</button>
         </form>
