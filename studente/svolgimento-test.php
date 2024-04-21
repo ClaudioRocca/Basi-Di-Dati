@@ -103,23 +103,22 @@ $stmt1->execute();
             <?php
 
             foreach ($quesitiCodice as $quesitoCodice): ?>
-                <form class="form-quesito" action ="submit-risposte.php" method="post">
-                    <input type="hidden" name="idQuesito" value = '<?php $idQuesito  ?>'>
-                    <input type="hidden" name="titoloTest" value = '<?php $titoloTest  ?>'>
+                <form class="form-quesito" action="submit-risposte.php" method="post">
+                    <input type="hidden" name="idQuesito" value="<?= htmlspecialchars($quesitoCodice['ID']) ?>">
+                    <input type="hidden" name="titoloTest" value="<?= htmlspecialchars($titoloTest) ?>">
                     <input type="hidden" name="tipoQuesito" value="codice">
-                    <div class ="formgroup">
+                    <div class="formgroup">
                         <fieldset>
-                            <legend><?= htmlspecialchars("Descrizione: " .$quesitoCodice['DESCRIZ']) ?></legend>
-                            <legend><?= htmlspecialchars("Livello: " .$quesitoCodice['LIVELLO']) ?></legend>
+                            <legend><?= htmlspecialchars("Descrizione: " . $quesitoCodice['DESCRIZ']) ?></legend>
+                            <legend><?= htmlspecialchars("Livello: " . $quesitoCodice['LIVELLO']) ?></legend>
 
-                            <input type="text" name="risposta" + <?php $quesitoCodice['ID'] ?> placeholder="Inserisci la tua risposta">
-
+                            <input type="text" name="risposta" placeholder="Inserisci la tua risposta">
                         </fieldset>
                         <button type="submit" class="btn btn-primary">Invia risposta</button>
                     </div>
                 </form>
+            <?php endforeach; ?>
 
-        <?php endforeach; ?>
         <button type="submit" class="btn btn-primary">Invia Risposte</button>
 
 

@@ -19,12 +19,17 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     $tipoQuesito = $_POST['tipoQuesito'];
     $username = $_SESSION['username'];
 
+echo("TIPO: " . $tipoQuesito);
+
+
 
     // In base al tipo di quesito, elabora i dati
     if ($tipoQuesito === 'chiuso') {
 
         $opzione = $_POST['opzione'];
 
+         echo "ID Quesito:" . $idQuesito;
+        echo("OPZIONE: " . $opzione);
         // Chiamata alla procedura per risposta a quesito chiuso
         $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_chiuso(?, ?, ?, ?, ?)");
         $stmt->execute([$username, $idQuesito, $titoloTest, $opzione, null]);
@@ -32,7 +37,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     } elseif ($tipoQuesito === 'codice') {
         $risposta = $_POST['risposta'];
 
-            echo "Quesito codice - ID Quesito: $idQuesito, Titolo Test: $titoloTest, Tipo Quesito: $tipoQuesito, Risposta: $risposta";
+            echo "ID Quesito: $idQuesito, Titolo Test: $titoloTest, Tipo Quesito: $tipoQuesito, Risposta: $risposta";
         $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_codice(?, ?, ?, ?, ?)");
         $stmt->execute([$username, $idQuesito, $titoloTest, $risposta, null]);
         }
