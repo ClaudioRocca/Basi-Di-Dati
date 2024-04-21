@@ -72,22 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     echo "Quesito inserito con successo.";
 }
-/* -------------------- DA PROVARE ------------------------------------------------------
-// Se ci sono dati nella sessione, li preleviamo
-if (isset($_SESSION['livelloDifficoltà']) && isset($_SESSION['descrizione']) && isset($_SESSION['numRisposte']) && isset($_SESSION['titoloTest']) && isset($_SESSION['mailDocente'])) {
-    $livelloDifficoltà = $_SESSION['livelloDifficoltà'];
-    $descrizione = $_SESSION['descrizione'];
-    $numRisposte = $_SESSION['numRisposte'];
-    $titoloTest = $_SESSION['titoloTest'];
-    $mailDocente = $_SESSION['mailDocente'];
-
-    // Utilizziamo la procedura SQL per inserire il quesito nel database
-    $stmt = $pdo->prepare("CALL INSERIMENTO_QUESITO_RISPOSTACHIUSA(?, ?, ?, ?, ?)");
-    $stmt->execute([$livelloDifficoltà, $descrizione, $numRisposte, $titoloTest, $mailDocente]);
-
-    echo "Quesito inserito con successo.";
-}*/
-
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -103,7 +87,7 @@ if (isset($_SESSION['livelloDifficoltà']) && isset($_SESSION['descrizione']) &&
     </header>
 
     <div class="container mt-5">
-        <h2>Crea Nuovo Quesito a Risposta Chiusaaa</h2>
+        <h2>Crea Nuovo Quesito a Risposta Chiusa</h2>
         <form action="creazione-quesito-risposta-chiusa.php" method="post">
             <div class="form-group">
                 <label for="livelloDifficoltà">Livello di Difficoltà:</label>
