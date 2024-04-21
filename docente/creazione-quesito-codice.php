@@ -67,6 +67,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container mt-5">
         <h2>Crea nuovo quesito con codice</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="creazione-quesito-codice.php" method="post">
+                    <div class="form-group">
+                        <label for="livelloDifficoltà">Livello di Difficoltà:</label>
+                        <select id="livelloDifficoltà" name="livelloDifficoltà" class="form-control" required>
+                            <option value="BASSO">Basso</option>
+                            <option value="MEDIO">Medio</option>
+                            <option value="ALTO">Alto</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="descrizione">Descrizione:</label>
+                        <textarea id="descrizione" name="descrizione" class="form-control" placeholder="Descrizione" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="numRisposte">Numero di Risposte:</label>
+                        <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <form action="creazione-quesito-codice.php" method="post">
+                    <div class="form-group">
+                        <label for="titoloTest">Test relativo:</label>
+                        <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomiTabelle">Tabelle relative:</label>
+                        <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Invia</button>
+                    <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="container mt-5">
+        <h2>Crea nuovo quesito con codice</h2>
         <form action="creazione-quesito-codice.php" method="post">
             <div class="form-group">
                 <label for="livelloDifficoltà">Livello di Difficoltà:</label>
@@ -96,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="btn btn-primary">Invia</button>
         </form>
         <a href="interfaccia-docente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
-    </div>
+    </div>-->
 
     <footer>
         <?php include '../fragments/footer.html'; ?>
