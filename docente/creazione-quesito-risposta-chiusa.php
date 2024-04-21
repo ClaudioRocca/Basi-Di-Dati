@@ -118,38 +118,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    <!--<div class="container mt-5">
-        <h2>Crea Nuovo Quesito a Risposta Chiusa</h2>
-        <form action="creazione-quesito-risposta-chiusa.php" method="post">
-            <div class="form-group">
-                <label for="livelloDifficoltà">Livello di Difficoltà:</label>
-                <select id="livelloDifficoltà" name="livelloDifficoltà" class="form-control" required>
-                    <option value="BASSO">Basso</option>
-                    <option value="MEDIO">Medio</option>
-                    <option value="ALTO">Alto</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="descrizione">Descrizione:</label>
-                <textarea id="descrizione" name="descrizione" class="form-control" placeholder="Descrizione" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="numRisposte">Numero di Risposte:</label>
-                <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required oninput="aggiungiOpzioni()">
-            </div>
-            <div class="form-group">
-                <label for="titoloTest">Test relativo:</label>
-                <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
-            </div>
-            <div class="form-group">
-                <label for="nomiTabelle">Tabelle relative:</label>
-                <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Invia</button>
-        </form>
-        <a href="interfaccia-docente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
-    </div>-->
-
     <footer>
         <?php include '../fragments/footer.html'; ?>
     </footer>
