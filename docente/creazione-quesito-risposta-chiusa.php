@@ -102,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required oninput="aggiungiOpzioni()">
                     </div>
 
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="titoloTest">Test relativo:</label>

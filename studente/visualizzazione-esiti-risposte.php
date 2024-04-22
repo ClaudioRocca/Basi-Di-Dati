@@ -20,10 +20,42 @@
     $res=$pdo->prepare($sql);
     $res->execute();
     $result = $res->fetchAll(PDO::FETCH_ASSOC);
-    foreach($result as $row){
-        echo("Id quesito: " . $row['ID_QUESITO']);
-        echo("Titolo test: " . $row["TITOLO_TEST"]);
-        echo("Esito: " . $row["ESITO"]);
-        echo "<br>";
-    }
 ?>
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizzazione Risposte</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header>
+    <!-- Includi l'header dalla pagina header.html -->
+    <?php include '../fragments/header.html'; ?>
+</header>
+
+<div class="container mt-5">
+    <?php foreach($result as $row): ?>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> Test: <?php echo $row["TITOLO_TEST"];?> - Quesito: <?php echo $row['ID_QUESITO']; ?></h5>
+                <?php if($row["ESITO"] == 1): ?>
+                    <p class="card-text">Esito: Risposta corretta</p>
+                <?php else: ?>
+                    <p class="card-text">Esito: Risposta sbagliata</p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <br>
+    <?php endforeach; ?>
+</div>
+
+<footer>
+    <!-- Includi il footer dalla pagina footer.html -->
+    <?php include '../fragments/footer.html'; ?>
+</footer>
+
+</body>
+</html>
