@@ -2,7 +2,7 @@
 <?php
     session_start();
 
-if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "docente")) {
+    if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "docente")) {
 
         header('Location: ../registrazione/login.php');
     }
@@ -31,9 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtQuesito = $pdo->prepare($sqlQuesito);
     $stmtQuesito->execute([$titoloTest, $livelloDifficoltà, $descrizione, $numRisposte]);
 
-    $sqlMaxIdQuesito = 'SELECT MAX(ID) AS ID FROM QUESITO_RISPOSTA_CHIUSA';
-    $res=$pdo->query($sqlMaxIdQuesito);
-    $row=$res->fetch();
+    $sqlMaxIdQuesito = 'SELECT MAX(ID) AS ID FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?';
+    $stmt = $pdo->prepare($sqlMaxIdQuesito);
+    $stmt->bindParam(1, $titoloTest);
+    $stmt->execute(); // Esegui la query preparata
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
     $nomiTabelleSplittati = explode(", ", $nomiTabelle);
     $sqlAppartenenza = 'INSERT INTO APPARTENENZA_QUESITO_CHIUSO(NOME_TABELLA, TITOLO_TEST, ID_QUESITO) VALUES(?, ?, ?)';
