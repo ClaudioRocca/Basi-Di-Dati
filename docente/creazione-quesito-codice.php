@@ -48,6 +48,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
     }
 
+    $sketch = [];
+    $sqlSketch = 'CALL INSERIMENTO_SKETCH(?,?,?)';
+    for ($i = 1; $i <= $numRisposte; $i++) {
+        $valore_sketch = $_POST['sketch' . $i];
+
+        $stmt = $pdo->prepare($sqlSketch);
+        $stmt->bindParam(1, $valore_sketch, PDO::PARAM_STR);
+        $stmt->bindParam(2, $titoloTest, PDO::PARAM_STR);
+        $stmt->bindParam(3, $row['ID'], PDO::PARAM_STR);
+
+        $stmt->execute();
+
+    }
+
     echo "Quesito inserito con successo.";
 }
 ?>
@@ -82,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group">
                 <label for="numRisposte">Numero di Risposte:</label>
-                <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required>
+                <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required oninput="aggiungiSketch()">
             </div>
             <div class="form-group">
                 <label for="titoloTest">Test relativo:</label>
@@ -91,6 +105,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <label for="nomiTabelle">Tabelle relative:</label>
                 <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
+            </div>
+            <div id="sketchContainer">
+                <!--  campi delle opzioni aggiunti dinamicamnte -->
             </div>
 
             <button type="submit" class="btn btn-primary">Invia</button>
@@ -101,6 +118,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <footer>
         <?php include '../fragments/footer.html'; ?>
     </footer>
+
+    <script>
+        function aggiungiSketch() {
+            const numRisposte = document.getElementById('numRisposte').value;
+            const containerOpzioni = document.getElementById('sketchContainer');
+
+            for (let i = 0; i < numRisposte; i++) {
+                const label = document.createElement('label');
+                label.innerText = 'sketch ' + (i + 1) + ':';
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'sketch' + (i + 1);
+                input.required = true;
+                input.className = 'form-control';
+                input.placeholder = 'Codice che risolve il quesito';
+
+                containerOpzioni.appendChild(label);
+                containerOpzioni.appendChild(input);
+                containerOpzioni.appendChild(document.createElement('br'));
+            }
+        }
+    </script>
 
 </body>
 </html>
