@@ -86,10 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="numRisposte">Numero di Risposte:</label>
                         <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required>
                     </div>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <form action="creazione-quesito-codice.php" method="post">
                     <div class="form-group">
                         <label for="titoloTest">Test relativo:</label>
                         <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>

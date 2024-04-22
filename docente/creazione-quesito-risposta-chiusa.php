@@ -98,25 +98,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="numRisposte">Numero di Risposte:</label>
                         <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required oninput="aggiungiOpzioni()">
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="titoloTest">Test relativo:</label>
+                            <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nomiTabelle">Tabelle relative:</label>
+                            <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
+                        </div>
+                        <div id="opzioniContainer">
+                            <!-- campi delle opzioni aggiunti dinamicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Questo bottone è stato spostato dentro il form -->
+                    <button type="submit" class="btn btn-primary">Invia</button>
                 </form>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="titoloTest">Test relativo:</label>
-                    <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
-                </div>
-                <div class="form-group">
-                    <label for="nomiTabelle">Tabelle relative:</label>
-                    <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
-                </div>
-                <div id="opzioniContainer">
-                    <!-- campi delle opzioni aggiunti dinamicamente -->
-                </div>
-                <button type="submit" class="btn btn-primary">Invia</button>
-                <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
-            </div>
+
         </div>
+        <!-- Questo bottone non è più all'interno del form -->
+        <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
     </div>
+
 
     <footer>
         <?php include '../fragments/footer.html'; ?>
