@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+//require_once __DIR__ . '/../vendor/autoload.php';
 session_start();
 
    $username=$_POST["username"]; // aggiorna la variab  con l'istanza nuova

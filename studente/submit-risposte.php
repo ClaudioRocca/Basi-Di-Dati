@@ -31,15 +31,15 @@ echo("TIPO: " . $tipoQuesito);
          echo "ID Quesito:" . $idQuesito;
         echo("OPZIONE: " . $opzione);
         // Chiamata alla procedura per risposta a quesito chiuso
-        $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_chiuso(?, ?, ?, ?, ?)");
-        $stmt->execute([$username, $idQuesito, $titoloTest, $opzione, null]);
+        $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_chiuso(?, ?, ?, ?)");
+        $stmt->execute([$username, $idQuesito, $titoloTest, $opzione]);
 
     } elseif ($tipoQuesito === 'codice') {
         $risposta = $_POST['risposta'];
 
             echo "ID Quesito: $idQuesito, Titolo Test: $titoloTest, Tipo Quesito: $tipoQuesito, Risposta: $risposta";
-        $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_codice(?, ?, ?, ?, ?)");
-        $stmt->execute([$username, $idQuesito, $titoloTest, $risposta, null]);
+        $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_codice(?, ?, ?, ?)");
+        $stmt->execute([$username, $idQuesito, $titoloTest, $risposta]);
         }
      else {
     echo "Errore: dati mancanti";
