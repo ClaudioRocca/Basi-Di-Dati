@@ -73,8 +73,9 @@ $stmt1->execute();
                         <?php
                         // Query per recuperare le opzioni relative al quesito
                         $idQuesito = $quesito['ID'];
-                        $stmtOpzioni = $pdo->prepare("SELECT ID_OPZIONE, TESTO FROM OPZIONE WHERE ID_QUESITO = ?");
+                        $stmtOpzioni = $pdo->prepare("SELECT ID_OPZIONE, TESTO FROM OPZIONE WHERE ID_QUESITO = ? AND TITOLO_TEST = ?");
                         $stmtOpzioni->bindParam(1, $idQuesito);
+                        $stmtOpzioni->bindParam(2, $titoloTest);
                         $stmtOpzioni->execute();
                         $opzioni = $stmtOpzioni->fetchAll(PDO::FETCH_ASSOC);
 
@@ -122,7 +123,7 @@ $stmt1->execute();
         <button type="submit" class="btn btn-primary">Invia Risposte</button>
 
 
-        <a href="interfaccia-studente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
+        <a href="interfaccia-studente.php" class="btn btn-secondary">Torna alla dashboard</a>
     </div>
     <footer>
         <?php include '../fragments/footer.html'; ?>
