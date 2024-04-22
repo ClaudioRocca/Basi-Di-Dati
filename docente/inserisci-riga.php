@@ -16,9 +16,10 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     }
 
 // Query SQL per recuperare l'elenco delle tabelle nel database
-$sql = 'SELECT * FROM TABELLA'; //' WHERE MAIL_DOCENTE = ?';
+$sql = 'SELECT * FROM TABELLA WHERE MAIL_DOCENTE = ?';
 
 $stmt = $pdo->prepare($sql);
+$stmt->bindParam(1, $_SESSION['username']);
 $stmt->execute();
 
 // Recupero delle tabelle

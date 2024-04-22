@@ -81,15 +81,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container mt-5">
         <h2>Crea nuovo quesito con codice</h2>
-        <form action="creazione-quesito-codice.php" method="post">
-            <div class="form-group">
-                <label for="livelloDifficoltà">Livello di Difficoltà:</label>
-                <select id="livelloDifficoltà" name="livelloDifficoltà" class="form-control" required>
-                    <option value="BASSO">Basso</option>
-                    <option value="MEDIO">Medio</option>
-                    <option value="ALTO">Alto</option>
-                </select>
-            </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="creazione-quesito-codice.php" method="post">
+                    <div class="form-group">
+                        <label for="livelloDifficoltà">Livello di Difficoltà:</label>
+                        <select id="livelloDifficoltà" name="livelloDifficoltà" class="form-control" required>
+                            <option value="BASSO">Basso</option>
+                            <option value="MEDIO">Medio</option>
+                            <option value="ALTO">Alto</option>
+                        </select>
+                    </div>
+            
             <div class="form-group">
                 <label for="descrizione">Descrizione:</label>
                 <textarea id="descrizione" name="descrizione" class="form-control" placeholder="Descrizione" required></textarea>
@@ -113,6 +116,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="btn btn-primary">Invia</button>
         </form>
         <a href="interfaccia-docente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
+
+        </div>
     </div>
 
     <footer>
