@@ -54,10 +54,4 @@ error_reporting(E_ALL);
     echo 'Test creato con successo';
     echo '<a href = "creazione-quesito.php" class="btn btn-primary"> Crea quesiti relativi a questo test</a>'
 
-
-
-            
-
-
 ?>
-
