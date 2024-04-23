@@ -68,14 +68,14 @@ try {
             <thead class="thead-dark">
             <tr>
                 <th>Codice Studente</th>
-                <th>Quesiti Corretti</th>
+                <th>Percentuale Quesiti Corretti</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($statisticheQuesitiCorretti as $statistica): ?>
                 <tr>
                     <td><?= htmlspecialchars($statistica['Codice_Studente']) ?></td>
-                    <td><?= htmlspecialchars($statistica['Risposte_Corrette']) . "%"?> </td>
+                    <td><?= htmlspecialchars(number_format($statistica['Risposte_Corrette'], 1)) . "%"?> </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
