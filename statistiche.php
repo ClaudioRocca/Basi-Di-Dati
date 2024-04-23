@@ -86,6 +86,7 @@ try {
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
+                <th>Titolo test</th>
                 <th>ID Quesito</th>
                 <th>Numero Risposte</th>
             </tr>
@@ -93,6 +94,7 @@ try {
             <tbody>
             <?php foreach ($statisticheQuesitiPopolari as $statistica): ?>
                 <tr>
+                    <td><?= htmlspecialchars($statistica['TITOLO_TEST']) ?></td>
                     <td><?= htmlspecialchars($statistica['ID_QUESITO']) ?></td>
                     <td><?= htmlspecialchars($statistica['NUMERO_RISPOSTE']) ?></td>
                 </tr>
