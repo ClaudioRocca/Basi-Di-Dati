@@ -48,6 +48,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
     }
 
+    // Query per recuperare i test esistenti
+//    $sqlTests = "SELECT TITOLO FROM TEST WHERE MAIL_DOCENTE = ?";
+//    $stmt = $pdo->prepare($sqlTests);
+//    $stmt->bindParam(1, $_SESSION['username']);
+//    $stmt->execute();
+//    $tests = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//    print_r($tests);
+//    $sqlTests = "CALL GET_TITOLI_TEST(?)";
+//    $stmtTests = $pdo->prepare($sqlTests);
+//    $stmtTests->execute([$_SESSION['username']]);
+//    $tests = $stmtTests->fetchAll(PDO::FETCH_ASSOC);
+//
+//    // Query per recuperare le tabelle esistenti
+//    $sqlTables = "SELECT NOME FROM TABELLA WHERE MAIL_DOCENTE = ?";
+//    $stmt = $pdo->prepare($sqlTables);
+//    $stmt->bindParam(1, $_SESSION['username']);
+//    $stmt->execute();
+//    $tables = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     $opzioni = [];
     $sqlOpzioni = 'CALL INSERIMENTO_OPZIONE(?,?,?,?)';
     for ($i = 1; $i <= $numRisposte; $i++) {
@@ -103,7 +122,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
 
-                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="titoloTest">Test relativo:</label>
                             <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
@@ -115,7 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div id="opzioniContainer">
                             <!-- campi delle opzioni aggiunti dinamicamente -->
                         </div>
-                    </div>
 
                     <!-- Questo bottone è stato spostato dentro il form -->
                     <button type="submit" class="btn btn-primary">Invia</button>
