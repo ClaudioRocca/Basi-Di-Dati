@@ -23,7 +23,7 @@ try {
     // Inserimento del documento nella collezione degli eventi
     $result = $collection->insertOne($event);
 
-    // Verifica se l'inseri     mento è stato eseguito con successo
+    // Verifica se l'inserimento è stato eseguito con successo
     if ($result->getInsertedCount() > 0) {
         echo "Messaggio di log inserito con successo.";
     } else {

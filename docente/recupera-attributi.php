@@ -18,7 +18,7 @@ try {
 // Recupera la tabella selezionata
 $nomeTabella = $_POST['nomeTabella'];
 $_SESSION['nomeTabella'] = $nomeTabella;
-echo("NOME: " . $nomeTabella);
+
 
 // Recupera gli attributi della tabella selezionata
 $stmt = $pdo->prepare("DESCRIBE $nomeTabella");
@@ -49,7 +49,6 @@ $attributi = $stmt->fetchAll(PDO::FETCH_COLUMN);
                     <input type="text" class="form-control" id="<?php echo $attributo; ?>" name="<?php echo $attributo; ?>" required>
                 </div>
             <?php endforeach; ?>
-<!--            <input type="hidden" name="nomeTabella" value="--><?php //echo htmlspecialchars($nomeTabella); ?><!--">-->
             <button type="submit" class="btn btn-primary">Inserisci Riga</button>
         </form>
     </div>
