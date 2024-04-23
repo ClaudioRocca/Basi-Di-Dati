@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtQuesito->execute([ $titoloTest, $livelloDifficoltà, $descrizione, $numRisposte]);
 
     $sqlMaxIdQuesito = 'SELECT MAX(ID) AS ID FROM QUESITO_CODICE';
-
     $res=$pdo->query($sqlMaxIdQuesito);
     $row=$res->fetch();
 
@@ -44,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
         $stmt->bindParam(2, $titoloTest, PDO::PARAM_STR);
         $stmt->bindParam(3, $row['ID'], PDO::PARAM_STR);
-
         $stmt->execute();
     }
 
