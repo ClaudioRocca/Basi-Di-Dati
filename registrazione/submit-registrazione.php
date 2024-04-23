@@ -51,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <div class="header">
-        <!-- Includi l'header dalla pagina header.html -->
         <?php include '../fragments/header.html'; ?>
     </div>
 
@@ -60,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>Grazie per esserti registrato!</p>
 
         <?php
-        // Stampa le informazioni di registrazione
         echo "<p><b>Ruolo:</b> $ruolo</p>";
         echo "<p><b>Username:</b> $username</p>";
         echo "<p><b>Nome:</b> $nome</p>";
