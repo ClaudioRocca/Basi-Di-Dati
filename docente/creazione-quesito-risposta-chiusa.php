@@ -1,4 +1,3 @@
-
 <?php
     session_start();
 
@@ -19,6 +18,7 @@
        echo("[ERRORE] Connessione al DB non riuscita. Errore: ".$e->getMessage());
        exit();
     }
+
 // Quando il form è inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $livelloDifficoltà = filter_input(INPUT_POST, 'livelloDifficoltà', FILTER_SANITIZE_STRING);
@@ -41,38 +41,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomiTabelleSplittati = explode(", ", $nomiTabelle);
     $sqlAppartenenza = 'INSERT INTO APPARTENENZA_QUESITO_CHIUSO(NOME_TABELLA, TITOLO_TEST, ID_QUESITO) VALUES(?, ?, ?)';
     $stmt = $pdo->prepare($sqlAppartenenza);
-    foreach ($nomiTabelleSplittati as $nomeTabella){
+    foreach ($nomiTabelleSplittati as $nomeTabella) {
         $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
         $stmt->bindParam(2, $titoloTest, PDO::PARAM_STR);
         $stmt->bindParam(3, $row['ID'], PDO::PARAM_STR);
         $stmt->execute();
     }
 
-    // Query per recuperare i test esistenti
-//    $sqlTests = "SELECT TITOLO FROM TEST WHERE MAIL_DOCENTE = ?";
-//    $stmt = $pdo->prepare($sqlTests);
-//    $stmt->bindParam(1, $_SESSION['username']);
-//    $stmt->execute();
-//    $tests = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//    print_r($tests);
-//    $sqlTests = "CALL GET_TITOLI_TEST(?)";
-//    $stmtTests = $pdo->prepare($sqlTests);
-//    $stmtTests->execute([$_SESSION['username']]);
-//    $tests = $stmtTests->fetchAll(PDO::FETCH_ASSOC);
-//
-//    // Query per recuperare le tabelle esistenti
-//    $sqlTables = "SELECT NOME FROM TABELLA WHERE MAIL_DOCENTE = ?";
-//    $stmt = $pdo->prepare($sqlTables);
-//    $stmt->bindParam(1, $_SESSION['username']);
-//    $stmt->execute();
-//    $tables = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     $opzioni = [];
     $sqlOpzioni = 'CALL INSERIMENTO_OPZIONE(?,?,?,?)';
     for ($i = 1; $i <= $numRisposte; $i++) {
         $valore_opzione = $_POST['opzione' . $i];
 
-        if($_POST['opzioneCorretta'] == $i)
+        if ($_POST['opzioneCorretta'] == $i)
             $corretta = true;
         else $corretta = false;
 
@@ -120,19 +101,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="numRisposte">Numero di Risposte:</label>
                         <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required oninput="aggiungiOpzioni()">
                     </div>
-
-
-                        <div class="form-group">
-                            <label for="titoloTest">Test relativo:</label>
-                            <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nomiTabelle">Tabelle relative:</label>
-                            <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
-                        </div>
-                        <div id="opzioniContainer">
-                            <!-- campi delle opzioni aggiunti dinamicamente -->
-                        </div>
+                    <div class="form-group">
+                        <label for="titoloTest">Test relativo:</label>
+                        <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomiTabelle">Tabelle relative:</label>
+                        <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
+                    </div>
+                    <div id="opzioniContainer">
+                        <!-- campi delle opzioni aggiunti dinamicamente -->
+                    </div>
 
                     <!-- Questo bottone è stato spostato dentro il form -->
                     <button type="submit" class="btn btn-primary">Invia</button>
