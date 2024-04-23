@@ -16,9 +16,7 @@ error_reporting(E_ALL);
     $nomeTest=$_POST["nomeTest"];
     $risposteVisualizzabili=$_POST["risposteVisualizzabili"];
 
-    
- 
-    // Connessione al DB
+
     try {
        $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -54,10 +52,4 @@ error_reporting(E_ALL);
     echo 'Test creato con successo';
     echo '<a href = "creazione-quesito.php" class="btn btn-primary"> Crea quesiti relativi a questo test</a>'
 
-
-
-            
-
-
 ?>
-

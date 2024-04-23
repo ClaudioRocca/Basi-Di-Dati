@@ -14,7 +14,6 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
    $vincoli=$_POST["vincoli"];
    $username = $_SESSION["username"];
 
-   // Connessione al DB
    try {
       $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

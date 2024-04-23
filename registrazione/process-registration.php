@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm_password = $_POST["confirm_password"];
     $recapito = isset($_POST["recapito"]) ? $_POST["recapito"] : null;
 
-    // Verifica se le password coincidono
+
     if ($password !== $confirm_password) {
         echo "Le password non corrispondono.";
         exit();
