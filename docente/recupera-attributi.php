@@ -15,7 +15,6 @@ try {
     exit();
 }
 
-// Recupera la tabella selezionata
 $nomeTabella = $_POST['nomeTabella'];
 $_SESSION['nomeTabella'] = $nomeTabella;
 

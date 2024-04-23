@@ -5,7 +5,6 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     header('Location: ../registrazione/login.php');
 }
 
-    // Connessione al DB
     try {
         $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,14 +14,11 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
         exit();
     }
 
-// Query SQL per recuperare l'elenco delle tabelle nel database
 $sql = 'SELECT * FROM TABELLA WHERE MAIL_DOCENTE = ?';
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(1, $_SESSION['username']);
 $stmt->execute();
-
-// Recupero delle tabelle
 $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 ?>
 
