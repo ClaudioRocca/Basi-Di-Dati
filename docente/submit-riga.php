@@ -66,6 +66,10 @@ try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
+    $sqlUpdate = "UPDATE TABELLA SET NUMRIGHE = NUMRIGHE + 1 WHERE NOME = ?";
+    $stmtUpdate = $pdo->prepare($sqlUpdate);
+    $stmtUpdate->execute([$nomeTabella]);
+
     $successMessage = 'Riga inserita correttamente nella tabella.';
     unset($_SESSION['nomeTabella']);
 } catch (PDOException $e) {
