@@ -8,6 +8,7 @@ if (!isset($_SESSION['username']) || $_SESSION['ruolo'] !== 'studente') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titoloTest = $_POST['Titolo'];
+
     $_SESSION['titoloTest'] = $titoloTest;
     header("Location: svolgimento-test.php?Titolo=" . urlencode($titoloTest));
     exit();
@@ -19,6 +20,13 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // Prendi il titolo del test dalla query string se viene da un redirect GET
 $titoloTest = isset($_GET['Titolo']) ? $_GET['Titolo'] : null;
 $quesitiChiusi = [];
+
+$sqlFoto = "SELECT FOTO FROM TEST WHERE TITOLO = ?";
+$stmtFoto = $pdo->prepare($sqlFoto);
+$stmtFoto->bindParam(1, $titoloTest);
+$stmtFoto->execute();
+$row = $stmtFoto->fetch(PDO::FETCH_ASSOC);
+$foto = $row['FOTO'];
 
 $sql = "CALL CAMBIO_STATO_TEST(?, ?)";
 $stmt1 = $pdo->prepare($sql);
@@ -42,7 +50,11 @@ $stmt1->execute();
     <div class="container mt-5">
         <h2>Quesiti del Test: <?=  ($titoloTest) ?></h2>
 
-            <?php
+        <?
+        echo 'src="data:image/jpeg;base64,'.base64_encode($foto).'" alt="Foto del test"'; ?>
+
+
+        <?php
             if ($titoloTest) {
                 $stmt1 = $pdo->prepare("SELECT ID, DESCRIZ, LIVELLO FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?");
                 $stmt1->bindParam(1, $titoloTest, PDO::PARAM_STR);
@@ -126,4 +138,8 @@ $stmt1->execute();
         <?php include '../fragments/footer.html'; ?>
     </footer>
 </body>
+
+<?php
+
+?>
 </html>
