@@ -43,7 +43,7 @@ try {
                     <?php endforeach; ?>
                 </select>
             </div>
-            <button type="submit" name="submit" class="btn btn-primary">Chiudere Test</button>
+            <button type="submit" name="submit" class="btn btn-primary">Conferma</button>
         </form>
     </div>
     <footer>
