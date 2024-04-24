@@ -18,8 +18,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     $titoloTest = $_SESSION['titoloTest'];
     $tipoQuesito = $_POST['tipoQuesito'];
     $username = $_SESSION['username'];
-
-echo("TIPO: " . $tipoQuesito);
+    $messaggio = "";
 
 
 
@@ -28,26 +27,26 @@ echo("TIPO: " . $tipoQuesito);
 
         $opzione = $_POST['opzione'];
 
-         echo "ID Quesito:" . $idQuesito;
-        echo("OPZIONE: " . $opzione);
-        // Chiamata alla procedura per risposta a quesito chiuso
+        $messaggio = '<div class="alert alert-success" role="alert">Risposta inserita con successo</div>';
+
         $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_chiuso(?, ?, ?, ?)");
         $stmt->execute([$username, $idQuesito, $titoloTest, $opzione]);
 
     } elseif ($tipoQuesito === 'codice') {
         $risposta = $_POST['risposta'];
 
-            echo "ID Quesito: $idQuesito, Titolo Test: $titoloTest, Tipo Quesito: $tipoQuesito, Risposta: $risposta";
+        $messaggio = '<div class="alert alert-success" role="alert">Risposta inserita con successo</div>';
+
         $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_codice(?, ?, ?, ?)");
         $stmt->execute([$username, $idQuesito, $titoloTest, $risposta]);
         }
      else {
-    echo "Errore: dati mancanti";
-}
+         $messaggio = '<div class="alert alert-danger" role="alert">L\'inserimento non è andato a buon fine</div>';
+     }
 
 
-$linkback = '<br><br><a href="interfaccia-studente.php"> Torna alla dashboard </a>';
-echo($linkback);
+$linkback = '<br><br><a style="margin-top:1rem" class="btn btn-primary" href="interfaccia-studente.php"> Torna alla dashboard </a>';
+
 ?>
 
 <!DOCTYPE html>
@@ -61,8 +60,10 @@ echo($linkback);
         <header>
             <?php include '../fragments/header.html'; ?>
         </header>
-        <div>
-<!--TODO COMPLETARE LA PAGINA-->
+        <div class="container mt-5">
+            <h1>Esito inserimento quesito</h1>
+            <?php echo($messaggio);
+            echo($linkback);?>
         </div>
         <footer>
             <?php include '../fragments/footer.html'; ?>

@@ -32,13 +32,6 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
                 <input type="text" class="form-control" id="nomeTest" name="nomeTest" required>
             </div>
 
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" checked data-toggle="toggle"
-                    id="risposteVisualizzabili" name="risposteVisualizzabili">
-                    Vuoi rendere visualizzabili le risposte?
-                </label>
-            </div>
             <button type="submit" class="btn btn-primary">Crea Test</button>
         </form>
     </div>
