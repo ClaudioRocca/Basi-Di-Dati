@@ -39,6 +39,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
                     <a href="../visualizzazione-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
                     <a href="creazione-test.php" class="list-group-item list-group-item-action">Crea nuovo Test</a>
                     <a href="creazione-quesito.php" class="list-group-item list-group-item-action">Crea nuovi quesiti</a>
+                    <a href="visualizzazione-risposte.php" class="list-group-item list-group-item-action">Chiudere un Test</a>
                 </div>
             </div>
             <div class="col-md-6">

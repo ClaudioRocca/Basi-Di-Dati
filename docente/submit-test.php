@@ -14,7 +14,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
     $nomeTest=$_POST["nomeTest"];
-    $risposteVisualizzabili=$_POST["risposteVisualizzabili"];
+    //$risposteVisualizzabili=$_POST["risposteVisualizzabili"];
 
     
  
@@ -29,13 +29,16 @@ error_reporting(E_ALL);
     }
 
     //cambio il valore "on" che restituisce la checkbox in "1", per poterlo inserire in mysql
-    if($risposteVisualizzabili == "on"){
+    /*if($risposteVisualizzabili == "on"){
         $risposteVisualizzabili = 1;
     }
     else
-        $risposteVisualizzabili = 0;
+        $risposteVisualizzabili = 0;*/
 
-    $sql = 'CALL INSERIMENTO_NUOVO_TEST(?, ?, ?, ?, ?)';
+    //$risposteVisualizzabili = 0; // di default lo creo False risposteVisualizzabili
+
+    //$sql = 'CALL INSERIMENTO_NUOVO_TEST(?, ?, ?, ?, ?)';
+    $sql = 'CALL INSERIMENTO_NUOVO_TEST(?, ?, ?, ?)';
 
     $date = date('Y/m/d', time());
     $foto = "Foto di prova";
@@ -47,7 +50,7 @@ error_reporting(E_ALL);
     $stmt->bindParam(2, $date, PDO::PARAM_STR);
     $stmt->bindParam(3, $foto, PDO::PARAM_STR);
     $stmt->bindParam(4, $_SESSION["username"], PDO::PARAM_STR);
-    $stmt->bindParam(5, $risposteVisualizzabili, PDO::PARAM_BOOL);
+    //$stmt->bindParam(5, $risposteVisualizzabili, PDO::PARAM_BOOL);
 
     $stmt->execute();
 
