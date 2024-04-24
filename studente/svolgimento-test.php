@@ -120,9 +120,6 @@ $stmt1->execute();
                 </form>
             <?php endforeach; ?>
 
-        <button type="submit" class="btn btn-primary">Invia Risposte</button>
-
-
         <a href="interfaccia-studente.php" class="btn btn-secondary">Torna alla dashboard</a>
     </div>
     <footer>
