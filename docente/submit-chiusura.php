@@ -65,4 +65,3 @@ if(isset($_POST['titolo_test'])) {
     </footer>
 </body>
 </html>
-
