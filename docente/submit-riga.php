@@ -6,7 +6,6 @@
         exit();
     }
 
-    // Connessione al DB
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=esqldb', 'root', 'ProgettiGiga');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,7 +14,6 @@
         exit();
     }
 
-    // Dati ricevuti dal form
     $nomeTabella = $_SESSION['nomeTabella'];
 
     // Prepara l'elenco dei campi e dei valori per l'inserimento

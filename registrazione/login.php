@@ -4,7 +4,7 @@ session_start();
 
    $username=$_POST["username"]; // aggiorna la variab  con l'istanza nuova
    $password=$_POST["password"];
-   // Connessione al DB
+
    try {
       $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
