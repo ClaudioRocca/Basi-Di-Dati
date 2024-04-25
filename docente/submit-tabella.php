@@ -34,13 +34,17 @@ try {
     $stmt = $pdo->prepare($sqlCreateTable);
     $stmt->execute();
 
-    // Query SQL per l'inserimento dati
     $sql = "INSERT INTO TABELLA(NOME, DATA_CREAZIONE, NUMRIGHE, MAIL_DOCENTE) VALUES (?,?,0,?)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
     $stmt->bindParam(2, $data, PDO::PARAM_STR);
     $stmt->bindParam(3, $username, PDO::PARAM_STR);
     $stmt->execute();
+
+    $sqlTrigger = "CREATE TRIGGER AGGIORNA_NUMRIGHE AFTER INSERT ON " . $nomeTabella . " FOR EACH ROW BEGIN UPDATE TABELLA SET NUMRIGHE = NUMRIGHE + 1 WHERE NOME = ?; END";
+    $stmtTrigger = $pdo->prepare($sqlTrigger);
+    $stmtTrigger->bindParam(1, $nomeTabella, PDO::PARAM_STR);
+    $stmtTrigger->execute();
 
     $sqlInsertAttributi = 'INSERT INTO ATTRIBUTO(NOME, TIPO, NOME_TABELLA) VALUES (?, ?, ?)';
 
