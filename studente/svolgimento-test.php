@@ -115,15 +115,12 @@ $stmt1->execute();
 
                             <input type="text" name="risposta" placeholder="Inserisci la tua risposta">
                         </fieldset>
-                        <button type="submit" class="btn btn-primary">Invia risposta</button>
+                        <button style="margin-top: 1rem" type="submit" class="btn btn-primary">Invia risposta</button>
                     </div>
                 </form>
             <?php endforeach; ?>
 
-        <button type="submit" class="btn btn-primary">Invia Risposte</button>
-
-
-        <a href="interfaccia-studente.php" class="btn btn-secondary">Torna alla dashboard</a>
+        <a style="margin-top: 1rem" href="interfaccia-studente.php" class="btn btn-secondary">Torna alla dashboard</a>
     </div>
     <footer>
         <?php include '../fragments/footer.html'; ?>

@@ -32,7 +32,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
                     exit();
                 }
 
-                $sql = 'SELECT TITOLO FROM TEST';
+                $sql = 'SELECT TITOLO FROM TEST WHERE VISUALIZZA_RISPOSTE = 0';
                 $res = $pdo->prepare($sql);
                 $res->execute();
                 $result = $res->fetchAll(PDO::FETCH_ASSOC);
