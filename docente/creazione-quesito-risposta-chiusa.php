@@ -113,16 +113,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <!-- campi delle opzioni aggiunti dinamicamente -->
                     </div>
 
-                    <!-- Questo bottone è stato spostato dentro il form -->
-                    <button type="submit" class="btn btn-primary">Invia</button>
+                    <button type="submit" class="btn btn-primary">Crea Quesito</button>
                 </form>
             </div>
-
+            <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
         </div>
-        <!-- Questo bottone non è più all'interno del form -->
-        <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
     </div>
-
 
     <footer>
         <?php include '../fragments/footer.html'; ?>
