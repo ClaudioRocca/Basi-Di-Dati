@@ -73,8 +73,8 @@ try {
             <tbody>
             <?php foreach ($statisticheQuesitiCorretti as $statistica): ?>
                 <tr>
-                    <td><?= htmlspecialchars($statistica['Codice_Studente']) ?></td>
-                    <td><?= htmlspecialchars(number_format($statistica['Risposte_Corrette'], 1)) . "%"?> </td>
+                    <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
+                    <td><?= htmlspecialchars(number_format($statistica['RISPOSTE_CORRETTE'], 1)) . "%"?> </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
