@@ -67,14 +67,14 @@ try {
             <thead class="thead-dark">
             <tr>
                 <th>Codice Studente</th>
-                <th>Quesiti Corretti</th>
+                <th>Percentuale Quesiti Corretti</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($statisticheQuesitiCorretti as $statistica): ?>
                 <tr>
                     <td><?= htmlspecialchars($statistica['CODICE']) ?></td>
-                    <td><?= htmlspecialchars($statistica['NUMERO_QUESITI_CORRETTI']) ?></td>
+                    <td><?= htmlspecialchars(number_format($statistica['RISPOSTE_CORRETTE'], 1)) . "%"?> </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -85,6 +85,7 @@ try {
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
+                <th>Titolo test</th>
                 <th>ID Quesito</th>
                 <th>Numero Risposte</th>
             </tr>
@@ -92,6 +93,7 @@ try {
             <tbody>
             <?php foreach ($statisticheQuesitiPopolari as $statistica): ?>
                 <tr>
+                    <td><?= htmlspecialchars($statistica['TITOLO_TEST']) ?></td>
                     <td><?= htmlspecialchars($statistica['ID_QUESITO']) ?></td>
                     <td><?= htmlspecialchars($statistica['NUMERO_RISPOSTE']) ?></td>
                 </tr>

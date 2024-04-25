@@ -6,10 +6,6 @@
         header('Location: ../registrazione/login.php');
     }
 
-?>
-
-<?php
-    // Connessione al DB
     try {
        $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -76,9 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <header>
-        <?php include '../fragments/header.html'; ?>
-    </header>
+<header>
+    <?php include '../fragments/header.html'; ?>
+</header>
 
     <div class="container mt-5">
         <h2>Crea Nuovo Quesito a Risposta Chiusa</h2>
@@ -113,53 +109,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <!-- campi delle opzioni aggiunti dinamicamente -->
                     </div>
 
-                    <!-- Questo bottone è stato spostato dentro il form -->
-                    <button type="submit" class="btn btn-primary">Invia</button>
+                    <button type="submit" class="btn btn-primary">Crea Quesito</button>
+                    <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
                 </form>
             </div>
-
         </div>
-        <!-- Questo bottone non è più all'interno del form -->
-        <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
     </div>
-
 
     <footer>
         <?php include '../fragments/footer.html'; ?>
     </footer>
 
     <script>
-            function aggiungiOpzioni() {
-                const numRisposte = document.getElementById('numRisposte').value;
-                const containerOpzioni = document.getElementById('opzioniContainer');
+        function aggiungiOpzioni() {
+            const numRisposte = document.getElementById('numRisposte').value;
+            const containerOpzioni = document.getElementById('opzioniContainer');
 
-                for (let i = 0; i < numRisposte; i++) {
-                    const label = document.createElement('label');
-                    label.innerText = 'Opzione ' + (i + 1) + ':';
-                    const input = document.createElement('input');
-                    input.type = 'text';
-                    input.name = 'opzione' + (i + 1);
-                    input.required = true;
-                    input.className = 'form-control';
-                    input.placeholder = 'Testo dell opzione';
+            for (let i = 0; i < numRisposte; i++) {
+                const label = document.createElement('label');
+                label.innerText = 'Opzione ' + (i + 1) + ':';
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'opzione' + (i + 1);
+                input.required = true;
+                input.className = 'form-control';
+                input.placeholder = 'Testo dell opzione';
 
-                    const checkboxLabel = document.createElement('label');
-                    checkboxLabel.innerText = ' Corretta';
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'radio';
-                    checkbox.name = 'opzioneCorretta';
-                    checkbox.value = i + 1;
-                    // La prima opzione è quella corretta
-                    if (i === 0) checkbox.checked = true;
+                const checkboxLabel = document.createElement('label');
+                checkboxLabel.innerText = ' Corretta';
+                const checkbox = document.createElement('input');
+                checkbox.type = 'radio';
+                checkbox.name = 'opzioneCorretta';
+                checkbox.value = i + 1;
+                // La prima opzione è quella corretta
+                if (i === 0) checkbox.checked = true;
 
-                    containerOpzioni.appendChild(label);
-                    containerOpzioni.appendChild(input);
-                    containerOpzioni.appendChild(checkboxLabel);
-                    containerOpzioni.appendChild(checkbox);
-                    containerOpzioni.appendChild(document.createElement('br'));
-                }
+                containerOpzioni.appendChild(label);
+                containerOpzioni.appendChild(input);
+                containerOpzioni.appendChild(checkboxLabel);
+                containerOpzioni.appendChild(checkbox);
+                containerOpzioni.appendChild(document.createElement('br'));
             }
-        </script>
+        }
+    </script>
 </body>
 </html>
-

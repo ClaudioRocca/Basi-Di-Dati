@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -7,11 +6,6 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     header('Location: ../registrazione/login.php');
 }
 
-?>
-
-
-<?php
-// Connessione al DB
 try {
     $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -111,9 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!--  campi delle opzioni aggiunti dinamicamnte -->
             </div>
 
-            <button type="submit" class="btn btn-primary">Invia</button>
+            <button type="submit" class="btn btn-primary">Crea Quesito</button>
+            <a href="interfaccia-docente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
         </form>
-        <a href="interfaccia-docente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
+
 
         </div>
     </div>
