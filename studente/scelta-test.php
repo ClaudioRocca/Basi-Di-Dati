@@ -32,9 +32,9 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
                     exit();
                 }
 
-                $sql = 'SELECT TITOLO FROM TEST WHERE VISUALIZZA_RISPOSTE = 0';
+                $sql = 'SELECT TITOLO FROM TEST WHERE VISUALIZZA_RISPOSTE = 0 AND TITOLO NOT IN (SELECT TITOLO_TEST FROM COMPLETAMENTO WHERE MAIL_STUDENTE = ? AND STATO = "CONCLUSO")';
                 $res = $pdo->prepare($sql);
-                $res->execute();
+                $res->execute([$_SESSION['username']]);
                 $result = $res->fetchAll(PDO::FETCH_ASSOC);
 
                 if (!empty($result) && count($result) > 0) {
