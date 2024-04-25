@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!--  campi delle opzioni aggiunti dinamicamnte -->
             </div>
 
-            <button type="submit" class="btn btn-primary">Invia</button>
+            <button type="submit" class="btn btn-primary">Crea Quesito</button>
         </form>
         <a href="interfaccia-docente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
 
