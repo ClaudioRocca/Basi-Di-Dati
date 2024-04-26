@@ -21,12 +21,13 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $titoloTest = isset($_GET['Titolo']) ? $_GET['Titolo'] : null;
 $quesitiChiusi = [];
 
-$sqlFoto = "SELECT FOTO FROM TEST WHERE TITOLO = ?";
-$stmtFoto = $pdo->prepare($sqlFoto);
-$stmtFoto->bindParam(1, $titoloTest);
-$stmtFoto->execute();
-$row = $stmtFoto->fetch(PDO::FETCH_ASSOC);
-$foto = $row['FOTO'];
+//$sqlFoto = "SELECT FOTO FROM TEST WHERE TITOLO = ?";
+//$stmtFoto = $pdo->prepare($sqlFoto);
+//$stmtFoto->bindParam(1, $titoloTest);
+//$stmtFoto->execute();
+//$row = $stmtFoto->fetch(PDO::FETCH_ASSOC);
+//$foto = $row['FOTO'];
+//$encodedImage = base64_encode($foto);
 
 $sql = "CALL CAMBIO_STATO_TEST(?, ?)";
 $stmt1 = $pdo->prepare($sql);
@@ -50,8 +51,7 @@ $stmt1->execute();
     <div class="container mt-5">
         <h2>Quesiti del Test: <?=  ($titoloTest) ?></h2>
 
-        <?
-        echo 'src="data:image/jpeg;base64,'.base64_encode($foto).'" alt="Foto del test"'; ?>
+        <img src="../foto/sql.png" alt="Foto">
 
 
         <?php
