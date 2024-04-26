@@ -41,7 +41,7 @@ try {
     $stmt->bindParam(3, $username, PDO::PARAM_STR);
     $stmt->execute();
 
-    $sqlTrigger = "CREATE TRIGGER AGGIORNA_NUMRIGHE AFTER INSERT ON " . $nomeTabella . " FOR EACH ROW BEGIN UPDATE TABELLA SET NUMRIGHE = NUMRIGHE + 1 WHERE NOME = ?; END";
+    $sqlTrigger = "CREATE TRIGGER AGGIORNA_NUMRIGHE_" .$nomeTabella . " AFTER INSERT ON " . $nomeTabella . " FOR EACH ROW BEGIN UPDATE TABELLA SET NUMRIGHE = NUMRIGHE + 1 WHERE NOME = ?; END";
     $stmtTrigger = $pdo->prepare($sqlTrigger);
     $stmtTrigger->bindParam(1, $nomeTabella, PDO::PARAM_STR);
     $stmtTrigger->execute();
