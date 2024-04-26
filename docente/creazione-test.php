@@ -30,6 +30,8 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
             <div class="form-group">
                 <label for="nomeTest">Nome Test</label>
                 <input type="text" class="form-control" id="nomeTest" name="nomeTest" required>
+                <label for="myfile">Aggiungi una foto (opzionale)</label>
+                <input type="file" id="foto" name="foto">
             </div>
 
             <button type="submit" class="btn btn-primary">Crea Test</button>

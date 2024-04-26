@@ -16,23 +16,12 @@ try {
 
 // Dati ricevuti dal form
 $nomeTest = $_POST["nomeTest"];
-//$risposteVisualizzabili=$_POST["risposteVisualizzabili"];
-
-//cambio il valore "on" che restituisce la checkbox in "1", per poterlo inserire in mysql
-/*if($risposteVisualizzabili == "on"){
-    $risposteVisualizzabili = 1;
-}
-else
-    $risposteVisualizzabili = 0;*/
+$foto = $_POST['foto'];
 
 try {
-    //$sql = 'CALL INSERIMENTO_NUOVO_TEST(?, ?, ?, ?, ?)';
     $sql = 'CALL INSERIMENTO_NUOVO_TEST(?, ?, ?, ?)';
 
     $date = date('Y/m/d', time());
-
-    // Foto di prova (da sostituire con il valore reale)
-    $foto = "Foto di prova";
 
     $stmt = $pdo->prepare($sql);
 
