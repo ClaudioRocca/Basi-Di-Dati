@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titoloTest = filter_input(INPUT_POST, 'titoloTest', FILTER_SANITIZE_STRING);
     $nomiTabelle = filter_input(INPUT_POST, 'nomiTabelle', FILTER_SANITIZE_STRING);
 
-    $sqlQuesito = "CALL INSERIMENTO_QUESITO_RISPOSTA_CHIUSA(?, ?, ?, ?)";
+    $sqlQuesito = "CALL INSERIMENTO_QUESITO_RISPOSTA_CHIUSA(?, ?, ?)";
     $stmtQuesito = $pdo->prepare($sqlQuesito);
-    $stmtQuesito->execute([$titoloTest, $livelloDifficoltà, $descrizione, $numRisposte]);
+    $stmtQuesito->execute([$titoloTest, $livelloDifficoltà, $descrizione]);
 
     $sqlMaxIdQuesito = 'SELECT MAX(ID) AS ID FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?';
     $stmt = $pdo->prepare($sqlMaxIdQuesito);

@@ -22,9 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titoloTest = filter_input(INPUT_POST, 'titoloTest', FILTER_SANITIZE_STRING);
     $nomiTabelle = filter_input(INPUT_POST, 'nomiTabelle', FILTER_SANITIZE_STRING);
 
-    $sqlQuesito = "CALL INSERIMENTO_QUESITO_CODICE(?, ?, ?, ?)";
+    $sqlQuesito = "CALL INSERIMENTO_QUESITO_CODICE(?, ?, ?)";
     $stmtQuesito = $pdo->prepare($sqlQuesito);
-    $stmtQuesito->execute([ $titoloTest, $livelloDifficoltà, $descrizione, $numRisposte]);
+    $stmtQuesito->execute([ $titoloTest, $livelloDifficoltà, $descrizione]);
 
     $sqlMaxIdQuesito = 'SELECT MAX(ID) AS ID FROM QUESITO_CODICE';
     $res=$pdo->query($sqlMaxIdQuesito);
@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <button type="submit" class="btn btn-primary">Crea Quesito</button>
-            <a href="interfaccia-docente.php" class="btn btn-secondary mt-3">Torna alla dashboard</a>
+            <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
         </form>
 
 
