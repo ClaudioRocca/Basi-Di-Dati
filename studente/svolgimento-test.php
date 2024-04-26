@@ -56,12 +56,12 @@ $stmt1->execute();
 
         <?php
             if ($titoloTest) {
-                $stmt1 = $pdo->prepare("SELECT ID, DESCRIZ, LIVELLO FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?");
+                $stmt1 = $pdo->prepare("SELECT ID, DESCRIZIONE, LIVELLO FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?");
                 $stmt1->bindParam(1, $titoloTest, PDO::PARAM_STR);
                 $stmt1->execute();
                 $quesitiChiusi = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-                $stmt2 = $pdo ->prepare("SELECT ID, LIVELLO, DESCRIZ FROM QUESITO_CODICE WHERE TITOLO_TEST = ?");
+                $stmt2 = $pdo ->prepare("SELECT ID, LIVELLO, DESCRIZIONE FROM QUESITO_CODICE WHERE TITOLO_TEST = ?");
                 $stmt2->bindParam(1, $titoloTest);
                 $stmt2->execute();
                 $quesitiCodice = $stmt2->fetchAll(PDO::FETCH_ASSOC);
@@ -74,7 +74,7 @@ $stmt1->execute();
                     <label>ID:</label>
                     <span><?php echo htmlspecialchars($quesito['ID']); ?></span><br>
                     <label>Descrizione:</label>
-                    <span><?php echo htmlspecialchars($quesito['DESCRIZ']); ?></span><br>
+                    <span><?php echo htmlspecialchars($quesito['DESCRIZIONE']); ?></span><br>
                     <label>Livello:</label>
                     <span><?php echo htmlspecialchars($quesito['LIVELLO']); ?></span><br>
 
@@ -122,7 +122,7 @@ $stmt1->execute();
                     <input type="hidden" name="tipoQuesito" value="codice">
                     <div class="formgroup">
                         <fieldset>
-                            <legend><?= htmlspecialchars("Descrizione: " . $quesitoCodice['DESCRIZ']) ?></legend>
+                            <legend><?= htmlspecialchars("Descrizione: " . $quesitoCodice['DESCRIZIONE']) ?></legend>
                             <legend><?= htmlspecialchars("Livello: " . $quesitoCodice['LIVELLO']) ?></legend>
 
                             <input type="text" name="risposta" placeholder="Inserisci la tua risposta">
