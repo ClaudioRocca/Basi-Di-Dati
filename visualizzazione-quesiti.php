@@ -52,7 +52,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))){
                     echo "<tr>
                                     <td>{$row['ID']}</td>
                                     <td>{$row['LIVELLO']}</td>
-                                    <td>{$row['DESCRIZ']}</td>
+                                    <td>{$row['DESCRIZIONE']}</td>
                                   </tr>";
                 }
 
