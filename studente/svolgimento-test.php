@@ -108,7 +108,7 @@ $stmt1->execute();
 
                         <button class ="btn btn-primary" type ="submit">Inserisci risposta</button>
                     </form>
-                    <fieldset>
+
 
                 </div>
             <?php endforeach; ?>
@@ -125,12 +125,14 @@ $stmt1->execute();
                             <legend><?= htmlspecialchars("Descrizione: " . $quesitoCodice['DESCRIZIONE']) ?></legend>
                             <legend><?= htmlspecialchars("Livello: " . $quesitoCodice['LIVELLO']) ?></legend>
 
-                            <input type="text" name="risposta" placeholder="Inserisci la tua risposta">
+                            <textarea name="risposta" placeholder="Inserisci la tua risposta" rows="3" cols="80"></textarea>
+                            <button style="margin-top: 1rem" type="submit" class="btn btn-primary">Invia risposta</button>
                         </fieldset>
-                        <button style="margin-top: 1rem" type="submit" class="btn btn-primary">Invia risposta</button>
                     </div>
                 </form>
             <?php endforeach; ?>
+
+
 
         <a style="margin-top: 1rem" href="interfaccia-studente.php" class="btn btn-secondary">Torna alla dashboard</a>
     </div>
