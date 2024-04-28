@@ -8,6 +8,7 @@ if (!isset($_SESSION['username']) || $_SESSION['ruolo'] !== 'studente') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titoloTest = $_POST['Titolo'];
+
     $_SESSION['titoloTest'] = $titoloTest;
     header("Location: svolgimento-test.php?Titolo=" . urlencode($titoloTest));
     exit();
@@ -19,6 +20,14 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // Prendi il titolo del test dalla query string se viene da un redirect GET
 $titoloTest = isset($_GET['Titolo']) ? $_GET['Titolo'] : null;
 $quesitiChiusi = [];
+
+//$sqlFoto = "SELECT FOTO FROM TEST WHERE TITOLO = ?";
+//$stmtFoto = $pdo->prepare($sqlFoto);
+//$stmtFoto->bindParam(1, $titoloTest);
+//$stmtFoto->execute();
+//$row = $stmtFoto->fetch(PDO::FETCH_ASSOC);
+//$foto = $row['FOTO'];
+//$encodedImage = base64_encode($foto);
 
 $sql = "CALL CAMBIO_STATO_TEST(?, ?)";
 $stmt1 = $pdo->prepare($sql);
@@ -42,14 +51,17 @@ $stmt1->execute();
     <div class="container mt-5">
         <h2>Quesiti del Test: <?=  ($titoloTest) ?></h2>
 
-            <?php
+        <img src="../foto/sql.png" alt="Foto">
+
+
+        <?php
             if ($titoloTest) {
-                $stmt1 = $pdo->prepare("SELECT ID, DESCRIZ, LIVELLO FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?");
+                $stmt1 = $pdo->prepare("SELECT ID, DESCRIZIONE, LIVELLO FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?");
                 $stmt1->bindParam(1, $titoloTest, PDO::PARAM_STR);
                 $stmt1->execute();
                 $quesitiChiusi = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-                $stmt2 = $pdo ->prepare("SELECT ID, LIVELLO, DESCRIZ FROM QUESITO_CODICE WHERE TITOLO_TEST = ?");
+                $stmt2 = $pdo ->prepare("SELECT ID, LIVELLO, DESCRIZIONE FROM QUESITO_CODICE WHERE TITOLO_TEST = ?");
                 $stmt2->bindParam(1, $titoloTest);
                 $stmt2->execute();
                 $quesitiCodice = $stmt2->fetchAll(PDO::FETCH_ASSOC);
@@ -62,7 +74,7 @@ $stmt1->execute();
                     <label>ID:</label>
                     <span><?php echo htmlspecialchars($quesito['ID']); ?></span><br>
                     <label>Descrizione:</label>
-                    <span><?php echo htmlspecialchars($quesito['DESCRIZ']); ?></span><br>
+                    <span><?php echo htmlspecialchars($quesito['DESCRIZIONE']); ?></span><br>
                     <label>Livello:</label>
                     <span><?php echo htmlspecialchars($quesito['LIVELLO']); ?></span><br>
 
@@ -96,7 +108,7 @@ $stmt1->execute();
 
                         <button class ="btn btn-primary" type ="submit">Inserisci risposta</button>
                     </form>
-                    <fieldset>
+
 
                 </div>
             <?php endforeach; ?>
@@ -110,23 +122,26 @@ $stmt1->execute();
                     <input type="hidden" name="tipoQuesito" value="codice">
                     <div class="formgroup">
                         <fieldset>
-                            <legend><?= htmlspecialchars("Descrizione: " . $quesitoCodice['DESCRIZ']) ?></legend>
+                            <legend><?= htmlspecialchars("Descrizione: " . $quesitoCodice['DESCRIZIONE']) ?></legend>
                             <legend><?= htmlspecialchars("Livello: " . $quesitoCodice['LIVELLO']) ?></legend>
 
-                            <input type="text" name="risposta" placeholder="Inserisci la tua risposta">
+                            <textarea name="risposta" placeholder="Inserisci la tua risposta" rows="3" cols="80"></textarea>
+                            <button style="margin-top: 1rem" type="submit" class="btn btn-primary">Invia risposta</button>
                         </fieldset>
-                        <button type="submit" class="btn btn-primary">Invia risposta</button>
                     </div>
                 </form>
             <?php endforeach; ?>
 
-        <button type="submit" class="btn btn-primary">Invia Risposte</button>
 
 
-        <a href="interfaccia-studente.php" class="btn btn-secondary">Torna alla dashboard</a>
+        <a style="margin-top: 1rem" href="interfaccia-studente.php" class="btn btn-secondary">Torna alla dashboard</a>
     </div>
     <footer>
         <?php include '../fragments/footer.html'; ?>
     </footer>
 </body>
+
+<?php
+
+?>
 </html>

@@ -34,11 +34,6 @@ header p {
     transform: translate(-50%, -50%); /* Sposta di -50% della propria larghezza e altezza */
 }
 
-.back-button {
-    top: 20px; /* Posizione dal bordo superiore */
-    left: 20px; /* Posizione dal bordo sinistro */
-}
-
 .footer {
     position: fixed;
     bottom: 0;
@@ -58,4 +53,8 @@ header p {
 .opzioni{
     display: flex;
     flex-direction: column;
+}
+
+img{
+    width: 200px;
 }

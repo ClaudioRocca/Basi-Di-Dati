@@ -39,7 +39,9 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container mt-5">
         <h1>Messaggi Ricevuti</h1>
         <div class="list-group">
-            <?php foreach ($results as $message): ?>
+
+            <?php
+            foreach ($results as $message): ?>
                 <div class="list-group-item">
                     <h4 class="mb-1"><?php echo $message['TITOLO_MESSAGGIO']; ?></h4>
                     <p class="mb-1"><?php echo $message['DATA_INSERIMENTO']; ?></p>

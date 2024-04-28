@@ -1,4 +1,3 @@
-
 <?php
     session_start();
 
@@ -7,10 +6,6 @@
         header('Location: ../registrazione/login.php');
     }
 
-?>
-
-<?php
-    // Connessione al DB
     try {
        $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -19,6 +14,7 @@
        echo("[ERRORE] Connessione al DB non riuscita. Errore: ".$e->getMessage());
        exit();
     }
+
 // Quando il form è inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $livelloDifficoltà = filter_input(INPUT_POST, 'livelloDifficoltà', FILTER_SANITIZE_STRING);
@@ -27,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titoloTest = filter_input(INPUT_POST, 'titoloTest', FILTER_SANITIZE_STRING);
     $nomiTabelle = filter_input(INPUT_POST, 'nomiTabelle', FILTER_SANITIZE_STRING);
 
-    $sqlQuesito = "CALL INSERIMENTO_QUESITO_RISPOSTA_CHIUSA(?, ?, ?, ?)";
+    $sqlQuesito = "CALL INSERIMENTO_QUESITO_RISPOSTA_CHIUSA(?, ?, ?)";
     $stmtQuesito = $pdo->prepare($sqlQuesito);
-    $stmtQuesito->execute([$titoloTest, $livelloDifficoltà, $descrizione, $numRisposte]);
+    $stmtQuesito->execute([$titoloTest, $livelloDifficoltà, $descrizione]);
 
     $sqlMaxIdQuesito = 'SELECT MAX(ID) AS ID FROM QUESITO_RISPOSTA_CHIUSA WHERE TITOLO_TEST = ?';
     $stmt = $pdo->prepare($sqlMaxIdQuesito);
@@ -41,38 +37,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomiTabelleSplittati = explode(", ", $nomiTabelle);
     $sqlAppartenenza = 'INSERT INTO APPARTENENZA_QUESITO_CHIUSO(NOME_TABELLA, TITOLO_TEST, ID_QUESITO) VALUES(?, ?, ?)';
     $stmt = $pdo->prepare($sqlAppartenenza);
-    foreach ($nomiTabelleSplittati as $nomeTabella){
+    foreach ($nomiTabelleSplittati as $nomeTabella) {
         $stmt->bindParam(1, $nomeTabella, PDO::PARAM_STR);
         $stmt->bindParam(2, $titoloTest, PDO::PARAM_STR);
         $stmt->bindParam(3, $row['ID'], PDO::PARAM_STR);
         $stmt->execute();
     }
 
-    // Query per recuperare i test esistenti
-//    $sqlTests = "SELECT TITOLO FROM TEST WHERE MAIL_DOCENTE = ?";
-//    $stmt = $pdo->prepare($sqlTests);
-//    $stmt->bindParam(1, $_SESSION['username']);
-//    $stmt->execute();
-//    $tests = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//    print_r($tests);
-//    $sqlTests = "CALL GET_TITOLI_TEST(?)";
-//    $stmtTests = $pdo->prepare($sqlTests);
-//    $stmtTests->execute([$_SESSION['username']]);
-//    $tests = $stmtTests->fetchAll(PDO::FETCH_ASSOC);
-//
-//    // Query per recuperare le tabelle esistenti
-//    $sqlTables = "SELECT NOME FROM TABELLA WHERE MAIL_DOCENTE = ?";
-//    $stmt = $pdo->prepare($sqlTables);
-//    $stmt->bindParam(1, $_SESSION['username']);
-//    $stmt->execute();
-//    $tables = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     $opzioni = [];
     $sqlOpzioni = 'CALL INSERIMENTO_OPZIONE(?,?,?,?)';
     for ($i = 1; $i <= $numRisposte; $i++) {
         $valore_opzione = $_POST['opzione' . $i];
 
-        if($_POST['opzioneCorretta'] == $i)
+        if ($_POST['opzioneCorretta'] == $i)
             $corretta = true;
         else $corretta = false;
 
@@ -95,9 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <header>
-        <?php include '../fragments/header.html'; ?>
-    </header>
+<header>
+    <?php include '../fragments/header.html'; ?>
+</header>
 
     <div class="container mt-5">
         <h2>Crea Nuovo Quesito a Risposta Chiusa</h2>
@@ -120,67 +97,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="numRisposte">Numero di Risposte:</label>
                         <input type="number" id="numRisposte" name="numRisposte" class="form-control" placeholder="Numero di Risposte" required oninput="aggiungiOpzioni()">
                     </div>
+                    <div class="form-group">
+                        <label for="titoloTest">Test relativo:</label>
+                        <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomiTabelle">Tabelle relative:</label>
+                        <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
+                    </div>
+                    <div id="opzioniContainer">
+                        <!-- campi delle opzioni aggiunti dinamicamente -->
+                    </div>
 
-
-                        <div class="form-group">
-                            <label for="titoloTest">Test relativo:</label>
-                            <input type="text" id="titoloTest" name="titoloTest" class="form-control" placeholder="Test relativo" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nomiTabelle">Tabelle relative:</label>
-                            <input type="text" id="nomiTabelle" name="nomiTabelle" class="form-control" placeholder="Tabelle relative" required>
-                        </div>
-                        <div id="opzioniContainer">
-                            <!-- campi delle opzioni aggiunti dinamicamente -->
-                        </div>
-
-                    <!-- Questo bottone è stato spostato dentro il form -->
-                    <button type="submit" class="btn btn-primary">Invia</button>
+                    <button type="submit" class="btn btn-primary">Crea Quesito</button>
+                    <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
                 </form>
             </div>
-
         </div>
-        <!-- Questo bottone non è più all'interno del form -->
-        <a href="interfaccia-docente.php" class="btn btn-secondary">Torna alla dashboard</a>
     </div>
-
 
     <footer>
         <?php include '../fragments/footer.html'; ?>
     </footer>
 
     <script>
-            function aggiungiOpzioni() {
-                const numRisposte = document.getElementById('numRisposte').value;
-                const containerOpzioni = document.getElementById('opzioniContainer');
+        function aggiungiOpzioni() {
+            const numRisposte = document.getElementById('numRisposte').value;
+            const containerOpzioni = document.getElementById('opzioniContainer');
 
-                for (let i = 0; i < numRisposte; i++) {
-                    const label = document.createElement('label');
-                    label.innerText = 'Opzione ' + (i + 1) + ':';
-                    const input = document.createElement('input');
-                    input.type = 'text';
-                    input.name = 'opzione' + (i + 1);
-                    input.required = true;
-                    input.className = 'form-control';
-                    input.placeholder = 'Testo dell opzione';
+            for (let i = 0; i < numRisposte; i++) {
+                const label = document.createElement('label');
+                label.innerText = 'Opzione ' + (i + 1) + ':';
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'opzione' + (i + 1);
+                input.required = true;
+                input.className = 'form-control';
+                input.placeholder = 'Testo dell opzione';
 
-                    const checkboxLabel = document.createElement('label');
-                    checkboxLabel.innerText = ' Corretta';
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'radio';
-                    checkbox.name = 'opzioneCorretta';
-                    checkbox.value = i + 1;
-                    // La prima opzione è quella corretta
-                    if (i === 0) checkbox.checked = true;
+                const checkboxLabel = document.createElement('label');
+                checkboxLabel.innerText = ' Corretta';
+                const checkbox = document.createElement('input');
+                checkbox.type = 'radio';
+                checkbox.name = 'opzioneCorretta';
+                checkbox.value = i + 1;
+                // La prima opzione è quella corretta
+                if (i === 0) checkbox.checked = true;
 
-                    containerOpzioni.appendChild(label);
-                    containerOpzioni.appendChild(input);
-                    containerOpzioni.appendChild(checkboxLabel);
-                    containerOpzioni.appendChild(checkbox);
-                    containerOpzioni.appendChild(document.createElement('br'));
-                }
+                containerOpzioni.appendChild(label);
+                containerOpzioni.appendChild(input);
+                containerOpzioni.appendChild(checkboxLabel);
+                containerOpzioni.appendChild(checkbox);
+                containerOpzioni.appendChild(document.createElement('br'));
             }
-        </script>
+        }
+    </script>
 </body>
 </html>
-

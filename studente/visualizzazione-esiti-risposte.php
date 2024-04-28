@@ -32,7 +32,6 @@
 </head>
 <body>
 <header>
-    <!-- Includi l'header dalla pagina header.html -->
     <?php include '../fragments/header.html'; ?>
 </header>
 
@@ -53,7 +52,6 @@
 </div>
 
 <footer>
-    <!-- Includi il footer dalla pagina footer.html -->
     <?php include '../fragments/footer.html'; ?>
 </footer>
 

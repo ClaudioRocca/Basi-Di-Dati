@@ -10,7 +10,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
    $username=$_POST["username"];
    $password=$_POST["password"];
-   // Connessione al DB
+
    try {
       $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
