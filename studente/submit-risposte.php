@@ -1,4 +1,7 @@
 <?php
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/log_inserimentoRisposta.php';
+
 session_start();
 
 if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "studente")){
@@ -27,6 +30,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
 
         $opzione = $_POST['opzione'];
 
+        logInserimentoRisposta($idQuesito, $titoloTest, $tipoQuesito, $opzione, $username);
         $messaggio = '<div class="alert alert-success" role="alert">Risposta inserita con successo</div>';
 
         $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_chiuso(?, ?, ?, ?)");
@@ -35,6 +39,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
     } elseif ($tipoQuesito === 'codice') {
         $risposta = $_POST['risposta'];
 
+        logInserimentoRisposta($idQuesito, $titoloTest, $tipoQuesito, $risposta, $username);
         $messaggio = '<div class="alert alert-success" role="alert">Risposta inserita con successo</div>';
 
         $stmt = $pdo->prepare("CALL inserisci_risposta_quesito_codice(?, ?, ?, ?)");
