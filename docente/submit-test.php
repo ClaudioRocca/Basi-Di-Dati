@@ -1,4 +1,6 @@
 <?php
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/log_nuovoTest.php';
 session_start();
 
 if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "docente")) {
@@ -32,6 +34,8 @@ try {
 
     $stmt->execute();
 
+    // Registra il log della creazione del test
+    logTestCreation($nomeTest, $_SESSION["username"], $date, $foto);
     $successMessage = 'Test creato con successo';
 
 } catch (PDOException $e) {
