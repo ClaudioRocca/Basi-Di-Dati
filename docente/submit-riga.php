@@ -1,4 +1,7 @@
 <?php
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/log_inserimentoRiga.php';
+
 session_start();
 
 if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "docente")) {
@@ -25,6 +28,7 @@ try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
+    logInserimentoRiga($nomeTabella, $campi, $valori, $_SESSION['username']);
     $successMessage = 'Riga inserita correttamente nella tabella.';
     unset($_SESSION['nomeTabella']);
 } catch (PDOException $e) {

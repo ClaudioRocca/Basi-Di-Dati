@@ -1,5 +1,8 @@
 <?php
-    session_start();
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/log_nuovoQuesito.php';
+
+session_start();
 
     if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "docente")) {
 
@@ -60,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(4, $corretta, PDO::PARAM_BOOL);
         $stmt->execute();
     }
+    logCreazioneQuesito("quesito_risposta_chiusa", $livelloDifficoltà, $descrizione, $titoloTest, $nomiTabelle,$_SESSION['username'] );
     echo "Quesito inserito con successo.";
 }
 ?>

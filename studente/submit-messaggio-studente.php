@@ -1,4 +1,7 @@
 <?php
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/log_invioMessaggioStudente.php';
+
 session_start();
 
 if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "studente")) {
@@ -33,6 +36,7 @@ try {
     $stmt->bindParam(6, $destinatario, PDO::PARAM_STR);
     $stmt->execute();
 
+    logInvioMessaggioStudente($titoloMessaggio, $testoMessaggio, $testRelativo, $_SESSION["username"], $destinatario);
     $successMessage = 'Messaggio inviato';
 
 } catch (PDOException $e) {
