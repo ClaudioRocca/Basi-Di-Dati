@@ -2,14 +2,15 @@
 require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
 require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/Log_login.php';
 
-//controlla lo stato della sessione e avvia una nuova sessione solo se non è già attiva
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+////controlla lo stato della sessione e avvia una nuova sessione solo se non è già attiva
+//if (session_status() == PHP_SESSION_NONE) {
+//
+//}
 
-if (!isset($_SESSION['username']) || !isset($_SESSION['password']) || $_SESSION["ruolo"] !== "studente") {
-    header('Location: ../registrazione/login.php');
-}
+session_start();
+$username=$_POST["username"]; // aggiorna la variab  con l'istanza nuova
+$password=$_POST["password"];
+
    try {
       $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

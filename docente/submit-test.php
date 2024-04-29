@@ -1,8 +1,8 @@
 <?php
 require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
 require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/log_nuovoTest.php';
-session_start();
 
+session_start();
 if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION["ruolo"] === "docente")) {
     header('Location: ../registrazione/login.php');
     exit();
