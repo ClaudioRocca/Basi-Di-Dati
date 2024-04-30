@@ -5,7 +5,6 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Recupera i dati dalla sessione
     $ruolo = $_SESSION["ruolo"];
     $username = $_SESSION["username"];
     $nome = $_SESSION["nome"];
@@ -13,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_SESSION["password"];
     $recapito = $_SESSION["recapito"];
 
-    // Inserimento dei dati nel database
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

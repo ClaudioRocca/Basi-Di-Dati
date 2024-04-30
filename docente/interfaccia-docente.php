@@ -52,9 +52,9 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
 
     <script>
         function logout() {
-            // Cancella le informazioni di sessione
+
             sessionStorage.clear();
-            // Reindirizza l'utente alla pagina di login
+
             window.location.href = 'login.php';
         }
     </script>
