@@ -1,0 +1,10 @@
+{
+    "name": "basi-di-dati/progetto",
+    "description": "progetto di basi",
+    "type": "project",
+    "require": {
+        "mongodb/mongodb": "^1.12"
+    },
+    "license": "MIT License",
+    "minimum-stability": "stable"
+}

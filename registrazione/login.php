@@ -1,9 +1,15 @@
 <?php
-//require_once __DIR__ . '/../vendor/autoload.php';
-session_start();
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/Log_login.php';
 
-   $username=$_POST["username"]; // aggiorna la variab  con l'istanza nuova
-   $password=$_POST["password"];
+////controlla lo stato della sessione e avvia una nuova sessione solo se non è già attiva
+//if (session_status() == PHP_SESSION_NONE) {
+//
+//}
+
+session_start();
+$username=$_POST["username"]; // aggiorna la variab  con l'istanza nuova
+$password=$_POST["password"];
 
    try {
       $pdo=new PDO('mysql:host=localhost;dbname=esqldb','root', 'ProgettiGiga');
@@ -13,15 +19,15 @@ session_start();
       echo("[ERRORE] Connessione al DB non riuscita. Errore: ".$e->getMessage());
       exit();
    }
-   
-   
+
+
    try {
      // Query SQL per l'inserimento dati
     $sql='SELECT COUNT(*) AS counter FROM Docente WHERE (Mail="'.$username.'") AND (Pazzword="'.$password.'")';
-    
+
     $res=$pdo->prepare($sql);
     $res->execute();
-    
+
     $res=$pdo->query($sql);
     $row=$res->fetch();
 
@@ -29,14 +35,18 @@ session_start();
         $_SESSION["username"] = $username; // Session cosi forziamo il passaggio da Login
         $_SESSION["password"] = $password;
         $_SESSION["ruolo"]= "docente";
+
+        // Registra il log dell'accesso del docente
+        logLoginEvent("Docente", $username);
+
         header('Location: ../docente/interfaccia-docente.php');
-    } 
+    }
 
     $sql='SELECT COUNT(*) AS counter FROM Studente WHERE (Mail="'.$username.'") AND (Pazzword="'.$password.'")';
-    
+
     $res=$pdo->prepare($sql);
     $res->execute();
-    
+
     $res=$pdo->query($sql);
     $row=$res->fetch();
 
@@ -44,6 +54,10 @@ session_start();
         $_SESSION["username"] = $username; // Session cosi forziamo il passaggio da Login
         $_SESSION["password"] = $password;
         $_SESSION["ruolo"]= "studente";
+
+        // Registra il log dell'accesso dello studente
+        logLoginEvent("Studente", $username);
+        
         header('Location: ../studente/interfaccia-studente.php');
     }
     else{
@@ -55,5 +69,5 @@ session_start();
   }
   $linkback= '<br><br><a href="pagelogin.php"> Torna alla pagina di login </a>'; // pop per tornare a menu
   echo($linkback);
-      
+
  ?>

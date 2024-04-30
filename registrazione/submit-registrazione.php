@@ -1,4 +1,6 @@
 <?php
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/log_registrazione.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,14 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $codice = $_POST["codice"];
             $annoImmatricolazione = $_POST["anno_Immatricolazione"];
             $stmt = $pdo->prepare("INSERT INTO Studente (Mail, Nome, Cognome, Pazzword, Recapito, Codice, 
-                      Anno_Immatricolazione) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            Anno_Immatricolazione) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$username, $nome, $cognome, $password, $recapito, $codice, $annoImmatricolazione]);
+            logRegistrationEvent($ruolo, $username, $nome, $cognome, $password, $recapito);
         } elseif ($ruolo === "docente") {
             $dipartimento = $_POST["dipartimento"];
             $corso = $_POST["corso"];
             $stmt = $pdo->prepare("INSERT INTO Docente (Mail, Nome, Cognome, Pazzword, Recapito, Dipartimento, 
                      Corso) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$username, $nome, $cognome, $password, $recapito, $dipartimento, $corso]);
+            logRegistrationEvent($ruolo, $username, $nome, $cognome, $password, $recapito);
         }
 
     } catch (PDOException $e) {
