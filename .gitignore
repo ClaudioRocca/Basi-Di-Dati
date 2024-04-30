@@ -1,1 +1,9 @@
+# Ignora tutto
 /vendor/
+
+# Non ignorare le directory, così puoi specificare cosa mantenere all'interno di esse
+#!*/
+
+# Non ignorare la cartella mongodb/mongodb/logger e il suo contenuto
+!/mongodb/logger/
+#!/vendor/mongodb/mongodb/logger/**

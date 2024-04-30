@@ -1,6 +1,6 @@
 <?php
 require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
-require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/log_registrazione.php';
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/mongodb/logger/log_registrazione.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
