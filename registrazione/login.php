@@ -1,6 +1,6 @@
 <?php
 require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/autoload.php';
-require_once 'C:/xampp/htdocs/Basi-Di-Dati/vendor/mongodb/mongodb/logger/Log_login.php';
+require_once 'C:/xampp/htdocs/Basi-Di-Dati/mongodb/logger/Log_login.php';
 
 ////controlla lo stato della sessione e avvia una nuova sessione solo se non è già attiva
 //if (session_status() == PHP_SESSION_NONE) {
