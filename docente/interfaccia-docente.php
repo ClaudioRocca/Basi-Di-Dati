@@ -33,14 +33,14 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']) && $_SESSION[
                     <a href="../visualizzazione-test.php" class="list-group-item list-group-item-action">Visualizza test</a>
                     <a href="creazione-test.php" class="list-group-item list-group-item-action">Crea nuovo Test</a>
                     <a href="creazione-quesito.php" class="list-group-item list-group-item-action">Crea nuovi quesiti</a>
-                    <a href="visualizzazione-risposte.php" class="list-group-item list-group-item-action">Rendi visualizzabili le risposte di un Test</a>
+
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="list-group">
+                    <a href="visualizzazione-risposte.php" class="list-group-item list-group-item-action">Rendi visualizzabili le risposte di un Test</a>
                     <a href="invio-messaggi-docente.php" class="list-group-item list-group-item-action">Invia messaggio</a>
                     <a href="../statistiche.php" class="list-group-item list-group-item-action">Visualizzazione Statistiche</a>
-                    <a href="../log-eventi.php" class="list-group-item list-group-item-action">Amministrazione Log Eventi</a>
                     <a href="visualizzazione-messaggi-docente.php" class="list-group-item list-group-item-action">Messaggi ricevuti</a>
                     <a href="../registrazione/pagelogin.php" class="list-group-item list-group-item-action">Logout </a>
                 </div>
